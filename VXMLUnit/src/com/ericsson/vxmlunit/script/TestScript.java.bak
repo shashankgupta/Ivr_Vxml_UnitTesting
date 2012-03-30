@@ -1,0 +1,38 @@
+package com.ericsson.vxmlunit.script;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+public class TestScript {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		  ScriptEngineManager mgr = new ScriptEngineManager();
+		  ScriptEngine jsEngine = mgr.getEngineByName("ECMAScript");
+		  try {
+			  System.out.println(jsEngine.eval("print('Hello, world!')"));
+			  
+			  System.out.println(jsEngine.eval("function addNum() {return 1+2;}"));
+			  System.out.println(jsEngine.eval("addNum()"));
+			  
+			  System.out.println(jsEngine.eval("true").getClass());
+		    
+		  } catch (ScriptException ex) {
+		      ex.printStackTrace();
+		  }  
+		
+//		  ScriptEngineManager mgr = new ScriptEngineManager();
+//		  List<ScriptEngineFactory> factories = mgr.getEngineFactories();
+//		  for(ScriptEngineFactory factory : factories) {
+//			  System.out.println(factory.getNames());
+//		  }
+		 
+
+	}
+
+}

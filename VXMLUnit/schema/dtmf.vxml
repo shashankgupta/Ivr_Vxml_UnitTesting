@@ -1,0 +1,62 @@
+
+  <vxml xmlns="http://www.w3.org/2001/vxml"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/2001/vxml http://www.w3.org/TR/voicexml20/vxml.xsd" version="2.0">
+
+	<property name="inputmodes" value="dtmf"/>	
+		<form id="welcome">
+			<block>			
+				<audio src="/intro.wav" mce_src="/intro.wav" maxage="0">				
+					Welcome to the demonstration application.
+				</audio>
+			</block>
+			<field name="option">
+				<property name="termchar" value="*"/>
+				
+				<grammar mode="dtmf" version="1.0" root="gram">
+					<rule id="gram">
+						<one-of>
+							<item> 1 </item>
+							<item> 2 </item>						
+							<item> 3 </item>				
+						</one-of>				
+					</rule>			
+				</grammar>				
+			<prompt>
+				For this press one, for that press two, for the other press three. 
+			</prompt>			
+			<filled>				
+				<if cond="option == 1">
+					<goto next="#this"/>			
+				</if>				
+				<if cond="option == 2">
+					<goto next="#that"/>
+				</if> 
+				<if cond="option ==3">
+					<goto next="#other"/>
+				</if>
+
+			
+			</filled>
+			</field>
+		</form>
+
+		<form id="this">
+			<block>
+				<prompt> Do something here! </prompt>
+			</block>
+		</form>
+
+		<form id="that">	
+			<block>
+				<prompt> Do something here! </prompt>
+
+			</block>
+		</form>
+
+		<form id="other">
+			<block>
+				<prompt> Do something here! </prompt>
+			</block>
+		</form>
+</vxml>

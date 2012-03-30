@@ -1,0 +1,165 @@
+
+<?xml version="1.0"?>
+<vxml version="2.0" xsi:schemaLocation="http://www.w3.org/2001/vxml http://www.w3.org/TR/voicexml20/vxml.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.w3.org/2001/vxml"> 
+<!-- -->
+ <property value="prefetch" name="documentfetchhint"/> 
+ <property value="31536000" name="documentmaxage"/> 
+<!-- -->
+ <script fetchhint="prefetch" maxage="31536000" src="/VXMLIVR/ECMAScripts/com/ericsson/charging/vxmlivr/core/languagehandling/scripts/returnAudioPath.es"/> 
+ <script fetchhint="prefetch" maxage="31536000" src="/VXMLIVR/ECMAScripts/com/ericsson/charging/vxmlivr/core/common/scripts/UtilityScripts.es?versionId=null"/> 
+<!-- -->
+ <var name="accessType" expr="'0'"/> 
+ <var name="accountActivatedFlag" expr="''"/> 
+ <var name="accountValue1" expr="''"/> 
+ <var name="accountValue2" expr="''"/> 
+ <var name="activationDate" expr="''"/> 
+ <var name="activeFafListIds" expr="''"/> 
+ <var name="airtimeExpiryDate" expr="''"/> 
+ <var name="BALANCE_ENQUIRY_DA_ANNOUNCEMENT_ORDER" expr="''"/> 
+ <var name="BALANCE_ENQUIRY_DA_INFO_STR" expr="''"/> 
+ <var name="calledNumber" expr="''"/> 
+ <var name="calledString" expr="''"/> 
+ <var name="callingNumber" expr="''"/> 
+ <var name="callType" expr="'0'"/> 
+ <var name="configurationId" expr="'default'"/> 
+ <var name="confirmationPrompt" expr="'GEN_CONFIRMATION_PROMPT_MSG'"/> 
+ <var name="confirmDTMF" expr="'0'"/> 
+ <var name="counter_BalEnq" expr="'0'"/> 
+ <var name="counter_DAEnq" expr="'0'"/> 
+ <var name="countryCode" expr="'91'"/> 
+ <var name="creditClearanceDate" expr="''"/> 
+ <var name="currency1" expr="''"/> 
+ <var name="currency2" expr="''"/> 
+ <var name="currentDate" expr="''"/> 
+ <var name="CurrentFaFList" expr="''"/> 
+ <var name="currentModule" expr="''"/> 
+ <var name="dateFormat" expr="'ndmcy'"/> 
+ <var name="debug" expr="'1'"/> 
+ <var name="DEBUG_LEVEL" expr="'1'"/> 
+ <var name="defaultCurrency" expr="'EUR'"/> 
+ <var name="defaultCurrencyFormat" expr="'(c)(sn)'"/> 
+ <var name="defaultLanguage" expr="'english'"/> 
+ <var name="defaultPin" expr="'OFF'"/> 
+ <var name="defaultVoiceBaseLanguage" expr="'englishuk'"/> 
+ <var name="directDialRefill" expr="''"/> 
+ <var name="durationFormat" expr="'dhms'"/> 
+ <var name="enableCallDeatilsLogging" expr="'false'"/> 
+ <var name="enableRemoteStatisticsLogging" expr="'false'"/> 
+ <var name="enableStatisticsLoggingGlobal" expr="'false'"/> 
+ <var name="endTime" expr="''"/> 
+ <var name="errorCounter" expr="'0'"/> 
+ <var name="fafChangeAllowedUnbarDate" expr="''"/> 
+ <var name="FaFChangeDetailsAvailable" expr="''"/> 
+ <var name="FaFChangeUnbarDate" expr="''"/> 
+ <var name="fafDedicatedAccountValue" expr="''"/> 
+ <var name="FaFExitStatus" expr="''"/> 
+ <var name="fafInformation" expr="''"/> 
+ <var name="fafList_SessionId" expr="'NULL'"/> 
+ <var name="FaFListAvailable" expr="'false'"/> 
+ <var name="fafListMenuRetryCount" expr="'0'"/> 
+ <var name="fafListSubscriptionType" expr="'Menu'"/> 
+ <var name="FaFNewNumberForChange" expr="''"/> 
+ <var name="familyID" expr="'-1'"/> 
+ <var name="fdkPinCode" expr="''"/> 
+ <var name="firstCallFlag" expr="''"/> 
+ <var name="gender" expr="'none'"/> 
+ <var name="initialSubscriberNAI" expr="''"/> 
+ <var name="invalidEntryRetries" expr="'2'"/> 
+ <var name="isChangeAllowed" expr="''"/> 
+ <var name="isFCUGMenuInfoPlayed" expr="'0'"/> 
+ <var name="LAST_MODULE_TO_UPDATE_DA_INFO" expr="''"/> 
+ <var name="lastModule" expr="''"/> 
+ <var name="lifeTimeValidDate" expr="'9999-12-31'"/> 
+ <var name="locationNumber" expr="''"/> 
+ <var name="locationNumberNAI" expr="''"/> 
+ <var name="loggingLevel" expr="'6'"/> 
+ <var name="lowBalanceFlag" expr="'0'"/> 
+ <var name="mainAccountBalance" expr="''"/> 
+ <var name="MainMenuLoopCounter" expr="'0'"/> 
+ <var name="MainMenuMaxLoopCounter" expr="'100'"/> 
+ <var name="masterAccountNumber" expr="''"/> 
+ <var name="masterSubscriberFlag" expr="''"/> 
+ <var name="maxAllowedFaFNumbers" expr="'0'"/> 
+ <var name="maxCreditCardRefillModuleAccessAllowed" expr="'0'"/> 
+ <var name="moduleEntryPath" expr="'M'"/> 
+ <var name="msisdnReadoutFormat" expr="''"/> 
+ <var name="MUIOEnabled" expr="''"/> 
+ <var name="MUIOOfferId" expr="''"/> 
+ <var name="nationalPrefixList" expr="'93,98'"/> 
+ <var name="negateDTMF" expr="'1'"/> 
+ <var name="NO_DEBUG_LEVEL" expr="'0'"/> 
+ <var name="noOfRetries" expr="'3'"/> 
+ <var name="noOfTimeouts" expr="'2'"/> 
+ <var name="offerCreditRefillFlag" expr="'false'"/> 
+ <var name="OFFERS_DA_INFO_STR" expr="''"/> 
+ <var name="operatorCodeList" expr="''"/> 
+ <var name="orig_accessType" expr="'0'"/> 
+ <var name="orig_calledNumber" expr="''"/> 
+ <var name="orig_callingNumber" expr="''"/> 
+ <var name="orig_configurationId" expr="'default'"/> 
+ <var name="orig_presentationId" expr="'default'"/> 
+ <var name="orig_promptsetId" expr="'default'"/> 
+ <var name="orig_subscriberNAI" expr="''"/> 
+ <var name="orig_vxmlsetId" expr="'default'"/> 
+ <var name="orig_workflowId" expr="'default'"/> 
+ <var name="pamClassIds" expr="'NULL'"/> 
+ <var name="pamInfoList" expr="''"/> 
+ <var name="pinCode" expr="'NULL'"/> 
+ <var name="playRechargeAmount" expr="'false'"/> 
+ <var name="presentationId" expr="'default'"/> 
+ <var name="promotionAnnouncementCode" expr="''"/> 
+ <var name="promptsetId" expr="'default'"/> 
+ <var name="REFILL_DA_ANNOUNCEMENT_ORDER" expr="''"/> 
+ <var name="REFILL_DA_INFO_STR" expr="''"/> 
+ <var name="reportServiceURL" expr="'http://localhost:8090/VIVR-STATS'"/> 
+ <var name="repromptDTMF" expr="'*'"/> 
+ <var name="repromptEnabled" expr="'true'"/> 
+ <var name="selectedFafList" expr="'NULL'"/> 
+ <var name="serviceClass" expr="''"/> 
+ <var name="serviceClassChangeUnbarDate" expr="''"/> 
+ <var name="serviceClassPrompt" expr="''"/> 
+ <var name="serviceExpiryDate" expr="''"/> 
+ <var name="serviceOfferingIDList" expr="''"/> 
+ <var name="serviceRemovalDate" expr="''"/> 
+ <var name="SizeOfFaFList" expr="'0'"/> 
+ <var name="speaker" expr="'alice'"/> 
+ <var name="startTime" expr="''"/> 
+ <var name="subscriberBarredForRefillFlag" expr="''"/> 
+ <var name="subscriberLanguage" expr="''"/> 
+ <var name="subscriberNAI" expr="''"/> 
+ <var name="SubscriberTypeFlag" expr="'Prepaid'"/> 
+ <var name="subState" expr="''"/> 
+ <var name="successfulRecharge" expr="'false'"/> 
+ <var name="temporaryBlockedFlag" expr="''"/> 
+ <var name="TempServiceClass" expr="'99999'"/> 
+ <var name="thirdPartyAcountActivatedFlag" expr="''"/> 
+ <var name="thirdPartyAirtimeExpiryDate" expr="''"/> 
+ <var name="thirdPartyDebug" expr="''"/> 
+ <var name="thirdPartyFirstCallFlag" expr="''"/> 
+ <var name="thirdPartyLanguage" expr="''"/> 
+ <var name="thirdPartyNumber" expr="''"/> <var name="thirdPartyPinCode" expr="''"/> <var name="thirdPartyPromotionAnnouncementCode" expr="''"/> <var name="thirdPartyServiceClass" expr="''"/> <var name="thirdPartyServiceOfferingIDList" expr="''"/> <var name="thirdPartySubscriberBarredForRefillFlag" expr="''"/> <var name="thirdPartySubscriberLanguage" expr="''"/> <var name="thirdPartySubscriberNAI" expr="''"/> <var name="thirdPartyVoiceBaseLanguage" expr="''"/> <var name="ThirdPartyWorkflowOverride" expr="'false'"/> <var name="timeFormat" expr="'hms'"/> <var name="user_var2" expr="'string'"/> <var name="versionId" expr="''"/> <var name="voiceBaseLanguage" expr="''"/> <var name="voiceBaseURL" expr="'http://localhost:8090/VoiceBase/jspFiles/voiceBase.jsp'"/> <var name="voucherType" expr="''"/> <var name="vxmlComplianceLevel" expr="'2.1'"/> 
+ <var name="vxmlsetId" expr="'default'"/> 
+ <var name="workflowId" expr="'default'"/> 
+<!-- -->
+ 
+<!-- HO74459 Start -->
+ -<error event="error.noresource.resource_released"> <log> Error Counter is error noresource resource released </log> <disconnect/> </error> 
+<!-- HO74459 End -->
+ -<error> -<if cond="errorCounter == 0"> <assign name="errorCounter" expr="++errorCounter"/> 
+<!-- -->
+ <if cond="enableCallDeatilsLogging == 'true'"> <assign name="application.endTime" expr="getTimeStr()"/> <var name="startTime" expr="application.startTime"/> <var name="endTime" expr="application.endTime"/> <var name="lastModule" expr="application.lastModule"/> <var name="duration" expr="getDuration(startTime,endTime)"/> <var name="modulename" expr="'EndToEnd'"/> 
+<!-- -->
+ <submit expr="reportServiceURL + '/LogCallDetails.do'" namelist="startTime endTime callingNumber calledNumber lastModule modulename duration"/> </if> <goto expr="'/VXMLIVR/fatalFailurePlayMsgDisc.do?versionId='+versionId"/> <else/> <disconnect/> </if> 
+<!-- TR-HI84981-End -->
+ </error> 
+<!-- -->
+ <catch event="connection.disconnect.hangup root.disconnect"> 
+<!-- -->
+ <if cond="errorCounter == 0 && enableCallDeatilsLogging == 'true'"> <assign name="application.endTime" expr="getTimeStr()"/> <var name="startTime" expr="application.startTime"/> <var name="endTime" expr="application.endTime"/> <var name="lastModule" expr="application.lastModule"/> <var name="duration" expr="getDuration(startTime,endTime)"/> <var name="modulename" expr="'EndToEnd'"/> 
+<!-- -->
+     <submit expr="reportServiceURL + '/LogCallDetails.do'" namelist="startTime endTime callingNumber calledNumber lastModule modulename duration"/> 
+   <else/> 
+    <exit/> 
+   </if> 
+  </catch> 
+ </vxml>

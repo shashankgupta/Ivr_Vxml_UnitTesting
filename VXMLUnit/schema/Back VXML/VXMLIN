@@ -1,0 +1,307 @@
+
+package com.ericsson.vxmlunit.interpreter;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
+import com.ericsson.vxmlunit.init.VXMLLoader;
+//import com.ericsson.vxmlunit.vo.Else;
+import com.ericsson.vxmlunit.vo.Form;
+import com.ericsson.vxmlunit.vo.If;
+import com.ericsson.vxmlunit.vo.ElseIf;
+import com.ericsson.vxmlunit.vo.Vxml;
+import com.ericsson.vxmlunit.vo.base.AbstractBaseItem;
+import com.ericsson.vxmlunit.vo.base.FormItem;
+import com.ericsson.vxmlunit.script.ScriptUtil;
+import com.ericsson.vxmlunit.vo.Data;
+import com.ericsson.vxmlunit.vo.Var;
+import com.ericsson.vxmlunit.vo.Assign;
+import com.ericsson.vxmlunit.vo.Script;
+
+public class VXMLInterpreter {
+
+	private AbstractBaseItem currentItem;
+	private List<FormItem> formItems;
+
+	public VXMLInterpreter() {
+		this.formItems = new ArrayList<FormItem>();
+	}
+
+	/**
+	 * initialize the form
+	 * parameter received from main function
+	 * @param form
+	 */
+	public void initializeForm(Form form) {
+		this.formItems.clear();
+
+		if (form != null) {
+			List<AbstractBaseItem> formChildren = form.getChildren();
+			for (AbstractBaseItem formChild : formChildren) {
+				if (formChild.isFormItem()) {
+					FormItem formItem = (FormItem) formChild;
+					formItem.setVisited(false);
+					this.formItems.add(formItem);
+				}
+			}
+			if (this.formItems.size() > 0)
+				this.currentItem = this.formItems.get(0);
+		}
+
+	}
+
+	/**
+	 * initialize variables <var tag>
+	 * @param vxml
+	 */
+	public void initializeVariables(Vxml vxml) {
+		List<AbstractBaseItem> children = vxml.getChildren();
+		for (AbstractBaseItem child : children) {
+			if (child.getName().equals("var")) {
+				ScriptUtil.executeVar((Var) child);
+			}
+		}
+	}
+
+	/**
+	 * initialize scripts <script tag>
+	 * parameter received from main function
+	 * @param vxml
+	 */
+	public void initializeScript(Vxml vxml) {
+		List<AbstractBaseItem> children = vxml.getChildren();
+		for (AbstractBaseItem child : children) {
+			if (child.getName().equals("script")) {
+				ScriptUtil.executeScript((Script) child);
+			}
+		}
+	}
+
+	/**
+	 * checkNull method is used to check wether the item has reached its null state 
+	 * parameter received from getNextItem function
+	 * @param nextItem
+	 * @return
+	 */
+	
+	public AbstractBaseItem checkNull(AbstractBaseItem nextItem) {
+		if (nextItem == null) {
+			AbstractBaseItem parent = this.currentItem.getParent();
+			//if parent is a form item then that form item is set to true and next form item is selected from searchNextUnvisitedFormItem()  
+			if (parent.isFormItem()) {
+				FormItem formItem = (FormItem) parent;
+				formItem.setVisited(true);
+				this.currentItem = searchNextUnvisitedFormItem();
+				nextItem = getNextItem();
+			} 
+			else {
+				nextItem = parent.getNextSibling();
+				//traverse till the nextItem is form or a form item which is not visited 
+				while (nextItem == null) {
+					parent = parent.getParent();
+					if (parent.getName().equals("form")) {
+						break;
+					} else if (parent.isFormItem()) {
+						FormItem formItem = (FormItem) parent;
+						formItem.setVisited(true);
+						this.currentItem = searchNextUnvisitedFormItem();
+						nextItem = getNextItem();
+					} else {
+						nextItem = parent.getNextSibling();
+					}
+				}
+
+			}
+		}
+		// returns null or next unvisited form item or unvisited tag
+		return nextItem;
+	}
+
+	/**
+	 * getNextItem function is the core logic of the form tag children 
+	 * @return
+	 * returns the captured item to main function
+	 */
+	
+	public AbstractBaseItem getNextItem() {
+
+		AbstractBaseItem nextItem = null;
+		if (this.currentItem != null) {
+			
+			// if part is for for item
+			
+			if (this.currentItem.isFormItem()) {
+				FormItem formItem = (FormItem) this.currentItem;
+
+				if (!formItem.isVisited()) {
+					if (!formItem.isCapturedItem()) {
+						nextItem = checkNull(formItem.getFirstChild());
+						if (nextItem == null) {
+							formItem.setVisited(true);
+							this.currentItem = searchNextUnvisitedFormItem();
+							nextItem = getNextItem();
+						}
+						else if(!nextItem.isCapturedItem()){
+							this.currentItem = nextItem;
+							nextItem = getNextItem();
+						}
+
+					} else {
+						formItem.setVisited(true);
+						nextItem = formItem;
+					}
+				} else {
+					if (!formItem.isCapturedItem()) {
+						this.currentItem = searchNextUnvisitedFormItem();
+						nextItem = getNextItem();
+					} else {
+						if (this.currentItem.getName().equals("field")) {
+							this.currentItem = this.currentItem.getFirstChild();
+							nextItem = getNextItem();
+						}
+						else if (this.currentItem.getName().equals("subdialog")) {
+							this.currentItem = this.currentItem.getFirstChild();
+							nextItem = getNextItem();
+						}
+						else {
+							this.currentItem = searchNextUnvisitedFormItem();
+							nextItem = getNextItem();
+						}
+					}
+				}
+			} 
+			else {
+				
+				// else part is for non form item
+				
+				if (this.currentItem.getName().equals("if")) {
+					nextItem = this.currentItem.getFirstChild();
+				} else if (this.currentItem.getName().equals("filled")) {
+					nextItem = this.currentItem.getFirstChild();
+				} else {
+					// non container tag
+					if (this.currentItem.getName().equals("var"))
+						ScriptUtil.executeVar((Var) this.currentItem);
+					else if (this.currentItem.getName().equals("assign"))
+						ScriptUtil.executeAssign((Assign) this.currentItem);
+					else if (this.currentItem.getName().equals("data"))
+						ScriptUtil.executeData((Data) this.currentItem);
+					// nextItem for non container tags is their sibling
+					nextItem = checkNull(this.currentItem.getNextSibling());
+					
+					if(nextItem != null && !nextItem.isCapturedItem()) {
+						if (nextItem.getName().equals("if")) {
+							If ifItem = (If) nextItem;
+							nextItem = processIf(ifItem);
+						}else{
+							this.currentItem = nextItem;
+							nextItem = getNextItem();
+
+						}
+					}
+				}	
+
+				if (nextItem != null) {
+
+					if (nextItem.getName().equals("if")) {
+						If ifItem = (If) nextItem;
+						nextItem = processIf(ifItem);
+					}
+				}
+
+			}
+		}
+		this.currentItem = nextItem;
+		return currentItem;
+	}
+
+	/**
+	 * processIf function is called when an if tag is encountered
+	 * @param ifItem
+	 * @return
+	 */
+	private AbstractBaseItem processIf(If ifItem) {
+
+		AbstractBaseItem nextItem = null;
+		this.currentItem = ifItem;
+		
+		if (ifItem != null) {
+			if (ifItem.isTrue()) {
+				nextItem = getNextItem();
+			} 
+			else {
+				nextItem = checkNull(this.currentItem.getNextSibling());
+				if (nextItem != null) {
+					if (nextItem.getName().equals("if")) {
+						If newIfItem = (If) nextItem;
+						nextItem = processIf(newIfItem);
+					}
+				}
+			}
+		}
+		return nextItem;
+	}
+
+	private AbstractBaseItem searchNextUnvisitedFormItem() {
+		AbstractBaseItem nextItem = null;
+		for (FormItem formItem : formItems) {
+			if (!formItem.isVisited()) {
+				this.currentItem = nextItem;
+				nextItem = formItem;
+				break;
+			}
+		}
+		return nextItem;
+	}
+
+	public AbstractBaseItem getCurrentItem() {
+		return currentItem;
+	}
+
+	public void setCurrentItem(AbstractBaseItem currentItem) {
+		this.currentItem = currentItem;
+	}
+
+	/**
+	 * Main function is used to initialize and call
+	 * 
+	 * @param args 
+	 */
+	public static void main(String[] args) {
+		
+
+		VXMLLoader loader = new VXMLLoader("//Users//Shank//Workspace//VXMLUnit//schema//Sample_copy.vxml");
+
+		Vxml vxml = loader.getVxml();
+		
+		Form form = null;
+		
+		// create a list of vxml children and select the child with form tag
+		
+		List<AbstractBaseItem> children = vxml.getChildren();
+		for (AbstractBaseItem child : children) {
+			if (child.getName().equals("form")) {
+				form = (Form) child;
+			}
+
+		}
+
+		// initialize the interpreter, valiable tag, script tag, form tag
+		
+		VXMLInterpreter interpreter = new VXMLInterpreter();
+		interpreter.initializeVariables(vxml);
+		interpreter.initializeScript(vxml);
+		interpreter.initializeForm(form);
+		
+		// calling and printing the captured tags
+		
+		while(true){
+			AbstractBaseItem item = interpreter.getNextItem();
+			if(item != null)
+				System.out.println(item);
+			else
+				break;
+		}
+	}
+}

@@ -1,0 +1,44 @@
+
+  <vxml xmlns="http://www.w3.org/2001/vxml"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/2001/vxml http://www.w3.org/TR/voicexml20/vxml.xsd" version="2.1">
+
+	<var name="var1" expr="5" />
+	<var name="var2" expr="7" />
+
+	<script>
+	<![CDATA[
+		function factorial(n) { return (n <= 1) ? 1 : n * factorial (n - 1);}
+	]]>
+	</script>
+	<title> Happy </title>
+	<form id="Sample_vxml" scope="document"> 
+		
+		<block name="first" cond="true" expr="new">					
+		
+			<assign name="var1" expr="factorial(var1)" />	
+			
+			<audio expr="Else If example" />
+				
+			<if cond="var1==12">
+				<audio expr="If found" />
+				
+				<elseif cond="var1==120"/>
+					<audio expr="Sucess11111111!!!" />
+					
+				<elseif cond="var1==12"/>
+					<audio expr="Sucess22222222!!!" /> 
+			</if>
+			
+			<if cond="var1==12">
+					<audio expr="If inside elseif" />
+				<elseif cond="var1==120" />
+					<audio expr="elseif indise if" />
+			</if>
+			
+			<!-- <audio expr="Nested IF executed Level 3" /> -->
+						
+			</block> 
+	</form>
+
+  </vxml>

@@ -1,0 +1,139 @@
+package com.ericsson.vxmlunit.generator;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URI;
+import java.util.Properties;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.xml.XMLConstants;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
+import org.jvoicexml.JVoiceXml;
+import org.jvoicexml.Session;
+import org.xml.sax.SAXException;
+
+public class VXMLObjectsGenerators {
+
+	/**
+	 * @param args
+	 * @throws FileNotFoundException
+	 */
+	public static void main(String[] args) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("java.security.policy", "jvoicexml.policy");
+		Context context = null;
+		try {
+			
+			Properties env = new Properties();
+			
+			env.setProperty(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.rmi.registry.RegistryContextFactory");
+			env.setProperty(Context.PROVIDER_URL, "rmi://localhost:1099");
+			env.setProperty("java.naming.rmi.security.manager", "true");
+			
+			context = new InitialContext(env);
+		} catch (NamingException ne) {
+			ne.printStackTrace();
+		}
+
+		
+		
+		JVoiceXml jVoiceXML = null;
+		
+		try {
+			jVoiceXML = (JVoiceXml)context.lookup("JVoiceXml");
+		} catch (NamingException e) {
+		
+			e.printStackTrace();
+		}
+		
+		try {
+			
+			
+			//VoiceXmlInterpreter inter = new VoiceXmlInterpreter();
+			final Session session = jVoiceXML.createSession(null);
+			
+//			VoiceXmlInterpreterContext voiceXmlInterpreterContext = new VoiceXmlInterpreterContext(session, null);
+//			VoiceXmlInterpreter interpreter = new VoiceXmlInterpreter(voiceXmlInterpreterContext, null);
+//			
+//			System.out.println(interpreter.getLanguage());
+
+			session.call(new URI("http://localhost:8090/VXMLIVR/vxmlFiles/StartCallflow_Dev.vxml"));
+			session.waitSessionEnd();
+			session.hangup();
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		try {
+//			JAXBContext context = JAXBContext
+//					.newInstance("com.ericsson.vxmlunit.gen");
+//			Unmarshaller unmarshaller = context.createUnmarshaller();
+//
+//			unmarshaller
+//					.setSchema(getSchema("C:\\IVR_Development_Env\\eclipse\\vxmlunit\\VXMLUnit\\schema\\vxml.xsd"));
+//
+//			JAXBElement<?> configElement = (JAXBElement<?>) unmarshaller
+//					.unmarshal(
+//							new StreamSource(
+//									new File(
+//											"C:\\IVR_Development_Env\\eclipse\\vxmlunit\\VXMLUnit\\schema\\Sample.vxml")),
+//							Vxml.class);
+//
+//			Vxml vxml = (Vxml) configElement.getValue();
+//			
+//			List<Object> children = vxml.getDataOrCatchOrHelp();
+//			for(Object child : children) {
+//				
+//				if(child instanceof Form) {
+//					Form form = (Form) child;
+//					
+//					List<Object> formChildren = form.getCatchOrHelpOrNoinput();
+//					for(Object formChild : formChildren) {
+//						
+//						if(formChild instanceof Block) {
+//							Block block = (Block) formChild;
+//							
+//							List<Object> blockChildren = block.getContent();
+//							for(Object blockChild : blockChildren) {
+//								if(blockChild instanceof If) {
+//									If if1 = (If) blockChild;
+//									
+//									List<Object> ifChildren = if1.getContent();
+//									for(Object ifChild : ifChildren) {
+//										System.out.println(ifChild.getClass());
+//									}
+//								}
+//							}
+//						}
+//					}
+//					//System.out.println(form.getId());
+//				}
+//			}
+//			//System.out.println(vxml);
+//		} catch (JAXBException e) {
+//
+//			System.out.println(" ----  HERE");
+//			e.printStackTrace();
+//		}
+
+	}
+
+	private static Schema getSchema(String anAbsoluteSchemaFileName) {
+		SchemaFactory sf = SchemaFactory
+				.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		Schema schema = null;
+		try {
+			schema = sf.newSchema(new File(anAbsoluteSchemaFileName));
+
+		} catch (SAXException e) {
+			e.printStackTrace();
+		}
+		return schema;
+	}
+
+} 

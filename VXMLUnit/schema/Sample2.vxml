@@ -1,0 +1,21 @@
+
+  <vxml xmlns="http://www.w3.org/2001/vxml"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/2001/vxml http://www.w3.org/TR/voicexml20/vxml.xsd" version="2.0">
+
+	<var name="var1" expr="5" />
+
+	<form id="form1"> 
+		<script>
+			function factorial(n) 
+			{ 
+				return (n <= 1) ? 1 : n * factorial (n - 1);
+			}
+		</script>
+	
+		<block name = "fact">
+			<asign name="var1" expr="factorial(var1)" />
+		</block>	
+	</form> 
+
+  </vxml>

@@ -1,0 +1,57 @@
+//							if(throwEvent.equals(catchEvent)){
+//								this.currentItem = (AbstractBaseItem) catch1;
+//								nextItem = getNextItem();
+//							}
+//							else{
+//								String p = catchStack.pop().getName();
+//								System.out.println(p);
+//								catchStack.pop();
+//							}
+						
+					
+					
+					
+//					System.out.println(catchVxmlList);
+//					System.out.println(catchFormList);
+					
+//					if(parent.getName().equals("block")){
+//						parent = parent.getParent();	
+//					}
+//					
+//					if(parent.getName().equals("field")){
+//						for(int i=0; i<catchFieldList.size(); i++){
+//							Catch catch1 = (Catch) catchFieldList.get(i);
+//							String catchEvent = catch1.getEvent();
+//							if(throwEvent.equals(catchEvent)){
+//								catch1.setExecutable(true);
+//								this.currentItem = (AbstractBaseItem) catch1;
+//								nextItem = getNextItem();
+//							}
+//							catch1.setExecutable(false);
+//						}
+//					}
+//					else if(parent.getName().equals("form")){
+//						for(int i=0; i<catchFormList.size(); i++){
+//							Catch catch1 = (Catch) catchFormList.get(i);
+//							String catchEvent = catch1.getEvent();
+//							if(throwEvent.equals(catchEvent)){
+//								catch1.setExecutable(true);
+//								this.currentItem = (AbstractBaseItem) catch1;
+//								nextItem = getNextItem();
+//							}
+//							catch1.setExecutable(false);
+//						}
+//						
+//					}
+//					else if(parent.getName().equals("vxml")){
+//						for(int i=0; i<catchVxmlList.size(); i++){
+//							Catch catch1 = (Catch) catchVxmlList.get(i);
+//							String catchEvent = catch1.getEvent();
+//							if(throwEvent.equals(catchEvent)){
+//								catch1.setExecutable(true);
+//								this.currentItem = (AbstractBaseItem) catch1;
+//								nextItem = getNextItem();
+//							}
+//							catch1.setExecutable(false);
+//						}
+//					}

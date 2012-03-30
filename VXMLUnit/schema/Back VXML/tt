@@ -1,0 +1,34 @@
+if (ifItem != null) {
+			if (ifItem.isTrue()) {
+				nextItem = getNextItem();
+			} 
+			else {
+				nextItem = checkNull(this.currentItem.getNextSibling());
+				if (nextItem != null) {
+					if (nextItem.getName().equals("if")) {
+						If newIfItem = (If) nextItem;
+						nextItem = processIf(newIfItem);
+					}
+						
+					}
+				}
+			}
+		}
+		
+		System.out.println(catchFormList);
+					System.out.println(catchFieldList);
+					System.out.println(catchVxmlList);
+		
+		
+		
+		
+		
+		
+		
+		nextItem = checkNull(this.currentItem.getNextSibling());
+					if (nextItem != null) {
+					if (nextItem.getName().equals("if")) {
+						If newIfItem = (If) nextItem;
+						nextItem = processIf(newIfItem);
+					}
+					}

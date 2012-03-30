@@ -1,0 +1,17 @@
+<jxb:bindings 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    version="2.1">
+
+    <jxb:bindings schemaLocation="vxml.xsd">
+	    <jxb:bindings node="//xsd:element[@name='meta']">         
+	    	<jxb:class name="MetaVXML"/>        
+	    </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="vxml.xsd">
+	    <jxb:bindings node="//xsd:element[@name='metadata']">         
+	    	<jxb:class name="MetadataVXML"/>        
+	    </jxb:bindings>
+    </jxb:bindings>
+
+</jxb:bindings>

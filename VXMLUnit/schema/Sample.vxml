@@ -1,0 +1,66 @@
+
+  <vxml xmlns="http://www.w3.org/2001/vxml"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/2001/vxml http://www.w3.org/TR/voicexml20/vxml.xsd" version="2.1">
+
+	<var name="var1" expr="5" />
+	<var name="var2" expr="6" />
+	<var name="var3" expr="7" />
+
+	<script>
+	<![CDATA[
+		function factorial(n) { return (n <= 1) ? 1 : n * factorial (n - 1);}
+	]]>
+	</script>
+	
+	<form id="Sample_vxml" scope="document"> 
+		
+		<block name="first" cond="true" expr="new">					
+		
+			<data name = "Data_tag" srcexpr="//Users//Shank//Workspace//VXMLUnit//schema//Samplexml.xml" />			
+			<audio expr="Data tag Executed" />	
+			
+			<assign name="var1" expr="factorial(var1)" />
+			<assign name="var2" expr="factorial(var2)" />
+			<assign name="var3" expr="factorial(var3)" />
+			
+			<audio expr="Assignment Done!!!" />			
+			<audio expr="Multiple IF Condition"/>		
+			
+			<if cond="var1==120">
+				<audio expr="First" />
+			</if>
+			
+			<if cond="var2==720">
+				<audio expr="Second" />
+			</if>
+			
+			<if cond="var1==120">
+				<if cond="var3==5040">
+						<audio expr="Nested IF executed Level 2" />
+				</if>
+			</if>		
+
+			<if cond="var2==720">
+				<if cond="var1==120">
+					<if cond="var3==5040">
+						<audio expr="Nested IF executed Level 3" />
+					</if>
+					<audio expr="Nested IF executed Level 4" />
+				</if>
+			</if>
+							
+			</block> 
+		<!--
+		<field name="f1" cond="true">
+			<filled>
+				<if cond="f1==1">
+					<audio expr="Field Executed" />
+				</if>
+			</filled>
+
+		</field> -->
+
+	</form>
+
+  </vxml>

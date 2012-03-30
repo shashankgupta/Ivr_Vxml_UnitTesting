@@ -1,0 +1,748 @@
+2011-05-02 20:06:19,820 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 20:06:19,836 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 20:06:19,837 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 20:06:19,837 [JVoiceXmlMain       ] WARN  .jvoicexml.config.JVoiceXmlConfiguration (   403) - configuration error. unable to load object: key 'org.jvoicexml.DocumentServer' from a null configuration
+2011-05-02 20:06:19,837 [JVoiceXmlMain       ] WARN  .jvoicexml.config.JVoiceXmlConfiguration (   403) - configuration error. unable to load object: key 'org.jvoicexml.ImplementationPlatformFactory' from a null configuration
+2011-05-02 20:06:19,837 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - 
+java.lang.NullPointerException
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 20:06:19,868 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 20:06:19,868 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request
+2011-05-02 20:11:11,261 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 20:11:11,277 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 20:11:11,292 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 20:11:11,292 [JVoiceXmlMain       ] WARN  .jvoicexml.config.JVoiceXmlConfiguration (   403) - configuration error. unable to load object: key 'org.jvoicexml.DocumentServer' from a null configuration
+2011-05-02 20:11:11,292 [JVoiceXmlMain       ] WARN  .jvoicexml.config.JVoiceXmlConfiguration (   403) - configuration error. unable to load object: key 'org.jvoicexml.ImplementationPlatformFactory' from a null configuration
+2011-05-02 20:11:11,308 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - 
+java.lang.NullPointerException
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 20:11:11,308 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 20:11:11,308 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request
+2011-05-02 20:15:31,725 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 20:15:31,725 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 20:15:31,756 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 20:15:32,333 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'jvxmlmap': org.jvoicexml.documentserver.schemestrategy.MappedDocumentStrategy
+2011-05-02 20:15:32,333 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'file': org.jvoicexml.documentserver.schemestrategy.FileSchemeStrategy
+2011-05-02 20:15:32,333 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'http': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 20:15:32,333 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'https': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 20:15:32,333 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'builtin': org.jvoicexml.documentserver.schemestrategy.builtin.BuiltinSchemeStrategy
+2011-05-02 20:15:32,333 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   121) - default fetch timeout: 5000msec
+2011-05-02 20:15:32,443 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   354) - loading configuration 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config\jvxml-implementation.xml'...
+2011-05-02 20:15:32,490 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: schema_reference.4: Failed to read schema document 'jvxml-implementation-0-7.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.findSchemaGrammar(XMLSchemaValidator.java:2411)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1753)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 20:15:32,506 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:404)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+Caused by: org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1887)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	... 7 more
+2011-05-02 20:15:32,506 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 20:15:32,506 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request
+2011-05-02 20:35:32,891 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 20:35:32,891 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 20:35:32,922 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 20:35:33,499 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'jvxmlmap': org.jvoicexml.documentserver.schemestrategy.MappedDocumentStrategy
+2011-05-02 20:35:33,499 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'file': org.jvoicexml.documentserver.schemestrategy.FileSchemeStrategy
+2011-05-02 20:35:33,499 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'http': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 20:35:33,499 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'https': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 20:35:33,499 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'builtin': org.jvoicexml.documentserver.schemestrategy.builtin.BuiltinSchemeStrategy
+2011-05-02 20:35:33,499 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   121) - default fetch timeout: 5000msec
+2011-05-02 20:35:33,594 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   354) - loading configuration 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config\jvxml-implementation.xml'...
+2011-05-02 20:35:33,656 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: schema_reference.4: Failed to read schema document 'jvxml-implementation-0-7.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.findSchemaGrammar(XMLSchemaValidator.java:2411)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1753)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 20:35:33,672 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:404)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+Caused by: org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1887)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	... 7 more
+2011-05-02 20:35:33,672 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 20:35:33,672 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request
+2011-05-02 20:35:59,319 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 20:35:59,319 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 20:35:59,335 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 20:35:59,912 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'jvxmlmap': org.jvoicexml.documentserver.schemestrategy.MappedDocumentStrategy
+2011-05-02 20:35:59,912 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'file': org.jvoicexml.documentserver.schemestrategy.FileSchemeStrategy
+2011-05-02 20:35:59,912 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'http': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 20:35:59,912 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'https': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 20:35:59,912 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'builtin': org.jvoicexml.documentserver.schemestrategy.builtin.BuiltinSchemeStrategy
+2011-05-02 20:35:59,912 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   121) - default fetch timeout: 5000msec
+2011-05-02 20:36:00,022 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   354) - loading configuration 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config\jvxml-implementation.xml'...
+2011-05-02 20:36:00,085 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: schema_reference.4: Failed to read schema document 'jvxml-implementation-0-7.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.findSchemaGrammar(XMLSchemaValidator.java:2411)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1753)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 20:36:00,100 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:404)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+Caused by: org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1887)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	... 7 more
+2011-05-02 20:36:00,100 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 20:36:00,100 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request
+2011-05-02 21:12:05,047 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 21:12:05,047 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 21:12:05,078 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 21:12:05,671 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'jvxmlmap': org.jvoicexml.documentserver.schemestrategy.MappedDocumentStrategy
+2011-05-02 21:12:05,671 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'file': org.jvoicexml.documentserver.schemestrategy.FileSchemeStrategy
+2011-05-02 21:12:05,671 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'http': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:12:05,671 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'https': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:12:05,672 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'builtin': org.jvoicexml.documentserver.schemestrategy.builtin.BuiltinSchemeStrategy
+2011-05-02 21:12:05,672 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   121) - default fetch timeout: 5000msec
+2011-05-02 21:12:05,797 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   354) - loading configuration 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config\jvxml-implementation.xml'...
+2011-05-02 21:12:05,859 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: SchemaLocation: schemaLocation value = 'http://www.jvoicexml.org/xsd/jvxml-implementation-0-7.xsd' must have even number of URI's.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:410)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.storeLocations(XMLSchemaValidator.java:2330)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1741)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 21:12:05,875 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: schema_reference.4: Failed to read schema document 'jvxml-implementation-0-7.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.findSchemaGrammar(XMLSchemaValidator.java:2411)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1753)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 21:12:05,875 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:404)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+Caused by: org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1887)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	... 7 more
+2011-05-02 21:12:05,890 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 21:12:05,890 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request
+2011-05-02 21:12:30,851 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 21:12:30,867 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 21:12:30,882 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 21:12:31,538 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'jvxmlmap': org.jvoicexml.documentserver.schemestrategy.MappedDocumentStrategy
+2011-05-02 21:12:31,553 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'file': org.jvoicexml.documentserver.schemestrategy.FileSchemeStrategy
+2011-05-02 21:12:31,553 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'http': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:12:31,553 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'https': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:12:31,554 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'builtin': org.jvoicexml.documentserver.schemestrategy.builtin.BuiltinSchemeStrategy
+2011-05-02 21:12:31,554 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   121) - default fetch timeout: 5000msec
+2011-05-02 21:12:31,679 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   354) - loading configuration 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config\jvxml-implementation.xml'...
+2011-05-02 21:12:31,741 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: SchemaLocation: schemaLocation value = 'jvxml-implementation-0-7.xsd' must have even number of URI's.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:410)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.storeLocations(XMLSchemaValidator.java:2330)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1741)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 21:12:31,741 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: schema_reference.4: Failed to read schema document 'jvxml-implementation-0-7.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.findSchemaGrammar(XMLSchemaValidator.java:2411)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1753)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 21:12:31,757 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:404)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+Caused by: org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1887)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	... 7 more
+2011-05-02 21:12:31,773 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 21:12:31,773 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request
+2011-05-02 21:13:20,992 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 21:13:21,007 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 21:13:21,023 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 21:13:21,631 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'jvxmlmap': org.jvoicexml.documentserver.schemestrategy.MappedDocumentStrategy
+2011-05-02 21:13:21,631 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'file': org.jvoicexml.documentserver.schemestrategy.FileSchemeStrategy
+2011-05-02 21:13:21,631 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'http': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:13:21,631 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'https': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:13:21,631 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'builtin': org.jvoicexml.documentserver.schemestrategy.builtin.BuiltinSchemeStrategy
+2011-05-02 21:13:21,631 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   121) - default fetch timeout: 5000msec
+2011-05-02 21:13:21,741 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   354) - loading configuration 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config\jvxml-implementation.xml'...
+2011-05-02 21:13:21,819 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: schema_reference.4: Failed to read schema document 'jvxml-implementation-0-7.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.findSchemaGrammar(XMLSchemaValidator.java:2411)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1753)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 21:13:21,819 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:404)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+Caused by: org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1887)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	... 7 more
+2011-05-02 21:13:21,819 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 21:13:21,835 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request
+2011-05-02 21:17:04,461 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 21:17:04,461 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 21:17:04,492 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 21:17:05,147 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'jvxmlmap': org.jvoicexml.documentserver.schemestrategy.MappedDocumentStrategy
+2011-05-02 21:17:05,147 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'file': org.jvoicexml.documentserver.schemestrategy.FileSchemeStrategy
+2011-05-02 21:17:05,163 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'http': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:17:05,163 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'https': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:17:05,164 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'builtin': org.jvoicexml.documentserver.schemestrategy.builtin.BuiltinSchemeStrategy
+2011-05-02 21:17:05,164 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   121) - default fetch timeout: 5000msec
+2011-05-02 21:17:05,289 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   354) - loading configuration 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config\jvxml-implementation.xml'...
+2011-05-02 21:17:05,351 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: schema_reference.4: Failed to read schema document 'jvxml-implementation-0-7.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.findSchemaGrammar(XMLSchemaValidator.java:2411)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1753)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 21:17:05,367 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:404)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+Caused by: org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1887)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	... 7 more
+2011-05-02 21:17:05,367 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 21:17:05,367 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request
+2011-05-02 21:25:26,393 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 21:25:26,409 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 21:25:26,424 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 21:25:27,033 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'jvxmlmap': org.jvoicexml.documentserver.schemestrategy.MappedDocumentStrategy
+2011-05-02 21:25:27,033 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'file': org.jvoicexml.documentserver.schemestrategy.FileSchemeStrategy
+2011-05-02 21:25:27,033 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'http': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:25:27,033 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'https': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:25:27,033 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'builtin': org.jvoicexml.documentserver.schemestrategy.builtin.BuiltinSchemeStrategy
+2011-05-02 21:25:27,033 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   121) - default fetch timeout: 5000msec
+2011-05-02 21:25:27,158 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   354) - loading configuration 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config\jvxml-implementation.xml'...
+2011-05-02 21:25:27,221 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: schema_reference.4: Failed to read schema document 'jvxml-implementation-0-7.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.findSchemaGrammar(XMLSchemaValidator.java:2411)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1753)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 21:25:27,221 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:404)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+Caused by: org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1887)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	... 7 more
+2011-05-02 21:25:27,236 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 21:25:27,236 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request
+2011-05-02 21:26:13,944 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   107) - ----------------------------------------------------
+2011-05-02 21:26:13,959 [main                ] INFO               org.jvoicexml.JVoiceXmlMain (   108) - starting VoiceXML interpreter 0.7.4.GA (Revision 2444)...
+2011-05-02 21:26:13,975 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   165) - loading configuration from 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config'
+2011-05-02 21:26:14,599 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'jvxmlmap': org.jvoicexml.documentserver.schemestrategy.MappedDocumentStrategy
+2011-05-02 21:26:14,615 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'file': org.jvoicexml.documentserver.schemestrategy.FileSchemeStrategy
+2011-05-02 21:26:14,615 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'http': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:26:14,615 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'https': org.jvoicexml.documentserver.schemestrategy.HttpSchemeStrategy
+2011-05-02 21:26:14,616 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   281) - adding scheme strategy for scheme 'builtin': org.jvoicexml.documentserver.schemestrategy.builtin.BuiltinSchemeStrategy
+2011-05-02 21:26:14,616 [JVoiceXmlMain       ] INFO  l.documentserver.JVoiceXmlDocumentServer (   121) - default fetch timeout: 5000msec
+2011-05-02 21:26:14,740 [JVoiceXmlMain       ] INFO  .jvoicexml.config.JVoiceXmlConfiguration (   354) - loading configuration 'C:\IVR_Development_Env\eclipse\vxmlunit\VXMLUnit\config\jvxml-implementation.xml'...
+2011-05-02 21:26:14,818 [JVoiceXmlMain       ] WARN  eans.factory.xml.XmlBeanDefinitionReader (    47) - Ignored XML validation warning
+org.xml.sax.SAXParseException: schema_reference.4: Failed to read schema document 'jvxml-implementation-0-7.xsd', because 1) could not find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:96)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:380)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.findSchemaGrammar(XMLSchemaValidator.java:2411)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1753)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+2011-05-02 21:26:14,818 [JVoiceXmlMain       ] ERROR              org.jvoicexml.JVoiceXmlMain (   286) - Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 1 in XML document from resource loaded from byte array is invalid; nested exception is org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:404)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:73)
+	at org.springframework.beans.factory.xml.XmlBeanFactory.<init>(XmlBeanFactory.java:61)
+	at org.jvoicexml.config.JVoiceXmlConfiguration.loadObjects(JVoiceXmlConfiguration.java:357)
+	at org.jvoicexml.implementation.jvxml.JVoiceXmlImplementationPlatformFactory.init(JVoiceXmlImplementationPlatformFactory.java:129)
+	at org.jvoicexml.JVoiceXmlMain.run(JVoiceXmlMain.java:284)
+Caused by: org.xml.sax.SAXParseException: cvc-elt.1: Cannot find the declaration of element 'implementation'.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1887)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:225)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:283)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	... 7 more
+2011-05-02 21:26:14,818 [ShutdownHook        ] INFO       org.jvoicexml.JVoiceXmlShutdownHook (    66) - JVoiceXML interrupted! Shutting down...
+2011-05-02 21:26:14,818 [ShutdownHook        ] INFO               org.jvoicexml.JVoiceXmlMain (   366) - received shutdown request

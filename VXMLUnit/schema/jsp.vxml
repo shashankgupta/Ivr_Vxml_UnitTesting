@@ -1,0 +1,2056 @@
+<?xml version="1.0" ?>
+
+
+
+
+<!--  -->
+<!-- Dynamic Balance Enquiry.vxml -->
+<vxml xmlns="http://www.w3.org/2001/vxml"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/2001/vxml http://www.w3.org/TR/voicexml20/vxml.xsd"
+      version="2.0" 
+      application="/VXMLIVR/applicationRootAction.do?versionId=null">
+  <meta name="Author" content=""/>
+  <meta name="Date" content=""/>
+  <meta name="Description" content="BalanceEnquiryChargeable"/>
+  <meta name="Support" content=""/>
+  <!--  -->
+  
+  
+  <!-- US-273 Starts Here -->
+  
+  
+  
+  <!-- US-273 Ends Here -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- For PC Cable and Wireless Starts here-->
+    
+	
+    <!-- For PC Cable and Wireless Ends Here-->
+
+    
+  <!--  -->
+  <property name="documentfetchhint" value="prefetch"/>
+  <property name="documentmaxage" value="31536000"/>
+  <property name="audiomaxage" value="31536000"/>
+  <property name="grammarmaxage" value="31536000"/>
+  <property name="scriptmaxage" value="31536000"/>
+  <property name="timeout" value="10s"/>
+  <!--  -->
+  <!--Utility comman script -->
+  <script src="/VXMLIVR/ECMAScripts/com/ericsson/charging/vxmlivr/core/common/scripts/UtilityScripts.es?versionId=null" maxage="31536000" fetchhint="prefetch"/>	
+  <!--BalanceEnquiry ECMA script -->
+  <script src="/VXMLIVR/ECMAScripts/com/ericsson/charging/vxmlivr/modules/balEnquiry/BalanceEnquiryScripts.es?versionId=null" maxage="31536000" fetchhint="prefetch"/>	
+  <!--BalanceEnquiry Static VXML script -->
+  <!-- Customer Editable Scripts -->
+  <script maxage="31536000" fetchhint="prefetch">
+	  <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryScripts-->
+<![CDATA[
+
+  function doSomething(var1)
+       {
+         var temp = var1;
+         return temp;
+       }
+
+
+  ]]>
+     <!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryScripts-->
+
+  </script>
+  <!--  -->
+  <var name="masterAccountBalanceInFirstCurrency" expr="''"/>
+  <var name="absAccountBalanceInFirstCurrency" expr="''"/>
+  <var name="masterAccountBalanceInSecondCurrency" expr="''"/>
+  <var name="absAccountBalanceInSecondCurrency" expr="''"/>
+  <var name="serviceFeeExpiryDate" expr="''"/>
+  <var name="servExpDateVsTodayDate" expr="''"/>
+  <var name="supervisionFeeExpiryDate" expr="''"/>
+  <var name="supervExpDateVsTodayDate" expr="''"/>
+  <var name="creditClearanceDate" expr="''"/>
+  <var name="creditClearanceDateVsTodayDate" expr="''"/>
+  <var name="creditClearanceDateAnnFlag" expr="'false'"/>
+  <var name="serviceRemovalDate" expr="''"/>
+  <var name="serviceRemovalDateVsTodayDate" expr="''"/>
+  <var name="supervExpDateVsServExpDate" expr="''"/>
+  <var name="firstCurrencyName" expr="''"/>
+  <var name="secondCurrencyName" expr="''"/>
+  <var name="daDetails" expr="''"/>
+  <var name="presentationId" expr="application.presentationId"/>
+  <var name="versionId" expr="application.versionId"/>
+  <!-- US-273 Starts Here -->
+  <var name="promptsetId" expr="'default'"/>
+  <var name="OptionalParametersString" expr="'&amp;vxmlSetId=RefillPrepaid&amp;promptSetId=default&amp;configurationId=default'"/>
+  <!-- US-273 Ends Here -->
+  <var name="vxmlsetId" expr="application.vxmlsetId"/>
+  <var name="dateFormat" expr="application.dateFormat"/>
+  <var name="currencyFormat" expr="application.defaultCurrencyFormat"/>
+  <var name="subscriberLanguage" expr="application.subscriberLanguage"/>
+  <var name="voiceBaseLanguage" expr="application.voiceBaseLanguage"/>
+  <var name="callingNumber" expr="application.callingNumber"/>
+  <var name="masterAccountNumber" expr="application.masterAccountNumber"/>
+  <var name="gender" expr="application.gender"/>
+  <!-- TR-HK52079 -Start --> 
+  <var name="enableStatisticsLoggingGlobal" expr="application.enableStatisticsLoggingGlobal"/>
+  <!-- TR-HK52079 -End -->
+  <var name="debug" expr="application.debug"/>
+  <var name="nextFormId" expr="''"/>
+  <var name="exitStatus" expr="'SUCCESS'"/>
+  <var name="playCurrencySubdialogName" expr="'playCurrency'"/>
+  <var name="playDateSubdialogName" expr="'playDate'"/>
+
+  <!-- TR No. - HL18437 Starts Here -->
+  <var name="speaker" expr="promptsetId"/>
+  <!-- TR No. - HL18437 Ends Here -->
+  <var name="promptId" expr=""/>
+  <var name="subscriberNAI" expr="application.subscriberNAI"/>
+  <var name="SUCCESSCODE" expr="0"/>
+  <var name="expiryDatePlayed" expr="'false'"/>
+  <var name="balanceEnquiryHelperVxml" expr="'../VXMLIVR/PlayBalanceVXML.do?debug='+debug+'&amp;versionId='+versionId+OptionalParametersString"/>
+  <var name="NO_DEBUG_LEVEL" expr="0"/>
+  <var name="voiceBaseURL" expr="application.voiceBaseURL"/>
+  <var name="playMasterAccountBalanceInFirstCurrency" expr="'false'"/>
+  <var name="playMasterAccountBalanceInSecondCurrency" expr="'false'"/>
+  <var name="playServiceFeeExpiryDate" expr="'false'"/>
+  <var name="playSupervisionFeeExpiryDate" expr="'false' "/>
+  <var name="playServiceRemovalDate" expr="'false' "/>
+  <var name="sumOfAllAccounts" expr="''"/>
+  <!-- TR-HI59399-Start -->
+  <var name="bothServAndSupervDatesConfigured" expr="false"/>
+  <!-- TR-HI59399-End -->
+  
+  <var name="playDA" expr="'false'"/>
+  <!--  -->
+  
+  <!--HP-CELTELD-V001 STARTS-->
+  <var name="serviceClass" expr="''"/>
+  <var name="playServiceClass" expr="'false'"/>
+  <var name="serviceClassPrompt" expr="''" />
+  <var name="playCreditClearanceDate" expr="'false'"/>
+  
+  <!--HP-CELTELD-V001 ENDS -->
+  <!-- FOR PMR 477 -->
+  <var name="playMUIOAnnouncementFlag" expr="'false'"/>
+  <!--  -->
+  <!-- For Chargeable Balance Enquiry Starts -->
+  <!-- Generic input configuration variables -->
+  <var name="chargingRequired" expr="'false'"/>
+  <var name="chargeConfirmationRequired" expr="'false'"/>
+  <var name="chargeAnnouncementRequired" expr="'false'"/>
+  <var name="noInputTimeout" expr="'4s'"/>
+  <var name="maxConfirmationRetries" expr="2"/>
+  <var name="maxTimeoutRetries" expr="2"/>
+  <var name="maxInvalidRetries" expr="2"/>
+  <var name="configurationId" expr="'default'"/>
+  <!--  WATA-015 Starts -->
+  <var name="mainBalanceAccountType" expr="'NULL'"/>
+  <var name="referenceDAForMasterBalance" expr="'0'"/>
+  <!--  WATA-015 Ends -->
+  <var name="currencyForPercentage" expr="''"/>
+  <var name="referenceDA" expr="new Object()"/>
+  <!--  WATA US-1339 ENDS -->
+  <!-- US-273 Starts Here -->
+  <var name="promptsetId" expr="'default'"/>
+  <var name="OptionalParametersString" expr="'&amp;vxmlSetId=RefillPrepaid&amp;promptSetId=default&amp;configurationId=default'"/>
+  <!-- US-273 Ends Here -->
+  <!-- Fast Adjustment Starts -->
+  <var name="chargingMethod" expr="'standard'"/>
+  <var name="adjustmentAmount" expr="'NULL'"/>
+  <var name="adjustmentAmountabs" expr="'NULL'"/>
+  <var name="adjustmentAmount2" expr="'NULL'"/>
+  <var name="adjustmentAmount2abs" expr="'NULL'"/>
+  <var name="transactionCurrency" expr="'NULL'"/>
+  <var name="transactionCurrency2" expr="'NULL'"/>
+  <var name="transactionType" expr="''"/>
+  <var name="transactionCode" expr="''"/>
+  <!-- Fast Adjustment Ends -->
+  <!--  Status variables  -->
+  <var name="STATUS_SUCCESS" expr="'SUCCESS'"/>
+  <var name="STATUS_SYSTEM_FAILURE" expr="'SYSTEM_FAILURE'"/>
+  <var name="STATUS_FAILURE_RETRY" expr="'FAILURE_RETRY'"/>
+  <var name="STATUS_FAILURE_TIMEOUT" expr="'FAILURE_TIMEOUT'"/>
+  <var name="STATUS_FAILURE_INVALID_RETRY" expr="'FAILURE_INVALID_RETRY'"/>
+  <var name="STATUS_CHARGES_REJECTED" expr="'CHARGES_REJECTED'"/>
+  <var name="STATUS_CHARGES_REVERTED" expr="'CHARGES_REVERTED'"/>
+  <var name="STATUS_FAILURE_ROLLBACK" expr="'FAILURE_ROLLBACK'"/>
+  <var name="STATUS_FAILURE_MAXALLOWEDBALENQDONE" expr="'FAILURE_MAXALLOWEDBALENQDONE'"/>
+  <!-- Fast Adjustment Starts -->
+  <var name="STATUS_FAILURE_TEMPORARY_BLOCKED" expr="'TEMPORARY_BLOCKED'"/>
+  <var name="STATUS_FAILURE_DEDICATED_ACCOUNT_NOT_ALLOWED" expr="'FAILURE_DEDICATED_ACCOUNT_NOT_ALLOWED'"/>
+  <var name="STATUS_FAILURE_DATE_ADJUSTMENT_ERROR" expr="'FAILURE_DATE_ADJUSTMENT_ERROR'"/>
+  <!-- Fast Adjustment Ends -->
+  <!--  -->
+  <!-- Counter variables -->
+  <var name="counterConfirmRetry" expr="0"/>
+  <var name="counterConfirmTimeout" expr="0"/>
+  <var name="counterConfirmInvalidRetry" expr="0"/>
+  <!-- Other Constants -->
+  <var name="NULL_STRING" expr="'NULL'"/>
+  <var name="TRUE_STRING" expr="'true'"/>
+  <var name="FALSE_STRING" expr="'false'"/>
+  <var name="NOCHARGE" expr="-1"/>
+  <var name="RESERVE" expr="1"/>
+  <var name="DEDUCT" expr="2"/>
+  <var name="COMMIT" expr="3"/>
+  <var name="ROLLBACK" expr="4"/>
+  <var name="CHARGING_STANDARD" expr="'standard'"/> 
+  <var name="CHARGING_FASTADJUST" expr="'fastadjust'"/> 
+  <!-- Other variables -->
+  <var name="chargingType" expr="NOCHARGE"/>
+  <var name="locationNumber" expr="application.locationNumber"/>
+  <var name="reservationCorrelationID" expr="-1"/>
+  <var name="UpdateRollback" expr="'false'"/>
+  <!-- GetBalanceDetails Response Variables -->
+  <var name="responseCode" expr="''"/> 
+  <var name="resultCurrency1" expr="NULL_STRING"/>
+  <var name="resultCurrency2" expr="NULL_STRING"/>
+  <var name="cost1" expr="''"/>
+  <var name="cost1abs" expr="''"/>
+  <var name="cost2" expr="''"/>
+  <var name="cost2abs" expr="''"/>
+  <var name="chargingResultCode" expr="-1"/>
+  <!-- For Chargeable balance Enquiry Ends -->
+  <var name="costRepromptEnabled" expr="application.repromptEnabled"/>
+  <!-- TR HJ54325 starts  -->
+  <var name="unitThresholdBalance" expr="''"/>
+  <var name="unitThresholdBalanceInteger" expr="0"/>
+  <var name="minThresholdBalAmount" expr="-999999999"/>
+  <var name="minThresholdServiceExpiryDuration" expr="-999999999"/>
+  <var name="enableStatisticsLogging" expr="'false'"/>
+   <!-- TR HJ54325 ends  -->
+  <!-- PC HP-STC-V002(LANA) STARTS -->
+  <!-- Added DASelectionList to send as a parameter to GetBalance Request -->
+  <var name="DASelectionList" expr="NULL_STRING"/>
+    
+  <!-- AIR 3.3 Optional parameter -->
+  <var name="dedicatedAccountID" expr="NULL_STRING"/>
+  <var name="adjustmentAmountRelative" expr="NULL_STRING"/>
+  <var name="dedicatedAccountValueNew" expr="NULL_STRING"/>
+  <var name="adjustmentDateRelative" expr="NULL_STRING"/>
+  <var name="expiryDate" expr="NULL_STRING"/>
+  <var name="relativeDateAdjustmentSupervision" expr="NULL_STRING"/>
+  <var name="relativeDateAdjustmentServiceFee" expr="NULL_STRING"/>
+  <var name="supervisionExpiryDate" expr="NULL_STRING"/>
+  <var name="creditClearancePeriod" expr="NULL_STRING"/>
+  <var name="serviceRemovalPeriod" expr="NULL_STRING"/>
+  <var name="transactionType" expr="NULL_STRING"/>
+  <var name="transactionCode" expr="NULL_STRING"/>
+  <var name="externalData1" expr="NULL_STRING"/>
+  <var name="externalData2" expr="NULL_STRING"/>    
+
+  <var name="play_AccountBalance" expr="'playAccountBalance'"/>
+  <var name="play_ServiceFeeExpiryDate" expr="'playServiceFeeExpiryDate'"/>
+  <var name="play_Currency" expr="'playCurrency'"/>
+  <var name="play_CreditClearanceDate" expr="'playCreditClearanceDate'"/>	
+  <var name="play_SameServiceAndSupervisionExpiryDates" expr="'playSameServiceAndSupervisionExpiryDates'"/>
+  <var name="play_ServiceRemovalDate" expr="'playServiceRemovalDate'"/>
+  <var name="play_ServiceClass" expr="'playServiceClass'"/>
+  <var name="play_SupervisionFeeExpiryDate" expr="'playSupervisionFeeExpiryDate'"/> 
+      
+  <!-- PC HP-STC-V002(LANA) ENDS -->
+  <!--  -->
+  <!-- Handling for EcmaScript call :FC 154 VXML Compliance Starts.-->
+  <!-- Make the VoiceBaseInterface file selection dynamic based upon the compliance. -->
+  <var name="vxmlComplianceLevel" expr="'2.0'"/>
+  <var name="voiceBaseInterfaceVxml" expr="'/VXMLIVR/vxmlFiles/com/ericsson/charging/vxmlivr/core/languagehandling/VoiceBaseInterface_'+vxmlComplianceLevel+'.vxml'"/>
+  <!-- Handling for EcmaScript call :FC 154 VXML Compliance Ends-->
+  
+  <var name="daAnnnouncementOrder" expr="'DABalance,ExpiryDate,'"/>
+  
+  <!-- Airip 4.0 Offer Support -->
+  <var name="playOffers" expr="'false'"/>
+  <var name="playOfferStatus" expr="'false'"/>
+  <var name="unknownSubscriberNAI" expr="'-1'"/>
+  <!-- PMR 477 Start  -->
+  <var name="playMUIOAnnouncementFlag" expr="'false'"/>
+  <var name="masterSubscriberFlag" expr="application.masterSubscriberFlag"/>
+  <var name="masterDAErrorPromptId" expr="''"/>
+  <var name="requestFirstAccessibleAndExpiredBalanceAndDateFlag" expr="'NULL'"/>
+  <var name="requestSubDedicatedAccountDetailsFlag" expr="NULL_STRING"/>
+  
+  <var name="MUIOOfferId" expr="'NULL'"/>
+  
+  <var name="isOffersDAFound" expr="'false'"/>
+  <var name="MUIODADetails" expr="''"/>
+  <var name="PlayMUDA" expr="'false'"/>
+  <!-- PMR 477 End  -->
+
+<!-- TELMA V001 Start -->
+<var name ="announcementRepetitionTimes" expr="0"/>
+<var name ="maxAnnouncementRepetitionTimes" expr="0"/>
+<var name ="listenAgainDTMF" expr = "'2'"/>
+
+
+<!-- TELMA V001 End -->
+
+  <!-- For PC Cable and Wireless Starts here-->
+	<var name="daList" expr="'NULL'"/>
+	<var name="includeMasterBalanceFlag" expr="'false'"/>
+	<var name="DAListCurrency1" expr="new Array()"/>
+	<var name="DAListCurrency2" expr="new Array()"/>
+	<var name="BalanceCurrency1" expr="''"/>
+	<var name="BalanceCurrency2" expr="''"/>
+	<var name="play_TotalBalance" expr="'playTotalBalance'"/>
+	<var name="playTotalBalanceInFirstCurrency" expr="'false'"/>
+	<var name="playTotalBalanceInSecondCurrency" expr="'false'"/>
+	<var name="absBalanceCurrency1" expr="''"/>
+	<var name="absBalanceCurrency2" expr="''"/>
+	<var name="playDASuccessIntro" expr="'false'"/>
+	<var name="totalBalanceAnnouncement" expr="'Total Balance'"/>
+	<var name="masterBalanceAnnouncement" expr="'Master Balance'"/>
+
+  <!-- For PC Cable and Wireless Ends Here-->
+
+  <!--  -->
+  <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryVariables-->
+<!-- User Variables for this Module can be defind here -->
+<var name="costConfirmDTMF" expr="application.confirmDTMF"/>
+<var name="costNegateDTMF" expr="application.negateDTMF"/>
+<var name="costRepromptDTMF" expr="application.repromptDTMF"/>
+<var name="maxBalEnqAllowed" expr="10"/>
+
+
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryVariables-->
+
+  <!--  -->
+  <!-- Check For Charges -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_BalanceEnquiry">
+    <block name="block_form_BalanceEnquiry">
+      <goto next="#main_form_BalanceEnquiry"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="main_form_BalanceEnquiry" scope="document">
+    <block name="block_BalanceEnquiry">
+        
+      <!--  -->
+       <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryStart-->
+    <if cond="application.counter_BalEnq &gt; 0">
+      <assign name="chargingRequired" expr="'false'"/>
+    </if>
+
+    <if cond="application.counter_BalEnq &gt; maxBalEnqAllowed || application.counter_BalEnq == maxBalEnqAllowed">
+   	  <goto next="#handle_MaxAllowedBalEnqDone"/>
+    </if><!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryStart-->
+
+      <!--  -->
+      <if cond="chargingRequired == 'true'">
+        <if cond="chargeConfirmationRequired == 'true'">
+          <if cond="chargeAnnouncementRequired == 'true'">
+            <assign name="chargingType" expr="RESERVE"/>
+              
+
+            <!--  -->
+            <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryIntroPreReserveAnn-->
+            <assign name="promptId" expr="'BAL_INTRO_PRE_RESERVE_MSG'"/>
+            <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryIntroPreReserveAnn-->
+
+            <goto next="#main_form_checkChargingMethod"/>
+          <!-- Else No Charges Announcement -->
+          <else/>
+            <!--  -->
+            <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryIntroPreCommitAnn-->
+            <assign name="promptId" expr="'BAL_INTRO_PRE_COMMIT_MSG'"/>
+            <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryIntroPreCommitAnn-->
+
+            <goto next="#main_form_ConfirmCharges"/>
+          </if>
+        <!-- Else No Charges Confirmation -->
+        <else/>
+          <assign name="chargingType" expr="DEDUCT"/>
+            
+          <!--  -->
+          <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryIntroPreDeductAnn-->
+            <assign name="promptId" expr="'BAL_INTRO_PRE_DEDUCT_MSG'"/>
+            <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryIntroPreDeductAnn-->
+
+          <goto next="#main_form_checkChargingMethod"/>
+        </if>
+      <!--  Else No Charges -->
+      <else/>
+        <assign name="chargingType" expr="NOCHARGE"/>
+        <!--  -->
+        <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryIntro-->
+            <assign name="promptId" expr="'BAL_INTRO_MSG'"/>
+            <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryIntro-->
+
+        <!--  -->
+          
+        <goto next="#main_form_GetBalanceDetails"/>
+      </if>
+    </block>
+  </form>
+  <!--  For PMR 477 GChanges in Balance Enquiry
+  If MUIO Announcement Offer is added in the configuration file, an extra request for 
+  balance Enquiry will be made to get the Dedicated Account of subscriber's master.
+  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_GetBalanceDetails">
+    <block name="block_form_GetBalanceDetails">
+      <goto next="#main_form_GetBalanceDetails"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="main_form_GetBalanceDetails">
+    <var name="origChargingType" expr="chargingType"/>
+	<var name="origSubscriberNAI" expr="subscriberNAI"/>
+    <block name="block_GetBalanceDetailsAnn">
+
+        
+
+	   <if cond="masterSubscriberFlag == 'true' || MUIOOfferId == 'NULL'">
+        <goto next="#main_form_GetNormalBalanceDetails"/>
+      </if>
+      <!-- overriding the original calling number with its master Subscriber Number,charging type, unknownSubscriberNAI (-1) -->
+	  <assign name="callingNumber" expr="masterAccountNumber"/>
+      <assign name="chargingType" expr="NOCHARGE"/>
+	  <assign name="subscriberNAI" expr="unknownSubscriberNAI"/>
+      <!--  -->
+  	  <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryMUIOBeforeRequest-->
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryMUIOBeforeRequest-->
+      
+    </block> 
+    <!--  -->
+    <block name="block_GetBalanceDetails">
+        
+    </block>      
+    <!--  -->
+    <!-- Call to GetBalanceAndDate Request -->
+        <!-- Subdialog call to GetBalanceAndDate Request -->
+    <!-- PC HP-STC-V002(LANA) Added DASelectionList to send as a parameter to GetBalance Request -->
+    <!-- Not sendind DASelectionList as part of namelist as the parameter value gets encoded. -->
+    <subdialog name="balanceDetails" srcexpr="'../VXMLIVR/GetBalance.do?DASelectionList='+DASelectionList+OptionalParametersString" fetchtimeout="15s" 
+        namelist="callingNumber subscriberNAI debug presentationId versionId chargingType locationNumber reservationCorrelationID minThresholdBalAmount masterSubscriberFlag MUIOOfferId requestFirstAccessibleAndExpiredBalanceAndDateFlag requestSubDedicatedAccountDetailsFlag referenceDAForMasterBalance">
+       <!-- TR- HK87722 Start -->
+        <filled>
+         	<goto nextitem="dataBlock_balanceDetails"/>
+        </filled>
+    </subdialog>
+      <!-- TR- HK87722 End -->
+
+
+    <!--  -->
+    <block name="dataBlock_balanceDetails">
+        
+
+
+
+        <assign name="responseCode" expr="balanceDetails.responseCode"/>
+        <if cond="responseCode==SUCCESSCODE">
+		  <assign name="isOffersDAFound" expr="balanceDetails.isOffersDAFound"/>
+          <assign name="daDetails" expr="balanceDetails.daDetailsString"/>
+   	      <assign name="MUIODADetails" expr="daDetails"/>
+			<if cond="isOffersDAFound == FALSE_STRING">
+				<assign name="masterDAErrorPromptId" expr="'BAL_MASTER_NO_DA_DEFINE_MSG'"/>
+        </if>
+		<elseif cond ="responseCode == 102"/>	<!-- Subscriber Not Found -->
+				<assign name="masterDAErrorPromptId" expr="'BAL_MASTER_NOT_FOUND_MSG'"/>
+		<elseif cond ="responseCode == 123"/>		<!-- Max credit limit exceeded -->
+			 	<assign name="masterDAErrorPromptId" expr="'BAL_MASTER_CREDIT_LIMIT_EXCEED_MSG'"/>
+		<elseif cond ="responseCode == 124"/>	   <!-- Below minimum balance -->
+				<assign name="masterDAErrorPromptId" expr="'BAL_MASTER_BELOW_MINIMUM_BALANCE_MSG'"/>	
+		<elseif cond ="responseCode == 126"/>		<!-- Account not active -->
+				<assign name="masterDAErrorPromptId" expr="'BAL_MASTER_ACCOUNT_NOT_ACTIVE_MSG'"/>
+		<elseif cond ="responseCode == 137"/>		  <!-- Get balance and date not allowed -->
+			<assign name="masterDAErrorPromptId" expr="'BAL_MASTER_REQUEST_NOT_ALLOWED_MSG'"/>
+		<elseif cond ="responseCode == 139"/>		<!-- Dedicated account not defined -->
+			<assign name="masterDAErrorPromptId" expr="'BAL_MASTER_NO_DA_DEFINE_MSG'"/>
+		<else/>									 <!-- Other Error No Retry -->
+			<assign name="masterDAErrorPromptId" expr="'BAL_MASTER_OTHER_ERROR_IN_REQUEST_MSG'"/>
+		</if>
+
+          
+
+			
+		<!-- restoring the original calling number,charging type,SubscriberNAI  -->
+        <assign name="callingNumber" expr="application.callingNumber"/>
+        <assign name="chargingType" expr="origChargingType"/>
+		 <assign name="subscriberNAI" expr="origSubscriberNAI"/>
+        <!--  -->
+        <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryMUIOAfterRequest-->
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryMUIOAfterRequest-->
+
+        <!--  -->
+
+          
+        <!--  -->
+        <goto next="#main_form_GetNormalBalanceDetails"/>
+    </block>
+  </form>
+  <!--  -->
+<!-- Normal Balance Enquiry Starts Here -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_GetNormalBalanceDetails">
+    <block name="block_form_GetBalanceDetails">
+      <goto next="#main_form_GetNormalBalanceDetails"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="main_form_GetNormalBalanceDetails">
+    <block name="block_GetBalanceDetailsAnn">   
+        <!-- Added for TR HK60320 -->
+    	<!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryBeforeRequest-->
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryBeforeRequest-->
+      
+    	<!--  -->    
+    </block> 
+    <block name="block_GetBalanceDetails">
+        
+
+    </block>      
+    <!--  -->
+    <!-- Call to GetBalanceAndDate Request -->
+        <!-- Subdialog call to GetBalanceAndDate Request -->
+    <!-- PC HP-STC-V002(LANA) Added DASelectionList to send as a parameter to GetBalance Request -->
+    <!-- Not sendind DASelectionList as part of namelist as the parameter value gets encoded. -->
+    <subdialog name="balanceDetails" srcexpr="'../VXMLIVR/GetBalance.do?DASelectionList='+DASelectionList+OptionalParametersString" fetchtimeout="15s" 
+        namelist="callingNumber subscriberNAI debug presentationId versionId chargingType locationNumber reservationCorrelationID minThresholdBalAmount masterSubscriberFlag MUIOOfferId requestFirstAccessibleAndExpiredBalanceAndDateFlag requestSubDedicatedAccountDetailsFlag referenceDAForMasterBalance">
+       <!-- TR- HK87722 Start -->
+        <filled>
+         	<goto nextitem="dataBlock_balanceDetails"/>
+        </filled>
+    </subdialog>
+      <!-- TR- HK87722 End -->
+
+
+    <!--  -->
+    <block name="dataBlock_balanceDetails">
+        <assign name="responseCode" expr="balanceDetails.responseCode"/>
+        <assign name="nextFormId" expr="balanceDetails.nextFormId"/>
+        <assign name="document.exitStatus" expr="balanceDetails.status"/>
+        <!--  -->
+		<if cond="responseCode!=SUCCESSCODE">
+			<if cond="enableStatisticsLoggingGlobal == 'true' &amp;&amp; enableStatisticsLogging == 'true'">
+				<if cond="responseCode == '100' || responseCode == '120' || responseCode == '125' || responseCode == '126'">
+					<var name="dummy_statType" expr="setStatType('AIRError')"/>
+    				<var name="dummy_voucherNumber" expr="setVoucherNumber('')"/>
+    				<var name="dummy_statusCode" expr="setStatusCode(responseCode)"/>
+				<else/>
+				    <var name="dummy_statType" expr="setStatType('BalanceEnquiryFail')"/>
+    				<var name="dummy_voucherNumber" expr="setVoucherNumber('')"/>
+    				<var name="dummy_statusCode" expr="setStatusCode(responseCode)"/>
+				</if>
+			</if>
+		</if>
+        <!--  -->
+        <if cond="responseCode==SUCCESSCODE">
+            <if cond="enableStatisticsLoggingGlobal == 'true' &amp;&amp; enableStatisticsLogging == 'true'">
+		    	<var name="dummy_statType" expr="setStatType('BalanceEnquiry')"/>
+		    	<var name="dummy_voucherNumber" expr="setVoucherNumber('')"/>
+		    	<var name="dummy_statusCode" expr="setStatusCode('')"/>   	
+		    </if>
+          <assign name="masterAccountBalanceInFirstCurrency" expr="balanceDetails.accountValue1"/>
+          <assign name="absAccountBalanceInFirstCurrency" expr="balanceDetails.accountValue1abs"/>
+          <assign name="firstCurrencyName" expr="balanceDetails.currency1"/>
+          <assign name="masterAccountBalanceInSecondCurrency" expr="balanceDetails.accountValue2"/>
+          <assign name="absAccountBalanceInSecondCurrency" expr="balanceDetails.accountValue2abs"/>
+          <assign name="secondCurrencyName" expr="balanceDetails.currency2"/>
+          <assign name="serviceFeeExpiryDate" expr="balanceDetails.serviceFeeExpiryDate"/>
+          <assign name="servExpDateVsTodayDate" expr="balanceDetails.servExpDateVsTodayDate"/>
+          <assign name="supervisionFeeExpiryDate" expr="balanceDetails.supervisionFeeExpiryDate"/>
+          <assign name="supervExpDateVsTodayDate" expr="balanceDetails.supervExpDateVsTodayDate"/>
+          <assign name="supervExpDateVsServExpDate" expr="balanceDetails.supervExpDateVsServExpDate"/>
+          <assign name="serviceRemovalDate" expr="balanceDetails.serviceRemovalDate"/>
+          <assign name="serviceRemovalDateVsTodayDate" expr="balanceDetails.serviceRemovalDateVsTodayDate"/>        
+          <assign name="creditClearanceDate" expr="balanceDetails.creditClearanceDate"/>
+          <assign name="creditClearanceDateVsTodayDate" expr="balanceDetails.creditClearanceDateVsTodayDate"/>
+          <assign name="daDetails" expr="balanceDetails.daDetailsString"/>
+          <!-- TR-HI56490-Start -->
+          <assign name="application.accountValue1" expr="masterAccountBalanceInFirstCurrency"/>
+       	  <assign name="application.accountValue2" expr="masterAccountBalanceInSecondCurrency"/>
+       	  <assign name="application.creditClearanceDate" expr="creditClearanceDate"/>
+       	  <assign name="application.serviceRemovalDate" expr="serviceRemovalDate"/>
+       	  <assign name="application.serviceExpiryDate" expr="serviceFeeExpiryDate"/>
+       	  <assign name="application.airtimeExpiryDate" expr="supervisionFeeExpiryDate"/>
+       	  <assign name="application.currency1" expr="firstCurrencyName"/>
+       	  <assign name="application.currency2" expr="secondCurrencyName"/>
+          <assign name="application.servExpDateVsTodayDate" expr="servExpDateVsTodayDate"/>
+          <!-- TR-HI56490-End -->
+          <!-- For Chargeable Balance Enquiry Starts -->
+          <assign name="resultCurrency1" expr="balanceDetails.resultCurrency1"/>
+          <assign name="resultCurrency2" expr="balanceDetails.resultCurrency2"/>
+          <assign name="cost1" expr="balanceDetails.cost1"/>
+          <assign name="cost1abs" expr="balanceDetails.cost1abs"/>
+          <assign name="cost2" expr="balanceDetails.cost2"/>
+          <assign name="cost2abs" expr="balanceDetails.cost2abs"/>
+          <assign name="chargingResultCode" expr="balanceDetails.chargingResultCode"/>
+          <assign name="reservationCorrelationID" expr="balanceDetails.reservationCorrelationID"/>
+          <assign name="nextFormId" expr="balanceDetails.nextFormId"/>
+          <!--HP-CELTELD-V001 STARTS-->
+          <assign name="serviceClass" expr="balanceDetails.serviceClass"/>
+          <assign name="serviceClassPrompt" expr="balanceDetails.serviceClassPrompt"/>
+          <!--HP-CELTELD-V001 ENDS-->
+          <!-- For Chargeable Balance Enquiry Ends -->
+ 	      <!-- TR HJ54325  Starts -->
+          <!--For MinThresholdAmount Start -->
+          <assign name="unitThresholdBalance" expr="balanceDetails.minThresholdBalAmt"/> 
+          <assign name="unitThresholdBalanceInteger" expr="convertStringToFloat(unitThresholdBalance)"/> 
+          <assign name="application.MinThresholdBalAmount" expr="balanceDetails.minThresholdBalAmt"/>
+          <assign name="application.MinThresholdServiceExpiryDuration" expr="minThresholdServiceExpiryDuration"/>
+
+          
+
+          <!--For MinThresholdAmount End -->
+          <!-- Moved to response code 0 case only for TR HK26891 Start-->
+          <if cond="daDetails!=NULL_STRING &amp;&amp; masterAccountBalanceInFirstCurrency!=NULL_STRING &amp;&amp; masterAccountBalanceInFirstCurrency!=''">            
+          	<assign name="sumOfAllAccounts" expr="totalBalance(masterAccountBalanceInFirstCurrency, daDetails)"/>    
+		   <elseif cond="daDetails==NULL_STRING &amp;&amp; masterAccountBalanceInFirstCurrency!=NULL_STRING &amp;&amp; masterAccountBalanceInFirstCurrency!=''"/>
+			<assign name="sumOfAllAccounts" expr="masterAccountBalanceInFirstCurrency"/>
+			<elseif cond="daDetails!=NULL_STRING &amp;&amp; masterAccountBalanceInFirstCurrency==NULL_STRING &amp;&amp; masterAccountBalanceInFirstCurrency!=''"/>
+			  <assign name="sumOfAllAccounts" expr="totalDAABalance(daDetails)"/>
+       	  </if>
+       	  <if cond="servExpDateVsTodayDate &lt; minThresholdServiceExpiryDuration || sumOfAllAccounts &lt; unitThresholdBalanceInteger">
+ 
+          	<assign name="application.offerCreditRefillFlag" expr="'true'"/>
+          </if>
+          <!-- TR HK26891 End-->
+		  <!-- US 1339 WATA-015 Starts-->
+		  <if cond="daDetails!=NULL_STRING &amp;&amp; masterAccountBalanceInFirstCurrency!=NULL_STRING &amp;&amp; masterAccountBalanceInFirstCurrency!='' &amp;&amp; referenceDAForMasterBalance!=NULL_STRING &amp;&amp; referenceDAForMasterBalance!=''
+		   &amp;&amp; referenceDAForMasterBalance!=0">  
+ 			 
+ 			  <assign name="currencyForPercentage" expr="'currency1'"/>
+			  <assign name="referenceDA" expr="getRefDABalanceAmount(balanceDetails.daDetailsString,referenceDAForMasterBalance,currencyForPercentage)"/>
+			  
+		  </if>
+		  <elseif cond="daDetails!=NULL_STRING &amp;&amp; masterAccountBalanceInSecondCurrency!=NULL_STRING &amp;&amp; masterAccountBalanceInSecondCurrency!='' &amp;&amp; referenceDAForMasterBalance!=NULL_STRING &amp;&amp; referenceDAForMasterBalance!=''
+			   &amp;&amp; referenceDAForMasterBalance!=0">    
+			   
+			      <assign name="currencyForPercentage" expr="'currency2'"/>
+				  <assign name="referenceDA" expr="getRefDABalanceAmount(balanceDetails.daDetailsString,referenceDAForMasterBalance,currencyForPercentage)"/>
+				  
+		 </elseif>
+		 <!-- US 1339 WATA-015 Ends-->
+        <!--  -->      
+        </if>
+         <!-- TR HJ54325 End  -->
+
+          
+          <!-- TR-HI56490-End -->
+	 	 
+        <!--  -->
+        <assign name="UpdateRollback" expr="'false'"/>
+        <if cond="responseCode != SUCCESSCODE">
+          <if cond="chargingType == COMMIT">
+            <assign name="UpdateRollback" expr="'true'"/>
+          </if>
+        </if>
+        <!--  -->
+          
+
+        <!--  -->
+        <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryAfterRequest-->
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryAfterRequest-->
+
+        <goto expr="nextFormId"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  Play Charges  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_PlayCharges">
+    <block name="block_form_PlayCharges">
+      <goto next="#play_form_PlayCharges"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="play_form_PlayCharges">
+    <block name="block_PlayCharges">
+      <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryPlayChargesPreAnn-->
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryPlayChargesPreAnn-->
+
+      <!--  -->
+
+        
+
+    </block>
+    <!--  -->
+    <block name="block_PlayOneTimeChargesPre1" cond="cost1abs!=0 &amp;&amp; cost1abs!=NULL_STRING &amp;&amp; resultCurrency1 != NULL_STRING">
+      <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryOneTimeChargesPreAnn1-->
+  <assign name="promptId" expr="'BAL_ONETIME_CHARGES_PRE_ANN_1_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryOneTimeChargesPreAnn1-->
+
+      <!--  -->
+      <if cond="cost1 &lt; 0 &amp;&amp; resultCurrency1 != NULL_STRING">
+        <assign name="promptId" expr="'BAL_MINUS_MSG'"/>
+        <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+      </if>
+    </block>
+    <!--  -->
+    <subdialog name="play_sub_PlayOneTimeCharges1" srcexpr="voiceBaseInterfaceVxml + '#' + play_Currency" cond="cost1abs!=0 &amp;&amp; cost1abs!=NULL_STRING &amp;&amp; resultCurrency1 != NULL_STRING">
+      <param name="arg" expr="cost1abs"/>
+      <param name="type" expr="resultCurrency1"/>
+      <param name="format" expr="currencyFormat"/>
+      <param name="lang" expr="voiceBaseLanguage"/>
+      <param name="speaker" expr="speaker"/>
+      <param name="gender" expr="gender"/>
+      <param name="debug" expr="debug"></param>
+      <param name="versionId" expr="versionId"></param>
+	  <param name="ivrlanguage" expr="subscriberLanguage"></param>
+      <param name="voiceBaseURL" expr="voiceBaseURL"/>
+    </subdialog>
+    <!--  -->
+    <!--  -->
+    <block name="block_PlayOneTimeChargesPost1" cond="cost1abs!=0 &amp;&amp; cost1abs!=NULL_STRING &amp;&amp; resultCurrency1 != NULL_STRING">
+      <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryOneTimeChargesPostAnn1-->
+  <assign name="promptId" expr="'BAL_ONETIME_CHARGES_POST_ANN_1_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryOneTimeChargesPostAnn1-->
+
+    </block>
+    <!--  -->
+    <block name="block_PlayOneTimeChargesPre2" cond="cost2abs!=0 &amp;&amp; cost2abs!=NULL_STRING &amp;&amp; resultCurrency2 != NULL_STRING">
+      <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryOneTimeChargesPreAnn2-->
+  <assign name="promptId" expr="'BAL_ONETIME_CHARGES_PRE_ANN_2_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryOneTimeChargesPreAnn2-->
+
+      <!--  -->
+      <if cond="cost2 &lt; 0 &amp;&amp; resultCurrency2 != NULL_STRING">
+        <assign name="promptId" expr="'BAL_MINUS_MSG'"/>
+        <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+      </if>
+    </block>
+    <!--  -->
+    <subdialog name="play_sub_PlayOneTimeCharges2" srcexpr="voiceBaseInterfaceVxml + '#' + play_Currency" cond="cost2abs!=0 &amp;&amp; cost2abs!=NULL_STRING &amp;&amp; resultCurrency2 != NULL_STRING">
+      <param name="arg" expr="cost2abs"/>
+      <param name="type" expr="resultCurrency2"/>
+      <param name="format" expr="currencyFormat"/>
+      <param name="lang" expr="voiceBaseLanguage"/>
+      <param name="speaker" expr="speaker"/>
+      <param name="gender" expr="gender"/>
+      <param name="debug" expr="debug"></param>
+      <param name="versionId" expr="versionId"></param>
+	  <param name="ivrlanguage" expr="subscriberLanguage"></param>
+      <param name="voiceBaseURL" expr="voiceBaseURL"/>
+    </subdialog>
+    <!--  -->
+    <!--  -->
+    <block name="block_PlayOneTimeChargesPost2" cond="cost2abs!=0 &amp;&amp; cost2abs!=NULL_STRING &amp;&amp; resultCurrency2 != NULL_STRING">
+      <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryOneTimeChargesPostAnn2-->
+  <assign name="promptId" expr="'BAL_ONETIME_CHARGES_POST_ANN_2_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryOneTimeChargesPostAnn2-->
+
+    </block>
+    <!--  -->
+    <block name="block_PlayNoCharges" cond="(cost1abs==0 || cost1abs==NULL_STRING) &amp;&amp; (cost2abs==0 || cost2abs==NULL_STRING)">
+      <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryNoChargesAnn-->
+  <assign name="promptId" expr="'BAL_NO_CHARGES_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryNoChargesAnn-->
+
+    </block>
+    <!--  -->
+    <block name="block_PlayChargesEnds">
+      <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryPlayChargesPostAnn-->
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryPlayChargesPostAnn-->
+
+      <!--  -->
+      <if cond="chargingMethod == CHARGING_FASTADJUST">
+        <assign name="chargingType" expr="NOCHARGE"/>
+		
+      <else/>
+		
+      </if>
+      
+      
+      <if cond="(cost1==0 || cost1 == NULL_STRING) &amp;&amp; (cost2==0 || cost2 == NULL_STRING)">
+        <if cond="chargingType == RESERVE &amp;&amp; chargingMethod == CHARGING_STANDARD">
+          <assign name="chargingType" expr="COMMIT"/>
+        </if>
+		
+        <goto next="#main_form_GetBalanceDetails"/>
+      </if>
+      
+      <!-- TR HK59418 , BalanceEnquiryNullCharges added for going to SystemFailure because charges are null for chargeable balance enquiry -->
+       <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryNullCharges-->
+ <if cond="cost1 == NULL_STRING &amp;&amp; cost2 == NULL_STRING">  
+   <if cond="debug &gt; NO_DEBUG_LEVEL">
+     <log label="BalanceEnquiry">Charges are null for chargeable balance enquiry </log>
+     <log label="BalanceEnquiry" expr="'Ending'">BalanceEnquiry Going to SystemUnavailable due to null charges</log>
+   </if>
+   <goto next="#handle_SystemFailure"/>
+ </if><!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryNullCharges-->
+
+      <!--  -->
+      <!--  -->
+      <if cond="chargeConfirmationRequired == 'true'">
+		
+        <goto next="#main_form_ConfirmCharges"/>
+      <else/>
+        <if cond="chargingType == RESERVE &amp;&amp; chargingMethod == CHARGING_STANDARD">
+          <assign name="chargingType" expr="COMMIT"/>
+        </if>
+		
+		<goto next="#main_form_GetBalanceDetails"/>
+      </if>
+    </block>
+  </form>
+  <!--  -->
+  <!--  Confirm Charges  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_ConfirmCharges">
+    <block name="block_form_ConfirmCharges">
+      <goto next="#main_form_ConfirmCharges"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="main_form_ConfirmCharges">
+    <block name="block_ConfirmCharges">
+		
+      <!--  -->
+      
+      
+        <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryChargeConfirmationWithoutPlayChargeAnn-->
+    <assign name="promptId" expr="'BAL_CHARGE_CONF_WITHOUT_PLAY_CHARGE_MSG'"/>
+    <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/><!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryChargeConfirmationWithoutPlayChargeAnn-->
+
+      
+      <!--  -->
+		
+    </block>
+    <!--  -->
+    <property name="timeout" value="4s"/>
+    <property name="interdigittimeout" value="4s"/>
+    <!--  -->
+    <field name="field_ChargeConfirmation">
+      <grammar version="1.0" src="/VXMLIVR/grammarFiles/local/Confirmation.grxml?versionId=null" mode="dtmf"/>
+      <!--  -->
+      <filled>
+		
+        <!--  confirm DTMF  -->
+        <if cond="field_ChargeConfirmation == costConfirmDTMF">
+          <if cond="chargingType == RESERVE">
+            <assign name="chargingType" expr="COMMIT"/>
+			
+          <else/>
+            <assign name="chargingType" expr="DEDUCT"/>
+			
+          </if>
+          <goto next="#main_form_PostConfirmCharges"/>
+        <!--  negate DTMF  -->
+        <elseif cond="field_ChargeConfirmation == costNegateDTMF"/>
+          <if cond="chargingType == RESERVE &amp;&amp; chargingMethod == CHARGING_STANDARD">
+            <assign name="exitStatus" expr="STATUS_CHARGES_REVERTED"/>
+            <assign name="chargingType" expr="ROLLBACK"/>
+			
+            <goto next="#main_form_PostConfirmCharges"/>
+          <else/>
+            <assign name="exitStatus" expr="STATUS_CHARGES_REJECTED"/>
+            <!--  -->
+            <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryChargesRejectedAnn-->
+  <assign name="promptId" expr="'BAL_CHARGES_REJECTED_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/><!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryChargesRejectedAnn-->
+
+            <!--  -->
+            <goto next="#main_exitModule"/>
+          </if>
+        <!--  reprompt DTMF  -->
+        <elseif cond="field_ChargeConfirmation == costRepromptDTMF &amp;&amp; costRepromptEnabled == 'true'"/>
+          <if cond="counterConfirmRetry &lt; maxConfirmationRetries">
+            <assign name="counterConfirmRetry" expr="counterConfirmRetry + 1"/>
+			
+            <if cond="costRepromptEnabled == 'true'">
+              <if cond="chargeAnnouncementRequired == 'true'">
+                <goto next="#play_form_PlayCharges"/>
+              </if>
+              <!--  -->
+              <clear namelist="field_ChargeConfirmation"/>
+              <clear namelist="block_ConfirmCharges"/>
+            <else/>
+              <throw event="nomatch"/>
+            </if>
+          <else/>
+            <goto next="#error_form_MaxRetryCountExceeded"/>
+          </if>
+        <else/>
+          <throw event="nomatch"/>
+        </if>
+      </filled>
+      <!--  -->
+      <error>
+        <goto next="#handle_SystemFailure"/>
+      </error>
+      <!--  -->
+      <noinput cond="counterConfirmTimeout &lt; maxTimeoutRetries">
+        <!-- Editor:true:StaticVxml:comments:start:NoInputAnn-->
+  <assign name="promptId" expr="'BAL_COST_CONFIRM_TIMEOUT_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:NoInputAnn-->
+
+        <!--  -->
+        <assign name="counterConfirmTimeout" expr="counterConfirmTimeout + 1"/>
+		
+        <clear namelist="block_ConfirmCharges"/>
+      </noinput>
+      <noinput cond="counterConfirmTimeout >= maxTimeoutRetries">
+        <goto next="#error_form_MaxTimeoutCountExceeded"/>
+      </noinput>
+      <!--  -->
+      <nomatch cond="counterConfirmInvalidRetry &lt; maxInvalidRetries">
+        <!-- Editor:true:StaticVxml:comments:start:NoMatchAnn-->
+  <assign name="promptId" expr="'BAL_COST_CONFIRM_INVALID_ENTRY_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:NoMatchAnn-->
+
+        <!--  -->
+        <assign name="counterConfirmInvalidRetry" expr="counterConfirmInvalidRetry + 1"/>
+		
+        <clear namelist="field_ChargeConfirmation"/>
+        <clear namelist="block_ConfirmCharges"/>
+      </nomatch>
+      <nomatch cond="counterConfirmInvalidRetry >= maxInvalidRetries">
+        <goto next="#error_form_MaxInvalidRetryCountExceeded"/>
+      </nomatch>
+    </field>
+  </form>
+  <!--  -->
+  <!--  Play Rollback Details  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_PlayRollbackDetails">
+    <block name="block_form_PlayRollbackDetails">
+      <goto next="#play_form_PlayRollbackDetails"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="play_form_PlayRollbackDetails">
+    <block name="block_PlayRollbackDetails">
+		
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryRollbackDetailsAnn-->
+  <assign name="promptId" expr="'BAL_CHARGES_ROLLBACK_DETAILS_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/><!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryRollbackDetailsAnn-->
+
+      <!--  -->
+      <if cond="responseCode != SUCCESSCODE">
+        <assign name="exitStatus" expr="STATUS_FAILURE_ROLLBACK"/>
+      <else/>
+        <assign name="exitStatus" expr="STATUS_CHARGES_REVERTED"/>
+      </if>
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!-- Successful form -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_Successful">
+    <block name="block_form_Successful">
+      <goto next="#main_form_Successful"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="main_form_Successful">
+    <var name="skipToWorkflow" expr="'false'"/>
+    <var name="daPlayStatus" expr=""/>
+    <block name="block_Successful">
+
+      <!--  -->
+
+      <assign name="application.currency1" expr="firstCurrencyName"/>
+      <assign name="application.currency2" expr="secondCurrencyName"/>
+      <assign name="application.BALANCE_ENQUIRY_DA_INFO_STR" expr="daDetails"/>
+      <assign name="application.LAST_MODULE_TO_UPDATE_DA_INFO" expr="'BalanceEnquiry'"/>
+      <assign name="application.BALANCE_ENQUIRY_DA_ANNOUNCEMENT_ORDER" expr="daAnnnouncementOrder"/>
+	  <!-- AirIp 4.0 Offers Support Start -->
+	  <assign name="application.LAST_MODULE_TO_UPDATE_OFFERS_INFO" expr="'BalanceEnquiry'"/>
+	  <!-- AirIp 4.0 Offers Support End -->
+     <!--  -->
+     
+		
+    </block>
+    
+    <!-- TR-HI59399-Start -->
+    
+    
+	<block>
+	   
+    	    <assign name="bothServAndSupervDatesConfigured" expr="true"/>
+	   
+
+    </block>
+    <!-- TR-HI59399-End -->
+    
+    <!-- Modified -->
+
+   <!-- PC Cable and wireless starts here-->
+      
+
+
+
+
+  
+ <!-- PC Cable and wireless Ends here-->	
+   <!-- PC Cable and wireless Ends here-->
+	
+
+ <!-- WATA 015 Playing the Account Balance in First Currency and if percentage configured then percentage -->
+    <subdialog name="play_sub_AccountBalanceInFirstCurrency" srcexpr="balanceEnquiryHelperVxml + '#' + play_AccountBalance" cond="firstCurrencyName != 'NULL' &amp;&amp; masterAccountBalanceInFirstCurrency != 'NULL' &amp;&amp; playMasterAccountBalanceInFirstCurrency == 'true'">
+
+      <param name="amount" expr="masterAccountBalanceInFirstCurrency"/>
+      <param name="absAmount" expr="absAccountBalanceInFirstCurrency"/>
+      <param name="currency" expr="firstCurrencyName"/>
+      <param name="currencyFormat" expr="currencyFormat"/>
+      <param name="subscriberLanguage" expr="subscriberLanguage"/>
+      <param name="voiceBaseLanguage" expr="voiceBaseLanguage"/>
+      <param name="speaker" expr="speaker"/>
+      <param name="gender" expr="gender"/>
+      <param name="versionId" expr="versionId"/>
+      <param name="promptsetId" expr="promptsetId"/>
+      <param name="debug" expr="debug"/>
+      <param name="voiceBaseURL" expr="voiceBaseURL"/>
+      
+      <param name="mainBalanceAccountType" expr="mainBalanceAccountType"/>
+      <param name="appRoot" expr="application"/>
+      <param name="presentationId" expr="presentationId"/>
+      <param name="referenceDA" expr="referenceDA"/>
+      
+      <param name="announcementType" expr="masterBalanceAnnouncement"/>
+
+	  <!-- Handling for EcmaScript call :FC 154-->
+      <param name="voiceBaseInterfaceVxml" expr="voiceBaseInterfaceVxml"/>
+    </subdialog>
+    <!--  -->
+    <!-- Playing the Account Balance in Second Currency -->
+    <subdialog name="play_sub_AccountBalanceInSecondCurrency" srcexpr="balanceEnquiryHelperVxml + '#' + play_AccountBalance" cond="secondCurrencyName != 'NULL' &amp;&amp; masterAccountBalanceInSecondCurrency != 'NULL' &amp;&amp; playMasterAccountBalanceInSecondCurrency == 'true'">
+      <param name="amount" expr="masterAccountBalanceInSecondCurrency"/>
+      <param name="absAmount" expr="absAccountBalanceInSecondCurrency"/>
+      <param name="currency" expr="secondCurrencyName"/>
+      <param name="currencyFormat" expr="currencyFormat"/>
+      <param name="subscriberLanguage" expr="subscriberLanguage"/>
+      <param name="voiceBaseLanguage" expr="voiceBaseLanguage"/>
+      <param name="speaker" expr="speaker"/>
+      <param name="gender" expr="gender"/>
+      <param name="versionId" expr="versionId"/>
+      <param name="promptsetId" expr="promptsetId"/>
+      <param name="debug" expr="debug"/>
+      <param name="voiceBaseURL" expr="voiceBaseURL"/>
+      
+      <param name="mainBalanceAccountType" expr="mainBalanceAccountType"/>
+      <param name="appRoot" expr="application"/>
+      <param name="presentationId" expr="presentationId"/>
+      <param name="referenceDA" expr="referenceDA"/>
+      
+	  <param name="announcementType" expr="masterBalanceAnnouncement"/>
+	 
+	  <!-- Handling for EcmaScript call :FC 154-->
+      <param name="voiceBaseInterfaceVxml" expr="voiceBaseInterfaceVxml"/>
+    </subdialog>
+    <!--  -->
+    <!-- TR-HI59399-ConditionModified -->
+    <!-- Playing the Service Fee Expiry Date -->
+    <subdialog name="play_sub_ServiceFeeExpiryDate" srcexpr="balanceEnquiryHelperVxml + '#' + play_ServiceFeeExpiryDate" cond="bothServAndSupervDatesConfigured==false &amp;&amp; playServiceFeeExpiryDate == 'true' || bothServAndSupervDatesConfigured==true &amp;&amp; supervExpDateVsServExpDate != 0 &amp;&amp; playServiceFeeExpiryDate == 'true' ">
+      <param name="serviceFeeExpiryDate" expr="serviceFeeExpiryDate"/>
+      <param name="servExpDateVsTodayDate" expr="servExpDateVsTodayDate"/>
+      <param name="subscriberLanguage" expr="subscriberLanguage"/>
+      <param name="voiceBaseLanguage" expr="voiceBaseLanguage"/>
+      <param name="speaker" expr="speaker"/>
+      <param name="gender" expr="gender"/>
+      <param name="versionId" expr="versionId"/>
+      <param name="promptsetId" expr="promptsetId"/>
+      <param name="dateFormat" expr="dateFormat"/>
+      <param name="debug" expr="debug"/>
+      <param name="voiceBaseURL" expr="voiceBaseURL"/>
+      <param name="lifeTimeValidDate" expr="application.lifeTimeValidDate"/>
+	  <!-- Handling for EcmaScript call :FC 154-->
+      <param name="voiceBaseInterfaceVxml" expr="voiceBaseInterfaceVxml"/>
+    </subdialog>
+    
+     <!-- Playing the Credit Clearance Date -->
+     <!-- TR-HL26180-Start -->
+    <subdialog name="play_sub_creditClearanceDate" srcexpr="balanceEnquiryHelperVxml + '#' + play_CreditClearanceDate" cond="playCreditClearanceDate == 'true' &amp;&amp; creditClearanceDateAnnFlag == 'true'">
+      <!-- TR-HL26180-END -->
+      <param name="creditClearanceDate" expr="creditClearanceDate"/>
+      <param name="creditClearanceDateVsTodayDate" expr="creditClearanceDateVsTodayDate"/>
+      <param name="subscriberLanguage" expr="subscriberLanguage"/>
+      <param name="voiceBaseLanguage" expr="voiceBaseLanguage"/>
+      <param name="speaker" expr="speaker"/>
+      <param name="gender" expr="gender"/>
+      <param name="versionId" expr="versionId"/>
+      <param name="promptsetId" expr="promptsetId"/>
+      <param name="dateFormat" expr="dateFormat"/>
+      <param name="debug" expr="debug"/>
+      <param name="voiceBaseURL" expr="voiceBaseURL"/>
+      <param name="lifeTimeValidDate" expr="application.lifeTimeValidDate"/>
+	  <!-- Handling for EcmaScript call :FC 154-->
+      <param name="voiceBaseInterfaceVxml" expr="voiceBaseInterfaceVxml"/>
+      <!-- TR-HL32919-Start -->
+	  <filled>
+	  
+	  <assign name="creditClearanceDateAnnFlag" expr="'false'"/>
+	  </filled>
+	  <!-- TR-HL32919-END -->
+    </subdialog>
+    <!--  -->
+    <!-- TR-HI59399-ConditionModified -->
+    <!-- Playing the Supervision Fee Expiry Date -->
+    <subdialog name="play_sub_SupervisionFeeExpiryDate" srcexpr="balanceEnquiryHelperVxml + '#' + play_SupervisionFeeExpiryDate" cond="bothServAndSupervDatesConfigured==false &amp;&amp; playSupervisionFeeExpiryDate == 'true' || bothServAndSupervDatesConfigured==true &amp;&amp; supervExpDateVsServExpDate != 0 &amp;&amp; playSupervisionFeeExpiryDate == 'true' ">
+      <param name="supervisionFeeExpiryDate" expr="supervisionFeeExpiryDate"/>
+      <param name="supervExpDateVsTodayDate" expr="supervExpDateVsTodayDate"/>
+      <param name="subscriberLanguage" expr="subscriberLanguage"/>
+      <param name="voiceBaseLanguage" expr="voiceBaseLanguage"/>
+      <param name="speaker" expr="speaker"/>
+      <param name="gender" expr="gender"/>
+      <param name="versionId" expr="versionId"/>
+      <param name="promptsetId" expr="promptsetId"/>
+      <param name="dateFormat" expr="dateFormat"/>
+      <param name="creditClearanceDate" expr="creditClearanceDate"/>
+      <param name="creditClearanceDateVsTodayDate" expr="creditClearanceDateVsTodayDate"/>
+      <param name="creditClearanceDateAnnFlag" expr="creditClearanceDateAnnFlag"/>
+      <param name="debug" expr="debug"/>
+      <param name="voiceBaseURL" expr="voiceBaseURL"/>
+      <param name="lifeTimeValidDate" expr="application.lifeTimeValidDate"/>
+	  <!-- Handling for EcmaScript call :FC 154-->
+      <param name="voiceBaseInterfaceVxml" expr="voiceBaseInterfaceVxml"/>
+	  <!-- TR-HL32919-Start -->	
+	  <filled>
+	  <if cond="supervExpDateVsTodayDate &lt; 0">
+	  <assign name="creditClearanceDateAnnFlag" expr="'false'"/>
+	  
+	  </if>
+	  </filled>
+	  <!-- TR-HL32919-END -->
+    </subdialog>
+    <!--  -->
+    <!-- TR-HI59399-ConditionModified -->
+    <!-- Playing the Service and Supervision Fee Expiry Dates when both are same -->
+    <subdialog name="play_sub_SameSupervisionAndServiceExpiryDates" srcexpr="balanceEnquiryHelperVxml + '#' + play_SameServiceAndSupervisionExpiryDates" cond="bothServAndSupervDatesConfigured==true &amp;&amp; supervExpDateVsServExpDate == 0 &amp;&amp; playSupervisionFeeExpiryDate == 'true' || bothServAndSupervDatesConfigured==true &amp;&amp; supervExpDateVsServExpDate == 0 &amp;&amp; playServiceFeeExpiryDate == 'true' ">
+      <param name="expiryDate" expr="serviceFeeExpiryDate"/>
+      <param name="expiryDateVsTodayDate" expr="supervExpDateVsTodayDate"/>
+      <param name="subscriberLanguage" expr="subscriberLanguage"/>
+      <param name="voiceBaseLanguage" expr="voiceBaseLanguage"/>
+      <param name="speaker" expr="speaker"/>
+      <param name="gender" expr="gender"/>
+      <param name="versionId" expr="versionId"/>
+      <param name="promptsetId" expr="promptsetId"/>
+      <param name="dateFormat" expr="dateFormat"/>
+      <param name="creditClearanceDate" expr="creditClearanceDate"/>
+      <param name="creditClearanceDateVsTodayDate" expr="creditClearanceDateVsTodayDate"/>
+      <param name="creditClearanceDateAnnFlag" expr="creditClearanceDateAnnFlag"/>
+      <param name="debug" expr="debug"/>
+      <param name="voiceBaseURL" expr="voiceBaseURL"/>
+      <param name="lifeTimeValidDate" expr="application.lifeTimeValidDate"/>
+	  <!-- Handling for EcmaScript call :FC 154-->
+      <param name="voiceBaseInterfaceVxml" expr="voiceBaseInterfaceVxml"/>
+      <!-- TR-HL32919-Start -->
+	  <filled>
+	  <if cond="supervExpDateVsTodayDate &lt; 0">
+	  <assign name="creditClearanceDateAnnFlag" expr="'false'"/>
+	  
+	  </if>
+	  </filled>
+	  <!-- TR-HL32919-END -->
+    </subdialog>
+    
+        <!-- Playing the Service Removal Date -->
+    <subdialog name="play_sub_ServiceRemovalDate" srcexpr="balanceEnquiryHelperVxml + '#' + play_ServiceRemovalDate" cond="playServiceRemovalDate == 'true'">
+      <param name="serviceRemovalDate" expr="serviceRemovalDate"/>
+      <param name="serviceRemovalDateVsTodayDate" expr="serviceRemovalDateVsTodayDate"/>
+      <param name="subscriberLanguage" expr="subscriberLanguage"/>
+      <param name="voiceBaseLanguage" expr="voiceBaseLanguage"/>
+      <param name="speaker" expr="speaker"/>
+      <param name="gender" expr="gender"/>
+      <param name="versionId" expr="versionId"/>
+      <param name="promptsetId" expr="promptsetId"/>
+      <param name="dateFormat" expr="dateFormat"/>
+      <param name="debug" expr="debug"/>
+      <param name="voiceBaseURL" expr="voiceBaseURL"/>
+      <param name="lifeTimeValidDate" expr="application.lifeTimeValidDate"/>
+	  <!-- Handling for EcmaScript call :FC 154-->
+      <param name="voiceBaseInterfaceVxml" expr="voiceBaseInterfaceVxml"/>
+    </subdialog>
+    
+    <!-- Playing the Service Class  -->
+    <subdialog name="play_sub_ServiceClass" srcexpr="balanceEnquiryHelperVxml + '#' + play_ServiceClass" cond="playServiceClass == 'true'">
+      <param name="serviceClass" expr="serviceClass"/>
+      <param name="serviceClassPrompt" expr="serviceClassPrompt"/>
+      <param name="subscriberLanguage" expr="subscriberLanguage"/>
+      <param name="voiceBaseLanguage" expr="voiceBaseLanguage"/>
+      <param name="speaker" expr="speaker"/>
+      <param name="gender" expr="gender"/>
+      <param name="versionId" expr="versionId"/>
+      <param name="promptsetId" expr="promptsetId"/>
+      <param name="debug" expr="debug"/>
+      <param name="voiceBaseURL" expr="voiceBaseURL"/>
+	  <!-- Handling for EcmaScript call :FC 154-->
+      <param name="voiceBaseInterfaceVxml" expr="voiceBaseInterfaceVxml"/>
+    </subdialog>
+
+	<!-- PMR477 -->
+	<!-- in case of child subscriber play DA only when some DA found associated with offer id -->
+
+	<block name="block_MUIOAnnouncementFlag" cond="PlayMUDA==TRUE_STRING">		
+		<assign name="application.bal_NewDARequest" expr="FALSE_STRING"/>
+		 <assign name="application.LAST_MODULE_TO_UPDATE_DA_INFO" expr="'BalanceEnquiry'"/>
+		 <assign name="application.BALANCE_ENQUIRY_DA_INFO_STR" expr="MUIODADetails"/>
+		<assign name="playMUIOAnnouncementFlag" expr="'true'"/>		
+		
+
+    </block>
+    <subdialog name="sub_daPlayCall_Child" fetchtimeout="15s" srcexpr="'/VXMLIVR/DedicatedAccount.do?externalAnnouncementOrder='+daAnnnouncementOrder+'&amp;presentationId='+presentationId+'&amp;debug='+debug+'&amp;versionId='+versionId+'&amp;configurationId='+configurationId"
+      cond="playMUIOAnnouncementFlag == TRUE_STRING &amp;&amp; masterSubscriberFlag==FALSE_STRING &amp;&amp; isOffersDAFound==TRUE_STRING">
+      <param name="appRootFromSubdialog" expr="application"/>
+      <!--  -->
+      <filled>
+	  <assign name="application.bal_NewDARequest" expr="TRUE_STRING"/>
+          <assign name="skipToWorkflow" expr="sub_daPlayCall_Child.skipToWorkflow"/>
+	  <assign name="daPlayStatus" expr="sub_daPlayCall_Child.status"/>
+	          
+	  <if cond="skipToWorkflow == 'true'">
+	      <goto nextitem="block_AnnEnd"/>
+	  </if>
+     </filled>
+    </subdialog>
+	
+	<block name="block_masterSubscriberFound" cond="playMUIOAnnouncementFlag==TRUE_STRING &amp;&amp; masterSubscriberFlag==TRUE_STRING">
+
+			
+
+		<assign name="application.bal_NewDARequest" expr="TRUE_STRING"/>
+	</block>
+	<block name="block_masterNoDAFound" cond="playMUIOAnnouncementFlag==TRUE_STRING &amp;&amp; masterSubscriberFlag==FALSE_STRING &amp;&amp; MUIOOfferId!=NULL_STRING &amp;&amp; isOffersDAFound==FALSE_STRING">
+			 <assign name="application.bal_NewDARequest" expr="TRUE_STRING"/>
+
+				
+
+			<assign name="promptId" expr="masterDAErrorPromptId"/>
+			
+			<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+
+	</block>
+	<block name="noMUIOOfferIdConfigured" cond="playMUIOAnnouncementFlag==TRUE_STRING &amp;&amp; masterSubscriberFlag==FALSE_STRING &amp;&amp; MUIOOfferId==NULL_STRING">
+			<!-- offer id not found for subscriber -->
+			 <assign name="application.bal_NewDARequest" expr="TRUE_STRING"/>
+
+				
+
+			<assign name="promptId" expr="'BAL_NO_MUIO_FOUND_MSG'"/>
+			
+			<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+	</block>
+	<!--PMR477-->
+
+
+    <!-- PC = STC-V001 Ends Here -->  
+    
+    <subdialog name="transfer_DedicatedAccounts" fetchtimeout="15s" srcexpr="'/VXMLIVR/DedicatedAccount.do?externalAnnouncementOrder='+daAnnnouncementOrder+'&amp;presentationId='+presentationId+'&amp;debug='+debug+'&amp;versionId='+versionId+'&amp;configurationId='+configurationId"
+      cond="playDA == TRUE_STRING ">
+      <param name="appRootFromSubdialog" expr="application"/>
+      <!--  -->
+      <filled>
+          <assign name="skipToWorkflow" expr="transfer_DedicatedAccounts.skipToWorkflow"/>
+	  <assign name="daPlayStatus" expr="transfer_DedicatedAccounts.status"/>
+
+			  
+
+	  <if cond="skipToWorkflow == 'true'">
+	      <goto nextitem="block_AnnEnd"/>
+	  </if>
+     </filled>
+    </subdialog>
+
+	<!-- AirIp 4.0: Offer Support-->
+	<subdialog name="sub_offersPlayCall" fetchtimeout="15s" srcexpr="'/VXMLIVR/OffersAction.do?presentationId='+presentationId+'&amp;debug='+debug+'&amp;versionId='+versionId+OptionalParametersString" cond="playOffers == 'true'">
+		<param name="appRootFromSubdialog" expr="application"/>
+		<!--  -->
+		<filled>
+			<assign name="playOfferStatus" expr="sub_offersPlayCall.status"/>
+
+				
+
+		</filled>
+	</subdialog>
+    <!--  -->
+
+    
+    <!-- -->
+    <field name="dummyField_For_Balance_0">
+		     <grammar version="1.0" src="/VXMLIVR/grammarFiles/local/Everything.grxml?versionId=null" mode="dtmf"/>
+		     <prompt timeout="0s"/>
+		     <catch event="noinput">
+		       <!-- if no input from the user, skip this field -->
+				
+		       <assign name="dummyField_For_Balance_0" expr="true"/>
+		      </catch>
+		      <filled>    		   
+			
+
+		        <goto nextitem="block_AnnEnd"/>
+		     </filled>   
+         </field>
+        
+    <!-- -->
+      <!-- Editor:true:StaticVxml:comments:start:MasterAccountBalance-->
+ 	
+ 	<!-- Playing the Account Balance in First Currency -->
+  
+  	<block name="block_beforeFirstCurrency">
+      <!--Add anything you want to do before Playing the Account Balance in First Currency-->
+  	</block>
+    
+	<block name="block_masterAccountBalanceInFirstCurrency">
+  		<assign name="playMasterAccountBalanceInFirstCurrency" expr="'true'"/>
+	</block>
+
+	<!-- Playing the Account Balance in Second Currency -->
+
+	<block name="block_beforeSecondCurrency">
+	<!--Add anything you want to do before Playing the Account Balance in Second Currency-->
+      
+    </block>
+    
+	<block name="block_masterAccountBalanceInSecondCurrency">
+	  <assign name="playMasterAccountBalanceInSecondCurrency" expr="'true'"/>
+	</block>
+  <!-- Editor:true:StaticVxml:comments:end:MasterAccountBalance-->
+
+    
+    <!-- -->
+    <field name="dummyField_For_Balance_1">
+		     <grammar version="1.0" src="/VXMLIVR/grammarFiles/local/Everything.grxml?versionId=null" mode="dtmf"/>
+		     <prompt timeout="0s"/>
+		     <catch event="noinput">
+		       <!-- if no input from the user, skip this field -->
+				
+		       <assign name="dummyField_For_Balance_1" expr="true"/>
+		      </catch>
+		      <filled>    		   
+			
+
+		        <goto nextitem="block_AnnEnd"/>
+		     </filled>   
+         </field>
+        
+    <!-- -->
+      <!-- Editor:true:StaticVxml:comments:start:ServiceFeeExpiryDate-->
+     <!-- Playing the Service Fee Expiry Date -->
+ 	
+ 	<block name="block_beforeServiceExpiryDate">
+      <!--Add anything you want to do before Playing the Service Fee Expiry Date-->
+  	</block>
+  	
+ 	<block name="block_ServiceFeeExpiryDate">
+  		<assign name="playServiceFeeExpiryDate" expr="'true'"/>
+	</block>
+ <!-- Editor:true:StaticVxml:comments:end:ServiceFeeExpiryDate-->
+
+    
+    <!-- -->
+    <field name="dummyField_For_Balance_2">
+		     <grammar version="1.0" src="/VXMLIVR/grammarFiles/local/Everything.grxml?versionId=null" mode="dtmf"/>
+		     <prompt timeout="0s"/>
+		     <catch event="noinput">
+		       <!-- if no input from the user, skip this field -->
+				
+		       <assign name="dummyField_For_Balance_2" expr="true"/>
+		      </catch>
+		      <filled>    		   
+			
+
+		        <goto nextitem="block_AnnEnd"/>
+		     </filled>   
+         </field>
+        
+    <!-- -->
+      <!-- Editor:true:StaticVxml:comments:start:SupervisionFeeExpiryDate-->
+
+	<block name="block_beforeSupervisionExpiryDate">
+      <!--Add anything you want to do before Playing the Supervision Fee Expiry Date-->
+  	</block>
+  	
+	<block name="block_SupervisionFeeExpiryDate">
+  		<assign name="playSupervisionFeeExpiryDate" expr="'true'"/>
+	</block>
+	<!-- Editor:true:StaticVxml:comments:end:SupervisionFeeExpiryDate-->
+
+    
+    <!--  -->   
+    <block name="block_AnnEnd"> 
+
+
+	  <!-- TELMA V001 Start: Added to invoke listen again if configured -->
+	<if cond = "maxAnnouncementRepetitionTimes &gt;0 &amp;&amp; announcementRepetitionTimes &lt; maxAnnouncementRepetitionTimes &amp;&amp; responseCode==0">
+		<goto next="#ListenAgain"/>
+	</if>
+	<!-- TELMA V001 End -->
+      	  <!-- HM92846 Starts Here : Assigned exit status to daPlayStatus only for the case where offerCreditRefillFlag is true
+	   and DAs are played if only offerCreditRefillFlag is true then exit status is set to 'SUCCESS_CREDIT_REFILL' -->
+      <if cond="application.offerCreditRefillFlag == 'true' &amp;&amp; playDA == 'true' ">
+	  
+		<assign name="exitStatus" expr="daPlayStatus"/>
+	  <elseif cond="application.offerCreditRefillFlag == 'true' &amp;&amp; playDA == 'false' "/>
+	  
+		<assign name="exitStatus" expr="'SUCCESS_CREDIT_REFILL'"/>	  
+		 <!-- HM92846 Ends -->
+	  <else/>
+	  
+		<assign name="exitStatus" expr="STATUS_SUCCESS"/>
+	  </if>
+      
+
+
+        <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryConclusion-->
+    <assign name="application.counter_BalEnq" expr="++application.counter_BalEnq"/>    
+    <assign name="promptId" expr="'BAL_CONCLUSION_MSG'"/>
+    <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryConclusion-->
+       
+
+		
+     
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  Timeout Count Exceeded -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_MaxTimeoutCountExceeded">
+    <block name="block_form_MaxTimeoutCountExceeded">
+      <goto next="#error_form_MaxTimeoutCountExceeded"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_form_MaxTimeoutCountExceeded">
+    <block name="block_MaxTimeoutRetryCountExceeded">
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:MaxTimeoutCountExceededAnn-->
+  <assign name="promptId" expr="'BAL_TIMEOUT_COUNT_EXCEEDED_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/><!-- Editor:true:StaticVxml:comments:end:MaxTimeoutCountExceededAnn-->
+
+      <!--  -->
+      <assign name="exitStatus" expr="STATUS_FAILURE_TIMEOUT"/>
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  Max Retry Count Exceeded -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_MaxRetryCountExceeded">
+    <block name="block_form_MaxRetryCountExceeded">
+      <goto next="#error_form_MaxRetryCountExceeded"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_form_MaxRetryCountExceeded">
+    <block name="block_MaxRetryCountExceeded">
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:MaxRetryCountExceededAnn-->
+  <assign name="promptId" expr="'BAL_RETRY_COUNT_EXCEEDED_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/><!-- Editor:true:StaticVxml:comments:end:MaxRetryCountExceededAnn-->
+
+      <!--  -->
+      <assign name="exitStatus" expr="STATUS_FAILURE_RETRY"/>
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  Max Invalid Retry Count Exceeded -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_MaxInvalidRetryCountExceeded">
+    <block name="block_form_MaxInvalidRetryCountExceeded">
+      <goto next="#error_form_MaxInvalidRetryCountExceeded"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_form_MaxInvalidRetryCountExceeded">
+    <block name="block_MaxInvalidRetryCountExceeded">
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:MaxInvalidRetryCountExceededAnn-->
+  <assign name="promptId" expr="'BAL_INVALID_RETRY_COUNT_EXCEEDED_MSG'"/>
+  <audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/><!-- Editor:true:StaticVxml:comments:end:MaxInvalidRetryCountExceededAnn-->
+
+      <!--  -->
+      <assign name="exitStatus" expr="STATUS_FAILURE_INVALID_RETRY"/>
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_SubscriberNotFound">
+    <block name="block_handle_SubscriberNotFound">
+      <goto next="#error_handle_SubscriberNotFound"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_SubscriberNotFound">
+    <block>
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:SubscriberNotFound-->
+		<assign name="promptId" expr="'BAL_SUBSCRIBER_NOT_FOUND_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:SubscriberNotFound-->
+
+      <!--  -->
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_BalanceEnquiryNotAllowed">
+    <block name="block_handle_BalanceEnquiryNotAllowed">
+      <goto next="#error_handle_BalanceEnquiryNotAllowed"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_BalanceEnquiryNotAllowed">
+    <block>
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:BalanceEnquiryNotAllowed-->
+		<assign name="promptId" expr="'BAL_ENQ_NOT_ALLOWED_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BalanceEnquiryNotAllowed-->
+
+      <!--  -->
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_BelowMinimumBalance">
+    <block name="block_handle_BelowMinimumBalance">
+      <goto next="#error_handle_BelowMinimumBalance"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_BelowMinimumBalance">
+    <block>
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:BelowMinimumBalance-->
+		<assign name="promptId" expr="'BAL_BELOW_MINIMUM_BALANCE_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:BelowMinimumBalance-->
+
+      <!--  -->
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_AccountNotActive">
+    <block name="block_handle_AccountNotActive">
+      <goto next="#error_handle_AccountNotActive"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_AccountNotActive">
+    <block>
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:AccountNotActive-->
+		<assign name="promptId" expr="'BAL_ACCOUNT_NOT_ACTIVE_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:AccountNotActive-->
+
+      <!--  -->
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_AccumulatorOverflow">
+    <block name="block_handle_AccumulatorOverflow">
+      <goto next="#error_handle_AccumulatorOverflow"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_AccumulatorOverflow">
+    <block>
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:AccumulatorOverflow-->
+		<assign name="promptId" expr="'BAL_ACCUMULATOR_OVERFLOW_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:AccumulatorOverflow-->
+
+      <!--  -->
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_AccumulatorUnderflow">
+    <block name="block_handle_AccumulatorUnderflow">
+      <goto next="#error_handle_AccumulatorUnderflow"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_AccumulatorUnderflow">
+    <block>
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:AccumulatorUnderflow-->
+		<assign name="promptId" expr="'BAL_ACCUMULATOR_UNDERFLOW_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:AccumulatorUnderflow-->
+
+      <!--  -->
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_MaxCreditLimitExceeded">
+    <block name="block_handle_MaxCreditLimitExceeded">
+      <goto next="#error_handle_MaxCreditLimitExceeded"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_MaxCreditLimitExceeded">
+    <block>
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:MaxCreditLimitExceeded-->
+		<assign name="promptId" expr="'BAL_MAX_CREDIT_LIMIT_EXCEEDED_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:MaxCreditLimitExceeded-->
+
+      <!--  -->
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  Max Allowed balance Enquiry Done -->
+  <form id="handle_MaxAllowedBalEnqDone">
+    <block name="block_MaxAllowedBalEnqDone">
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:MaxAllowedBalEnqDone-->
+		<assign name="promptId" expr="'BAL_MAXALLOWEDBALENQ_DONE_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/><!-- Editor:true:StaticVxml:comments:end:MaxAllowedBalEnqDone-->
+
+      <!--  -->
+      <assign name="exitStatus" expr="STATUS_FAILURE_MAXALLOWEDBALENQDONE"/>
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+
+  <!--  -->
+  <!--  System Unavailable -->
+  <form id="handle_SystemFailure">
+    <block name="block_SystemUnavailable">
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:SystemFailure-->
+		<assign name="promptId" expr="'BAL_SERVICE_UNAVAILABLE_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:SystemFailure-->
+
+      <!--  -->
+      <assign name="exitStatus" expr="STATUS_SYSTEM_FAILURE"/>
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  TEMPORORY BLOCKED -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_TemporaryBlocked">
+    <block name="block_handle_TemporaryBlocked">
+      <goto next="#error_handle_TemporaryBlocked"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_TemporaryBlocked">
+    <block name="block_TemporaryBlocked">
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:TemporaryBlocked-->
+		<assign name="promptId" expr="'BAL_TEMPORARY_BLOCKED_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:TemporaryBlocked-->
+
+      <!--  -->
+      <assign name="exitStatus" expr="STATUS_FAILURE_TEMPORARY_BLOCKED"/>
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  Dedicated Account Not Allowed -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_DedicatedAccountNotAllowed">
+    <block name="block_handle_DedicatedAccountNotAllowed">
+      <goto next="#error_handle_DedicatedAccountNotAllowed"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_DedicatedAccountNotAllowed">
+    <block name="block_DedicatedAccountNotAllowed">
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:DedicatedAccountNotAllowed-->
+		<assign name="promptId" expr="'BAL_DA_NOT_ALLOWED_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:DedicatedAccountNotAllowed-->
+
+      <!--  -->
+      <assign name="exitStatus" expr="STATUS_FAILURE_DEDICATED_ACCOUNT_NOT_ALLOWED"/>
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  Dedicated Account Not Defined 139 -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_DedicatedAccountNotDefined">
+    <block name="block_handle_DedicatedAccountNotDefined">
+      <goto next="#error_handle_DedicatedAccountNotDefined"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_DedicatedAccountNotDefined">
+    <block name="block_DedicatedAccountNotDefined">
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:DedicatedAccountNotDefined-->
+		<assign name="promptId" expr="'BAL_DA_NOT_DEFINED_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:DedicatedAccountNotDefined-->
+
+      <!--  -->
+      <assign name="exitStatus" expr="'STATUS_FAILURE_DEDICATED_ACCOUNT_NOT_DEFINED'"/>
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->  
+  <!--  Date Adjustment Error -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="handle_DateAdjustmentError">
+    <block name="block_handle_DateAdjustmentError">
+      <goto next="#error_handle_DateAdjustmentError"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="error_handle_DateAdjustmentError">
+    <block name="block_DateAdjustmentError">
+
+      <!--  -->
+      <!-- Editor:true:StaticVxml:comments:start:DateAdjustmentError-->
+		<assign name="promptId" expr="'BAL_DATE_ADJUSTMENT_ERROR_MSG'"/>
+		<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+<!-- Editor:true:StaticVxml:comments:end:DateAdjustmentError-->
+
+      <!--  -->
+      <assign name="exitStatus" expr="STATUS_FAILURE_DATE_ADJUSTMENT_ERROR"/>
+
+      <!--  -->
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="exitModule">
+    <block name="block_exitModule">
+      <goto next="#main_exitModule"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="main_exitModule">
+    <var name="presentationId" expr="application.presentationId"/>
+    <var name="debug" expr="application.debug"/>
+    <var name="status" expr="document.exitStatus"/>
+    <var name="callType" expr="application.callType"/>
+    <var name="callingNumber" expr="application.callingNumber"/>
+    <var name="currentModule" expr="application.currentModule"/>
+    <var name="versionId" expr="application.versionId"/>
+    <var name="statType" expr="''"/>
+    <var name="voucherNumber" expr="''"/>
+    <var name="statusCode" expr="''"/>
+    <var name="calledNumber" expr="application.calledNumber"/>
+    <!--  -->
+	
+
+	<block>
+		<if cond="enableStatisticsLoggingGlobal == 'true' &amp;&amp; enableStatisticsLogging == 'true'">
+    		<assign name="statType" expr="getStatType()"/>
+    		<assign name="voucherNumber" expr="getVoucherNumber()"/>
+    		<assign name="statusCode" expr="getStatusCode()"/>			
+		</if>
+	</block>
+		<subdialog name="statisticsLogger" src="../VXMLIVR/StatisticsLogger.do" fetchtimeout="15s" namelist="statType callingNumber calledNumber voucherNumber statusCode versionId" cond="enableStatisticsLoggingGlobal == 'true' &amp;&amp; enableStatisticsLogging == 'true'"/>
+    <block>
+      <if cond="UpdateRollback == 'true'" >
+        <assign name="exitStatus" expr="STATUS_CHARGES_REVERTED"/>
+        <assign name="chargingType" expr="ROLLBACK"/>
+        <goto next="#main_form_GetBalanceDetails"/>
+      </if>
+      <!--  -->
+
+      <submit next="/VXMLIVR/BalanceEnquiryExit.do" namelist="callType currentModule callingNumber presentationId debug status versionId"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_checkChargingMethod">
+    <block name="block_form_checkChargingMethod">
+      <goto next="#main_form_checkChargingMethod"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="main_form_checkChargingMethod">
+    <block name="block_checkChargingMethodStandard" cond="chargingMethod == CHARGING_STANDARD">
+
+      <goto next="#main_form_GetBalanceDetails"/>
+    </block>
+    <!--  -->
+    <block name="block_checkChargingMethodFastAdjust" cond="chargingMethod == CHARGING_FASTADJUST">
+
+      <if cond="chargingType == RESERVE || chargeAnnouncementRequired == 'true'">
+        <assign name="resultCurrency1" expr="transactionCurrency"/>
+        <assign name="resultCurrency2" expr="transactionCurrency2"/>
+        <assign name="cost1" expr="adjustmentAmount"/>
+        <assign name="cost1abs" expr="adjustmentAmountabs"/>
+        <assign name="cost2" expr="adjustmentAmount2"/>
+        <assign name="cost2abs" expr="adjustmentAmount2abs"/>
+        <!--  -->
+        <goto next="#play_form_PlayCharges"/>
+      </if>
+      <!--  -->
+      <goto next="#main_form_raiseAdjustmentRequest"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_PostConfirmCharges">
+    <block name="block_form_PostConfirmCharges">
+      <goto next="#main_form_PostConfirmCharges"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="main_form_PostConfirmCharges">
+    <block name="block_PostConfirmChargesStandard" cond="chargingMethod == CHARGING_STANDARD">
+
+      <goto next="#main_form_GetBalanceDetails"/>
+    </block>
+    <!--  -->      
+    <block name="block_PostConfirmChargesFastAdjust" cond="chargingMethod == CHARGING_FASTADJUST">
+      <goto next="#main_form_raiseAdjustmentRequest"/>
+    </block>
+  </form>
+  <!--  -->
+  <!--  -->
+  <!--  Form Names restored to previous one  -->
+  <form id="form_raiseAdjustmentRequest">
+    <block name="block_form_raiseAdjustmentRequest">
+      <goto next="#main_form_raiseAdjustmentRequest"/>
+    </block>
+  </form>
+  <!--  -->
+  <form id="main_form_raiseAdjustmentRequest">
+    <block name="block_raiseAdjustmentRequest">
+
+    	<!-- Editor:true:StaticVxml:comments:start:DataUpdateBalanceAndDatePre-->
+<!-- Editor:true:StaticVxml:comments:end:DataUpdateBalanceAndDatePre-->
+
+    </block>      
+    <!--  -->
+    <!-- Call to UpdateBalanceAndDate Request for adjustment -->
+        <!-- Subdialog call to UpdateBalanceAndDate Request for adjustment -->
+    <subdialog name="adjustment" srcexpr="'../VXMLIVR/Adjustment.do?versionId='+versionId+OptionalParametersString" fetchtimeout="15s" 
+        namelist="callingNumber subscriberNAI debug presentationId dedicatedAccountID adjustmentAmountRelative dedicatedAccountValueNew adjustmentDateRelative expiryDate relativeDateAdjustmentSupervision relativeDateAdjustmentServiceFee supervisionExpiryDate creditClearancePeriod transactionType transactionCode externalData1 externalData2 serviceFeeExpiryDate serviceRemovalPeriod">
+        <!-- TR- HK87722 Start -->	
+        <filled>
+         	<goto nextitem="dataBlock_adjustment"/>         	
+         </filled>         	
+    </subdialog>
+    	<!-- TR- HK87722 End -->	
+
+    <!--  -->
+    <block name="dataBlock_adjustment">
+        <assign name="responseCode" expr="adjustment.responseCode"/>
+        <assign name="nextFormId" expr="adjustment.nextFormId"/>
+        <assign name="document.exitStatus" expr="adjustment.status"/>
+        <!--  -->
+        <if cond="responseCode == SUCCESSCODE">
+          <!--  assign chargingType to 0 in case of fast adjustment request  -->
+          <assign name="chargingType" expr="NOCHARGE"/>
+          <assign name="nextFormId" expr="'#main_form_GetBalanceDetails'"/>
+        </if>
+        <!--  -->
+		
+        <!--  -->
+        <!-- Editor:true:StaticVxml:comments:start:DataUpdateBalanceAndDatePost-->
+<!-- Editor:true:StaticVxml:comments:end:DataUpdateBalanceAndDatePost-->
+
+        <goto expr="nextFormId"/>
+    </block>
+  </form>
+
+<!-- TELMA V001 Start -->
+<form id="ListenAgain">
+    <block name="block_form_ListenAgain">
+      <goto next="#main_ListenAgain"/>
+    </block>
+  </form>
+
+<form id="main_ListenAgain">
+	<var name="listenAgainTimeoutCounter" expr="0"/>
+	<var name="listenAgainInvalidEntryCounter" expr="0"/>
+	<block name="playListenAgainMsg" >
+		<!-- Editor:true:StaticVxml:comments:start:PreListenAgain-->
+<!-- Editor:true:StaticVxml:comments:end:PreListenAgain-->
+
+		<prompt>
+				<audio expr="returnAudioPath(application.promptsetId,application.subscriberLanguage, 'BAL_LISTEN_AGAIN_MSG', versionId, debug)"/>
+		</prompt>
+	</block>
+		<field name="listenAgain">
+		
+			
+			<grammar version="1.0" src='/VXMLIVR/grammarFiles/local/Confirmation.grxml?versionId=null' mode="dtmf"/>
+			<filled>
+			
+				<if cond="listenAgain == listenAgainDTMF">
+				
+					<assign name="announcementRepetitionTimes" expr = "announcementRepetitionTimes +1"/>
+					<goto next="#main_form_Successful"/>
+				<else/>
+					<throw event="nomatch"/>
+				</if>
+			</filled>
+			<error>
+				<assign name="status" expr="'FAILURE'"/>
+				<assign name= "maxAnnouncementRepetitionTimes" expr="0"/>
+				<goto next="#handle_SystemFailure"/>
+			</error>
+			<noinput>
+			
+				<if cond="listenAgainTimeoutCounter &lt; maxTimeoutRetries">
+				
+					<assign name="listenAgainTimeoutCounter" expr="listenAgainTimeoutCounter + 1"/>
+					<assign name="promptId" expr="'BAL_LISTEN_AGAIN_TIMEOUT_MSG'"/>
+					<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+					<!-- Editor:true:StaticVxml:comments:start:ListenAgainTimeout-->
+<!-- Editor:true:StaticVxml:comments:end:ListenAgainTimeout-->
+
+					<reprompt/>
+				<else/>
+					<assign name= "maxAnnouncementRepetitionTimes" expr="0"/>
+					<goto next="#error_form_MaxTimeoutCountExceeded"/>
+					
+				</if>
+			</noinput>
+			<nomatch>
+				<if cond="listenAgainInvalidEntryCounter &lt; maxInvalidRetries">
+				
+					<assign name="listenAgainInvalidEntryCounter" expr="listenAgainInvalidEntryCounter + 1"/>
+					<assign name="promptId" expr="'BAL_LISTEN_AGAIN_INVALID_ENTRY_MSG'"/>
+					<audio expr="returnAudioPath(promptsetId, subscriberLanguage, promptId, versionId, debug)"/>
+					<!-- Editor:true:StaticVxml:comments:start:ListenAgainInvalidInput-->
+<!-- Editor:true:StaticVxml:comments:end:ListenAgainInvalidInput-->
+
+					<clear namelist="listenAgain"/>
+					<reprompt/>
+					
+				<else/>
+					<assign name= "maxAnnouncementRepetitionTimes" expr="0"/>
+					<goto next="#error_form_MaxInvalidRetryCountExceeded"/>
+				</if>
+			</nomatch>
+		</field>
+</form>
+<!-- TELMA V001 End -->
+
+
+	<catch event="error">
+        
+		<goto next="#handle_SystemFailure"/>
+    </catch>
+
+
+  <catch event="connection.disconnect.hangup">
+
+		<if cond="enableStatisticsLoggingGlobal == 'true' &amp;&amp; enableStatisticsLogging == 'true'">
+    		<var name="statType" expr="getStatType()"/>
+    		<var name="voucherNumber" expr="getVoucherNumber()"/>
+    		<var name="statusCode" expr="getStatusCode()"/>
+			<var name="calledNumber" expr="application.calledNumber"/>
+			<var name="isSubmitRequest" expr="'true'"/>
+			
+			<submit next="../VXMLIVR/StatisticsLogger.do" namelist="statType callingNumber calledNumber voucherNumber statusCode isSubmitRequest versionId"/>
+		</if>
+		
+		<!-- calls a catch block in ApplicationRoot.jsp which logs the CDL logs -->
+		<throw event="root.disconnect"/>
+   		<exit/>
+  </catch>
+</vxml>

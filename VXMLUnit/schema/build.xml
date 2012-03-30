@@ -1,0 +1,502 @@
+<?xml version="1.0"?>
+<project name="VXML IVR Application" basedir="." default="all">
+  <!--  -->
+  <property name="propertyfile" value="build.properties"/>
+  <property file="${propertyfile}"/>
+  <!--  -->
+  <target name="help">
+    <echo>
+      Possible targets are:
+        all                   performs clean, compile and creates jar files.
+        clean                 cleans intermediate build products.
+        compile               compiles src java code.
+        jars                  creates jar files for the compiled src classes.
+        PrepareDeliverable    collects all deliverables as per the output structure.
+    </echo>
+  </target>
+  <!--  -->
+  <target name="all" depends="clean, prepareDeliverables" description="Clean, Build and create jar file."/>
+  <!--  -->
+  <target name="initProps">
+    <property environment="env"/>
+    <property name="topRoot" value="../"/>
+    <property name="localRoot" value="."/>
+    <property name="localLib" value="${localRoot}/lib"/>
+    <property name="localOutput" value="${localRoot}/output"/>
+    <property name="localClasses" value="${localRoot}/classes"/>
+    <property name="localTestClasses" value="${localRoot}/testclasses" />
+    <property name="commonLibBase" value="${topRoot}/CXC1722569-indus/lib"/>
+    <property name="editorLibBase" value="${topRoot}/CXC1722569-indus/editorLib"/>
+    <property name="commonLibEditor" value="${topRoot}/CXC1729877-EditorCore/lib"/>
+    <property name="devLib" value="${topRoot}/CXC1722569-indus/devlib"/>
+    <property name="debug" value="on"/>
+    <property name="deprecation" value="on"/>
+    <property name="jaxb.home" value="/vobs/ivr/base/CXC1722569-indus"/>
+    <property name="gen.src" value="gen-src"/>
+    <property name="test.src" value="testsrc"/>
+    <property name="reports.test" value="${localRoot}/testreports"/>
+    <property name="ivrKeyStore" value="${topRoot}/ivr.keystore"/>
+    <!--  -->
+    <available file="${topRoot}/../access" type="dir" property="ivrAccess" value="${topRoot}/../access"/>
+    <available file="${topRoot}/../ivr_access" type="dir" property="ivrAccess" value="${topRoot}/../ivr_access"/>
+    <echo>IVR-ACCESS is: ${ivrAccess}</echo>
+  </target>
+  <!--  -->
+  <target name="init" depends="initProps" if="ivrAccess">
+    <property name="classpath.commons-logging" value="${commonLibBase}/commons-logging-1.0.4.jar"/>
+    <property name="classpath.jaxb1-impl" value="${commonLibBase}/jaxb1-impl.jar"/>
+    <property name="classpath.jaxb-api" value="${commonLibBase}/jaxb-api.jar"/>
+    <property name="classpath.jaxb-impl" value="${commonLibBase}/jaxb-impl.jar"/>
+    <property name="classpath.jaxb-xjc" value="${commonLibBase}/jaxb-xjc.jar"/>
+    <property name="classpath.jsr173-api" value="${commonLibBase}/jsr173_1.0_api.jar"/>
+    <property name="classpath.snmp" value="${commonLibBase}/snmp6_1.jar"/>
+    <property name="classpath.struts-core" value="${commonLibBase}/struts-core-1.3.10.jar"/>
+    <property name="classpath.xalan271" value="${commonLibBase}/xalan-2.7.1.jar"/>
+    <!-- JGo jars -->
+    <!-- <property name="classpath.commonlookandfeel" value="${editorLibBase}/commonlookandfeel.jar"/> -->
+    <property name="classpath.JGo" value="${editorLibBase}/JGo.jar"/>
+    <property name="classpath.JGoLayout" value="${editorLibBase}/JGoLayout.jar"/>
+    <property name="classpath.JGoSVG" value="${editorLibBase}/JGoSVG.jar"/>
+    <!-- Jide jars -->
+    <property name="classpath.jide-action.jar" value="${editorLibBase}/jide-action.jar"/>
+    <property name="classpath.jide-beaninfo.jar" value="${editorLibBase}/jide-beaninfo.jar"/>
+    <property name="classpath.jide-common.jar" value="${editorLibBase}/jide-common.jar"/>
+    <property name="classpath.jide-components.jar" value="${editorLibBase}/jide-components.jar"/>
+    <property name="classpath.jide-dashboard.jar" value="${editorLibBase}/jide-dashboard.jar"/>
+    <property name="classpath.jide-dialogs.jar" value="${editorLibBase}/jide-dialogs.jar"/>
+    <property name="classpath.jide-dock.jar" value="${editorLibBase}/jide-dock.jar"/>
+    <property name="classpath.jide-editor.jar" value="${editorLibBase}/jide-editor.jar"/>
+    <property name="classpath.jide-grids.jar" value="${editorLibBase}/jide-grids.jar"/>
+    <property name="classpath.jide-pivot.jar" value="${editorLibBase}/jide-pivot.jar"/>
+    <property name="classpath.jide-rss.jar" value="${editorLibBase}/jide-rss.jar"/>
+    <property name="classpath.jide-shortcut.jar" value="${editorLibBase}/jide-shortcut.jar"/>
+    <property name="classpath.jide-synthetica.jar" value="${editorLibBase}/jide-synthetica.jar"/>
+    <!-- devlib jars -->
+    <property name="classpath.junit" value="${devLib}/junit.jar"/>
+    <property name="classpath.servlet-api" value="${devLib}/servlet-api.jar"/>
+    <property name="classpath.commons-validator" value="${devLib}/commons-validator-1.3.1.jar"/>
+    <property name="classpath.jsp-api" value="${devLib}/jsp-api.jar"/>
+    <property name="classpath.mockrunner-struts" value="${devLib}/mockrunner-struts.jar"/>
+    <property name="classpath.commons-beanutils" value="${devLib}/commons-beanutils-1.7.0.jar"/>
+    <property name="classpath.jdom" value="${devLib}/jdom.jar"/>
+    <property name="classpath.commons-digester" value="${devLib}/commons-digester-1.8.jar"/>
+    <!-- access jars -->
+    <property name="classpath.commonutils_ivr" value="${ivrAccess}/CXC1724703-commonUtils/lib/CXC1724703-commonUtils.jar"/>
+    <property name="classpath.backend_ivr" value="${ivrAccess}/CXC1724285-backend/lib/CXC1724285-backend.jar"/>
+    <!--  -->
+    <property name="classpath.cvs-client" value="${editorLibBase}/org-netbeans-lib-cvsclient.jar"/>
+    <property name="classpath.stax-api-1.0.jar" value="${editorLibBase}/stax-api-1.0.jar"/>
+    <!--  -->
+    <path id="classpath">
+      <pathelement location="${classpath.commons-logging}"/>
+      <pathelement location="${classpath.jaxb1-impl}"/>
+      <pathelement location="${classpath.jaxb-api}"/>
+      <pathelement location="${classpath.jaxb-impl}"/>
+      <pathelement location="${classpath.jaxb-xjc}"/>
+      <pathelement location="${classpath.jsr173-api}"/>
+      <pathelement location="${classpath.snmp}"/>
+      <pathelement location="${classpath.struts-core}"/>
+      <pathelement location="${classpath.xalan271}"/>
+      <!-- JGo jars -->
+      <!-- <pathelement location="${classpath.commonlookandfeel}"/> -->
+      <pathelement location="${classpath.JGo}"/>
+      <pathelement location="${classpath.JGoLayout}"/>
+      <pathelement location="${classpath.JGoSVG}"/>
+      <!-- Jide jars -->
+      <pathelement location="${classpath.jide-action.jar}"/>
+      <pathelement location="${classpath.jide-beaninfo.jar}"/>
+      <pathelement location="${classpath.jide-common.jar}"/>
+      <pathelement location="${classpath.jide-components.jar}"/>
+      <pathelement location="${classpath.jide-dashboard.jar}"/>
+      <pathelement location="${classpath.jide-dialogs.jar}"/>
+      <pathelement location="${classpath.jide-dock.jar}"/>
+      <pathelement location="${classpath.jide-editor.jar}"/>
+      <pathelement location="${classpath.jide-grids.jar}"/>
+      <pathelement location="${classpath.jide-pivot.jar}"/>
+      <pathelement location="${classpath.jide-rss.jar}"/>
+      <pathelement location="${classpath.jide-shortcut.jar}"/>
+      <pathelement location="${classpath.jide-synthetica.jar}"/>
+      <!-- devlib jars -->
+      <pathelement location="${classpath.junit}"/>
+      <pathelement location="${classpath.servlet-api}"/>
+      <pathelement location="${classpath.commons-validator}"/>
+      <pathelement location="${classpath.mockrunner-struts}"/>
+      <pathelement location="${classpath.commons-beanutils}"/>
+      <pathelement location="${classpath.jsp-api}"/>
+      <pathelement location="${classpath.jdom}"/>
+      <pathelement location="${classpath.commons-digester}"/>
+      <!-- access jars -->
+      <pathelement location="${classpath.commonutils_ivr}"/>
+      <pathelement location="${classpath.backend_ivr}"/>
+      <!--  -->
+      <pathelement location="${classpath.cvs-client}"/>
+      <!--  -->
+      <!-- CXC 512 has dependency on the class files of the all the other CXCs; (because of the removal of jaxb-gen.jar)
+        hence the classes of all the other CXCs have been included in the classpath -->
+      <!-- <dirset dir="${topRoot}">
+        <include name="**/classes"/>
+      </dirset> -->
+    </path>
+    <!--  -->
+    <mkdir dir="${gen.src}"/>
+    <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+      <classpath refid="classpath"/>
+    </taskdef>
+  </target>
+  <!--  -->
+  <target name="clean-output" depends="initProps">
+    <delete dir="${localOutput}"/>
+  </target>
+  <!--  -->
+  <target name="clean-gen-src" depends="initProps">
+    <delete failonerror="false">
+      <fileset dir="${localRoot}/${gen.src}" includes="**/*"/>
+    </delete>
+  </target>
+  <!--  -->
+  <target name="clean" depends="clean-output">
+    <delete dir="${localClasses}"/>
+    <delete failonerror="false">
+      <fileset dir="${localLib}" includes="CXC*.jar"/>
+      <!--
+      <fileset dir="${localRoot}/${gen.src}" includes="**/*"/>
+      -->
+    </delete>
+  </target>
+  <!--  -->
+  <target name="xsdfile-exists">
+    <condition property="xsdfile.exists">
+      <and>
+        <not>
+          <equals arg1="${jaxb_pkg}" arg2="" trim="true"/>
+        </not>
+        <not>
+          <equals arg1="${jaxb_pkg}" arg2="NULL" trim="true"/>
+        </not>
+      </and>
+    </condition>
+  </target>
+  <!--  -->
+  <target name="xsdfile-multiple">
+    <condition property="xsdfile.multiple">
+      <equals arg1="${jaxb_pkg}" arg2="" trim="true"/>
+    </condition>
+  </target>
+  <target name="cxcnumber-check">
+    <condition property="editorcore.specific">
+      <equals arg1="${cxcnumber}" arg2="CXC1729877" trim="true"/>
+    </condition>
+    <condition property="workflowclient.specific">
+      <equals arg1="${cxcnumber}" arg2="CXC1729512" trim="true"/>
+    </condition>
+    <condition property="vxmleditor.specific">
+      <equals arg1="${cxcnumber}" arg2="CXC1729667" trim="true"/>
+    </condition>
+    <condition property="reusable.specific">
+      <equals arg1="${cxcnumber}" arg2="CXC1727350" trim="true"/>
+    </condition>
+  </target>
+  <!--  -->
+  <!--Generating the Java source files from schema -->
+  <target name="jaxb_create" depends="jaxb_create_single, jaxb_create_multiple"/>
+  <!--  -->
+  <!--Generating the Java source files from schema -->
+  <target name="jaxb_create_single" description="Create and Compile all Java source files for jaxb" depends="init, xsdfile-exists" if="xsdfile.exists">
+    <echo message="Generating the source from the schema..."/>
+    <echo>The package name is ${jaxb_pkg}</echo>
+    <!--  -->
+    <xjc package="${jaxb_pkg}" destdir="${gen.src}" failonerror="false" removeOldOutput="yes" extension="true">
+      <schema dir="./schema" includes="*.xsd" excludes="*.xsd.*"/>
+      <depends dir="./schema" includes="*.xsd"/>
+      <produces dir="${gen.src}/${jaxb_dir}" includes="**/*.java"/>
+    </xjc>
+  </target>
+  <!--  -->
+  <!--Generating the Java source files from schema -->
+  <target name="jaxb_create_multiple" description="Create and Compile all Java source files for jaxb" depends="init, xsdfile-multiple" if="xsdfile.multiple">
+    <ant antfile="build_jaxb.xml" inheritall="false" dir="${localRoot}" target="jaxb_create"/>
+  </target>
+  <!--  -->
+  <target name="compile" depends="init, jaxb_create, cxcnumber-check">
+    <mkdir dir="${localClasses}"/>
+    <!--  -->
+    <echo message="Compiling the source files..."/>
+    <javac destdir="${localClasses}" optimize="on" debug="${debug}" failonerror="true" deprecation="off">
+      <src path="${gen.src}"/>
+      <src path="src"/>
+      <include name="**/*.java"/>
+      <classpath>
+        <pathelement path="${extcp}"/>
+        <path refid="classpath"/>
+      </classpath>
+    </javac>
+  </target>
+  <!--  -->
+  <target name="specific_editorcore" depends="compile" if="editorcore.specific">
+    <mkdir dir="${localClasses}/schema"/>
+    <mkdir dir="${localClasses}/configuration"/>
+    <mkdir dir="${localClasses}/help"/>
+    <copy todir="${localClasses}/schema" failonerror="false">
+      <fileset dir="${localRoot}/schema"/>
+    </copy>
+    <copy todir="${localClasses}/configuration" failonerror="false">
+      <fileset dir="${localRoot}/configuration"/>
+    </copy>
+    <copy todir="${localClasses}/help" failonerror="false">
+      <fileset dir="${localRoot}/help"/>
+    </copy>
+    <copy todir="${localLib}" failonerror="false">
+      <fileset file="${editorLibBase}/*"/>
+    </copy>
+  </target>
+  <!--  -->
+  <target name="specific_workflowclient" depends="compile" if="workflowclient.specific">
+    <mkdir dir="${localClasses}/schema"/>
+    <mkdir dir="${localClasses}/configuration"/>
+    <copy todir="${localClasses}/schema" failonerror="false">
+      <fileset dir="${localRoot}/schema"/>
+    </copy>
+    <copy todir="${localClasses}/configuration" failonerror="false">
+      <fileset dir="${localRoot}/configuration"/>
+    </copy>
+  </target>
+  <!--  -->
+  <target name="specific_vxmleditor" depends="compile" if="vxmleditor.specific">
+    <mkdir dir="${localClasses}/schema"/>
+    <mkdir dir="${localClasses}/resources"/>
+    <copy todir="${localClasses}/schema" failonerror="false">
+      <fileset dir="src/schema"/>
+    </copy>
+    <copy todir="${localClasses}/resources" failonerror="false">
+      <fileset dir="${localRoot}/resources"/>
+    </copy>
+  </target>
+  <!--  -->
+  <target name="specific_reusable" depends="compile" if="reusable.specific">
+    <java classname="com.ericsson.charging.vxmlivr.modules.component.backend.util.ComponentFileGenerator" fork="true">
+      <classpath>
+        <pathelement path="./classes"/>
+        <pathelement path="${extcp}"/>
+        <path refid="classpath"/>
+      </classpath>
+    </java>
+    <!--  -->
+    <copy todir="${topRoot}/CXC1729667-vxmlEditor/resources" failonerror="false">
+      <fileset dir="resources">
+        <include name="ReusableComponents.xml"/>
+      </fileset>
+    </copy>
+  </target>
+  <!--  -->
+  <target name="jars" depends="compile">
+    <copy todir="${localClasses}/icons" failonerror="false">
+      <fileset dir="src/icons"/>
+    </copy>
+    <copy todir="${localClasses}" failonerror="false">
+      <fileset dir="src">
+        <include name="**/*.properties"/>
+      </fileset>
+    </copy>
+    <!--  -->
+    <mkdir dir="${localLib}"/>
+    <jar jarfile="${localLib}/${cxcnumber}-${cxcname}.jar" basedir="${localClasses}" excludes="**/test/* org/** **/cm/*"/>
+  </target>
+  <!--  -->
+  <target name="alarm_jar" depends="compile">
+    <mkdir dir="${localLib}"/>
+    <jar jarfile="${localLib}/${cxcnumber}-${cxcname}.jar" basedir="${localClasses}" excludes="**/test/*"/>
+  </target>
+  <!--  -->
+  <target name="core_common_jar" depends="compile">
+    <mkdir dir="${localLib}"/>
+    <jar jarfile="${localLib}/${cxcnumber}-corecommon.jar" basedir="${localClasses}" excludes="**/test/*" includes="com/ericsson/charging/vxmlivr/core/common/**"/>
+  </target>
+  <!--  -->
+  <target name="cm_jars" depends="compile">
+    <mkdir dir="${localLib}"/>
+    <jar jarfile="${localLib}/${cxcnumber}-${cxcname}_cm.jar" basedir="${localClasses}" excludes="**/test/*" includes="**/cm/** **/common/** com/ericsson/charging/vxmlivr/modules/*/common/** com/ericsson/charging/vxmlivr/core/backendaccess/xmlrpc/common/**"/>
+  </target>
+  <!--  -->
+  <target name="sar_jar" depends="compile">
+    <mkdir dir="${localLib}"/>
+    <jar jarfile="${localLib}/${cxcnumber}-${cxcname}_sar.jar" basedir="${localClasses}" includes="com/ericsson/charging/vxmlivr/core/backendaccess/xmlrpc/** com/ericsson/charging/vxmlivr/core/common/** com/ericsson/charging/vxmlivr/core/alarm/** com/ericsson/charging/vxmlivr/alarm/** com/ericsson/charging/vxmlivr/core/initialization/exception/** com/ericsson/charging/vxmlivr/core/initialization/Initializer.class com/ericsson/charging/vxmlivr/core/configuration/** org/**"/>
+  </target>
+  <!--  -->
+  <target name="sign_jar_editorcore" depends="jars" if="editorcore.specific">
+    <signjar alias="IVR-Editors" storepass="ivrEditorsStorePass" keystore="${ivrKeyStore}" keypass="ivrEditorsKey">
+      <fileset file="${localLib}/*.jar"/>
+    </signjar>
+  </target>
+  <!--  -->
+  <target name="sign_jar_workflowclient" depends="jars" if="workflowclient.specific">
+    <signjar alias="IVR-Editors" storepass="ivrEditorsStorePass" keystore="${ivrKeyStore}" keypass="ivrEditorsKey">
+      <fileset file="${localLib}/*.jar"/>
+    </signjar>
+  </target>
+  <!--  -->
+  <target name="sign_jar_vxmleditor" depends="jars" if="vxmleditor.specific">
+    <signjar alias="IVR-Editors" storepass="ivrEditorsStorePass" keystore="${ivrKeyStore}" keypass="ivrEditorsKey">
+      <fileset file="${localLib}/*.jar"/>
+    </signjar>
+  </target>
+  <!--  -->
+  <target name="prepareDeliverables" depends="clean-output, specific_editorcore, specific_workflowclient, specific_vxmleditor, specific_reusable, jars, sign_jar_editorcore, sign_jar_workflowclient, sign_jar_vxmleditor, cm_jars">
+    <mkdir dir="${localOutput}/${cxcnumber}/${rstate}"/>
+    <!--  -->
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/WEB-INF" failonerror="false">
+      <fileset dir="${localRoot}/WEB-INF"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/META-INF" failonerror="false">
+      <fileset dir="${localRoot}/META-INF"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/jspFiles" failonerror="false">
+      <fileset dir="${localRoot}/jspFiles"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/vxmlFiles" failonerror="false">
+      <fileset dir="${localRoot}/vxmlFiles"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/ECMAScripts" failonerror="false">
+      <fileset dir="${localRoot}/ECMAScripts"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/grammarFiles" failonerror="false">
+      <fileset dir="${localRoot}/grammarFiles"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/schema" failonerror="false">
+      <fileset dir="${localRoot}/schema"/>
+    </copy>
+    <!--  -->
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/resources" failonerror="false">
+      <fileset dir="${localRoot}/resources" excludes="**/jbossweb-tomcat55.sar/conf/**"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/configuration" failonerror="false">
+      <fileset dir="${localRoot}/configuration" excludes="**/test/**"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/bin" failonerror="false">
+      <fileset dir="${localRoot}/bin"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/lib" failonerror="false">
+      <fileset dir="${localRoot}/lib" excludes="vivr-installation*.jar"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/scripts" failonerror="false">
+      <fileset dir="${localRoot}/scripts" excludes="*.old"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/help" failonerror="false">
+      <fileset dir="${localRoot}/help"/>
+    </copy>
+    <copy todir="${localOutput}/" failonerror="false">
+      <fileset dir="${localRoot}/scripts" includes="Install_** create_environment.sh cxclist optionalcxclist upgrade_old_structure.sh upgrade_environment.sh jboss_upgrade.sh backup.sh"/>
+    </copy>
+    <!-- Added Feature Locking components in the build package -->
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/featureControl" failonerror="false">
+      <fileset dir="${localRoot}/featureControl"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}/licenseControl" failonerror="false">
+      <fileset dir="${localRoot}/licenseControl"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}" failonerror="false">
+      <fileset file="${localRoot}/.update"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}" failonerror="false">
+      <fileset file="${localRoot}/*.war.txt"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}" failonerror="false">
+      <fileset file="${localRoot}/*.sar.txt"/>
+    </copy>
+    <copy todir="${localOutput}/${cxcnumber}/${rstate}" failonerror="false">
+      <fileset file="${localRoot}/jboss_lib_content.txt"/>
+    </copy>
+  </target>
+  <!--  -->
+  <target name="repTokensUnix" depends="initProps">
+    <replace dir="${localOutput}/${cxcnumber}/${rstate}/" summary="yes">
+      <include name="resources/*.*"/>
+      <include name="configuration/*/*.*"/>
+      <include name="configuration/*/*/*.*"/>
+      <include name="WEB-INF/*.*"/>
+      <include name="WEB-INF/*/*.*"/>
+      <include name="META-INF/*.*"/>
+      <replacefilter token="#VIVR_HOME#" value="/opt/vxml-ivr"/>
+      <replacefilter token="#OS_SEP#" value="/"/>
+    </replace>
+  </target>
+  <!--  -->
+  <target name="repTokensWin" depends="initProps">
+    <replace dir="${localOutput}/${cxcnumber}/${rstate}/" summary="yes">
+      <include name="resources/*.*"/>
+      <include name="configuration/*/*.*"/>
+      <include name="configuration/*/*/*.*"/>
+      <include name="WEB-INF/*.*"/>
+      <include name="WEB-INF/*/*.*"/>
+      <include name="META-INF/*.*"/>
+      <replacefilter token="#VIVR_HOME#" value="C:\vxml-ivr"/>
+      <replacefilter token="#OS_SEP#" value="\"/>
+    </replace>
+  </target>
+  <!-- -->
+  <target name="clean-test">
+    <delete dir="${localTestClasses}"/>
+    <delete dir="${reports.test}"/>
+  </target>
+  <!--  -->
+  <target name="compile-test" depends="compile">
+    <mkdir dir="${localTestClasses}"/>
+    <javac srcdir="${test.src}" destdir="${localTestClasses}" optimize="on" debug="${debug}" failonerror="true" deprecation="off">
+      <include name="**/*.java"/>
+      <classpath>
+        <pathelement path="${extcp}"/>
+        <path refid="classpath"/>
+        <path location="${localClasses}"/>
+      </classpath>
+    </javac>
+    <copy todir="${localTestClasses}" failonerror="false">
+      <fileset file="${test.src}/*.properties"/>
+    </copy>
+  </target>
+  <!--  -->
+  <target name="test" depends="compile-test">
+    <!--
+		<taskdef name="junit" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
+			<classpath>
+				<pathelement location="${classpath.junit}"/>
+			</classpath>
+		</taskdef>
+		-->
+    <!--  -->
+    <delete dir="${reports.test}"/>
+    <mkdir dir="${reports.test}/data"/>
+    <junit printsummary="on" fork="yes">
+      <formatter type="xml"/>
+      <!--
+			<formatter type="plain"/>
+			-->
+      <classpath>
+        <pathelement path="${extcp}"/>
+        <path refid="classpath"/>
+        <pathelement location="${localClasses}"/>
+        <pathelement location="${localTestClasses}"/>
+      </classpath>
+      <!--  -->
+      <batchtest fork="yes" todir="${reports.test}/data">
+        <fileset dir="${test.src}">
+          <!--
+					<include name="**/Air*Test*.java"/>
+					-->
+          <include name="**/*.java"/>
+          <exclude name="**/*Stub.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+  <!-- -->
+  <target name="junitReport" depends="clean-test, test">
+    <junitreport todir="${reports.test}" tofile="${cxcnumber}-${cxcname}.xml">
+      <fileset dir="${reports.test}/data">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <!--  -->
+      <report format="noframes" todir="${reports.test}"/>
+      <report format="frames" todir="${reports.test}"/>
+    </junitreport>
+    <echo>Report created with the name junit-noframes.html</echo>
+  </target>
+</project>

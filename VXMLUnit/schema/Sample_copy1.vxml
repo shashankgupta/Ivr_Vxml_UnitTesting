@@ -1,0 +1,133 @@
+
+  <vxml xmlns="http://www.w3.org/2001/vxml"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/2001/vxml http://www.w3.org/TR/voicexml20/vxml.xsd" version="2.1">
+
+	<var name="var1" expr="5" />
+	<var name="var2" expr="6" />
+	<var name="f1" expr="true" />
+	<var name="v" expr="2" />
+	
+	<script src="http://localhost:8080/vxmlscript/SampleScript.es"></script>
+	
+	
+	<catch cond = "true" event = "Catch0">
+		<audio expr="vxmlCatch" />
+	</catch>	
+	<catch cond="true" event="Catch0">	
+			<audio expr="formCatch" />
+		</catch>
+	
+	<form id="Sample_vxml" scope="document"> 
+		
+		<block name="first" cond="true">					
+		
+			<assign name="var1" expr="factorial(var1)" />
+			<assign name="v" expr="factorial(v)" />
+			
+			<audio expr="GOTO 0" />
+			
+			<audio expr="Catch 1" />
+			
+			<if cond="var1==120">
+					
+							<if cond="var1==12">
+									<if cond="var1==120">
+										<audio expr="Second Field Executed00" />
+									</if>
+							<elseif cond="var1==12" />
+								<audio expr="gjfuufuyyyg" />
+							<else/>
+								<audio expr="123456789" />
+							</if>
+							
+			<elseif cond="var1==12" />
+				<audio expr="ElseIf part1" />
+					
+			<elseif cond="var1==12" />
+				<audio expr="ElseIf part2" />
+				
+			<else/>
+				<audio expr = "Else part" />
+				
+			</if>
+			
+			<prompt timeout = "30s"> Hi!! my name is shashank. </prompt>
+			
+		</block>
+		
+		<catch cond="true" event="Catch0">	
+			<audio expr="formCatch" />
+		</catch>
+			
+		
+		<field name = "f1" cond = "true">
+			
+			<audio expr="Inside Field" />
+
+			<audio expr="Inside Field 1" />
+			
+			<filled>
+				<if cond="f1==1">
+					<audio expr="Inside Filled111" />
+				</if>
+				<clear namelist="first" />
+				<audio expr="Inside Filled222" />
+			</filled>
+			
+			<nomatch>	
+				<audio expr="Inside nomatch" />
+			</nomatch>
+			
+			<noinput>
+				<audio expr="Inside noinput" />
+			</noinput>
+				
+		</field>
+		
+		<field name = "f2" cond = "true">
+			
+			<audio expr="Inside Field" />
+
+			<audio expr="Inside Field 1" />
+			
+			<filled>
+				
+				<audio expr="Inside Filled111" />
+				<audio expr="Inside Filled222" />
+			</filled>
+				
+		</field>
+		
+		
+	</form>
+	<!--
+	<form id="Sample_vxml1" scope="document"> 
+		
+		<block name="second" cond="true">					
+		
+			<assign name="var1" expr="factorial(var1)" />
+			
+			<audio expr="GOTO 0" />
+			
+			<if cond="var1==120">
+					<audio expr = "If part" />
+				<elseif cond="var1==12" />
+					<audio expr="ElseIf part1" />				
+				<elseif cond="var1==12" />
+					<audio expr="ElseIf part2" />
+				<else/>
+					<audio expr = "Else part" />
+			</if>
+			
+			<prompt timeout = "30s"> Hi!! my name is shashank. </prompt>
+			
+		</block>
+	</form> -->
+
+  </vxml>
+  
+  
+  
+  
+  

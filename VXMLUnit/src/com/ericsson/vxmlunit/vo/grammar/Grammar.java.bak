@@ -1,0 +1,11 @@
+package com.ericsson.vxmlunit.vo.grammar;
+
+public class Grammar {
+	String rule;
+	String oneof;
+	String item;
+	
+	public Grammar(){
+		
+	}
+}

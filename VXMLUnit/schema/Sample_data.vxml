@@ -1,0 +1,33 @@
+
+  <vxml xmlns="http://www.w3.org/2001/vxml"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/2001/vxml http://www.w3.org/TR/voicexml20/vxml.xsd" version="2.1">
+
+	<var name="MyData"/>
+	
+	<script>
+      <![CDATA[
+          function GetData(d, t)  {       
+            print (d.getElementsByTagName(t).item(0).firstChild.data);
+			} 
+      ]]>
+    </script>
+	
+  <form id="F1">
+
+    <block>
+
+   		<data name="MyData" srcexpr = "MyData.xml"/>
+   		<data name="MyData" srcexpr = "//Users//Shank//Workspace//VXMLUnit//schema//Samplexml.xml"/>
+    	<assign name="document.MyData" expr="MyData.documentElement"/>
+    	
+        The values are <assign expr="GetData(MyData, 'child1')"/>.
+        the next value is <assign expr="GetData(MyData, 'child2')"/>.
+        the next value is <assign expr="GetData(MyData, 'child3')"/>.
+        the next value is <assign expr="GetData(MyData, 'child4')"/>.
+        the next value is <assign expr="GetData(MyData, 'child5')"/>.
+
+    </block>
+  </form>
+
+  </vxml>

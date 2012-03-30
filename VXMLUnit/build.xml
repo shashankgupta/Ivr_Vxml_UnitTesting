@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<project name="VXML IVR Application" basedir="." default="generate">
+
+  <target name="initProps">
+    <property name="localRoot" value="."/>
+    <property name="commonLibBase" value="${localRoot}/lib/new"/>
+  	<property name="jaxb_pkg" value="com.ericsson.vxmlunit.gen"/>
+  	<property name="jaxb_dir" value="com/ericsson/vxmlunit/gen"/>
+    <property name="gen.src" value="gen-src"/>
+  </target>
+
+  <target name="generate" depends="clean-gen-src">
+    <property name="classpath.jaxb1-impl" value="${commonLibBase}/jaxb1-impl.jar"/>
+    <property name="classpath.jaxb-api" value="${commonLibBase}/jaxb-api.jar"/>
+    <property name="classpath.jaxb-impl" value="${commonLibBase}/jaxb-impl.jar"/>
+    <property name="classpath.jaxb-xjc" value="${commonLibBase}/jaxb-xjc.jar"/>
+
+    <path id="classpath">
+      <pathelement location="${classpath.jaxb1-impl}"/>
+      <pathelement location="${classpath.jaxb-api}"/>
+      <pathelement location="${classpath.jaxb-impl}"/>
+      <pathelement location="${classpath.jaxb-xjc}"/>
+    </path>
+    <!--  -->
+  	<mkdir dir="${gen.src}"/>
+    <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+      <classpath refid="classpath"/>
+    </taskdef>
+  	
+    <echo message="Generating the source from the schema..."/>
+    <echo>The package name is ${jaxb_pkg}</echo>
+    <!--  -->
+    <xjc package="${jaxb_pkg}" destdir="${gen.src}" failonerror="false" removeOldOutput="yes" target="2.0">
+      <schema dir="./schema" includes="vxml.xsd" excludes="*.xsd.*"/>
+      <binding dir="./schema" includes="*.xjb"/>
+      <depends dir="./schema" includes="vxml.xsd"/>
+      <produces dir="${gen.src}/${jaxb_dir}" includes="**/*.java"/>
+    </xjc>
+  </target>
+
+  <target name="clean-gen-src" depends="initProps">
+    <delete failonerror="false">
+      <fileset dir="${localRoot}/${gen.src}" includes="**/*"/>
+    </delete>
+  </target>
+ 
+
+</project>
