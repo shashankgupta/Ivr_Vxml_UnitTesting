@@ -53,9 +53,9 @@ public class Throw extends NonFormItem{
 		if(dataMapEvent.size() != 1) {
 			throw new VXMLException("<throw> error: More than one of event, eventexpr found");
 		}
-		if(dataMapMessage.size() != 1) {
-			throw new VXMLException("<throw> error: More than one of message, messageexpr found");
-		}
+//		if(dataMapMessage.size() != 1) {
+//			throw new VXMLException("<throw> error: More than one of message, messageexpr found");
+//		}
 
 		setName("throw");
 	}

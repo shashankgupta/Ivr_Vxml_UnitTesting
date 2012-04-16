@@ -18,8 +18,8 @@ public class If extends NonFormItem {
 	private String condition;
 	private List<ElseIf> listElseIf;
 	private Else elseItem;
-	private boolean isExecuted;
-
+	public boolean isExecuted;
+	
 	public If(Element element) {
 		
 		setCondition(element.getAttribute("cond"));
@@ -35,6 +35,8 @@ public class If extends NonFormItem {
 		List<ElseIf> elseIfList = this.getListElseIf();
 		Else elseItem = this.getElseItem();
 		boolean flag = false;
+		isExecuted = false;
+		
 		try{
 			if(isTrue()){
 				nextItem = super.execute(interpreter);
@@ -58,7 +60,7 @@ public class If extends NonFormItem {
 				nextItem = elseItem.execute(interpreter);
 				isExecuted = true;
 			}
-
+			
 			if(!isExecuted) {
 				nextItem = super.skip(interpreter);
 				//nextItem = interpreter.checkNull(getNextSibling());
@@ -67,6 +69,9 @@ public class If extends NonFormItem {
 //					nextItem = interpreter.getNextItem();
 //				}
 			}
+//			else {
+//				nextItem = super.execute(interpreter);
+//			}
 			
 		}catch(VXMLScriptException e){
 			throw new VXMLException(e.getMessage());

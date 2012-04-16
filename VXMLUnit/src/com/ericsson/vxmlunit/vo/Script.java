@@ -124,9 +124,19 @@ public class Script extends NonFormItem{
 		this.scriptSrc = scriptSrc;
 	}
 
-
+	public void execute() throws VXMLException {
+		executeScript(null);
+	}
+	
 	@Override
 	public AbstractBaseItem execute(VXMLInterpreter interpreter) throws VXMLException {
+		executeScript(interpreter);
+		return super.execute(interpreter);
+	}
+
+
+	private void executeScript(VXMLInterpreter interpreter)
+			throws VXMLException {
 		AbstractBaseItem nextItem = null;
 		
 		String firstKey = dataMap.firstKey();
@@ -152,15 +162,13 @@ public class Script extends NonFormItem{
 				} 
 			
 //				nextItem = super.skip(interpreter);
-				
-				interpreter.setCurrentItem(this);
+				if(interpreter != null)
+					interpreter.setCurrentItem(this);
 				
 
 		} catch (VXMLScriptException e) {
 			throw new VXMLException("Error while evaluating expr. Error is: " + e.getMessage());
 		}
-		
-		return super.execute(interpreter);
 	}
 
 	

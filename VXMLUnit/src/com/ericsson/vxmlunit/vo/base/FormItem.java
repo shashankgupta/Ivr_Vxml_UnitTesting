@@ -10,7 +10,9 @@ public class FormItem extends AbstractBaseItem {
 	protected String guardcondition;
 	protected String value = null;
 	protected String expr;
-
+	protected int prompt_counter;
+	protected int error_counter;
+	
 	public String getExpr() {
 		return expr;
 	}

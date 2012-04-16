@@ -8,8 +8,8 @@ public class Value extends NonFormItem{
 	private String valueExp;
 	
 	public Value(Element element){
-		valueExp = element.getAttribute("expr");
-		setValueExp(valueExp);
+//		valueExp = element.getAttribute("expr");
+//		setValueExp(valueExp);
 		setName("value");
 	}
 

@@ -85,7 +85,8 @@ public class VXMLInterpreter {
 		List<AbstractBaseItem> children = vxml.getChildren();
 		for (AbstractBaseItem child : children) {
 			if (child.getName().equals("script")) {
-				child.execute(this);
+				Script script = (Script) child;
+				script.execute();
 				//ScriptUtil.executeScript((Script) child);
 			}
 		}

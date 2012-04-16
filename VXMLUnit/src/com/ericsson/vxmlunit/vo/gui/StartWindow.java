@@ -3,19 +3,41 @@ package com.ericsson.vxmlunit.vo.gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JRadioButton;
-import java.awt.BorderLayout;
+
+import com.ericsson.vxmlunit.Tests.TestBalInq.MainFormBalanceEnquiry;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.factories.FormFactory;
+import javax.swing.JLabel;
+import java.awt.GridBagLayout;
 import javax.swing.JButton;
-import javax.swing.JTabbedPane;
-import com.sun.java.swing.plaf.windows.resources.windows;
+import java.awt.GridBagConstraints;
+import javax.swing.JRadioButton;
+import java.awt.Insets;
+import java.awt.FlowLayout;
+
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+
+import org.junit.internal.builders.JUnit4Builder;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.io.File;
 
-public class StartWindow {
+import junit.framework.JUnit4TestAdapter;
+
+public class StartWindow implements ActionListener{
 
 	private JFrame frame;
 
@@ -31,8 +53,6 @@ public class StartWindow {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
-				
 			}
 		});
 	}
@@ -47,32 +67,91 @@ public class StartWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public JButton btnLoadVxml = new JButton("LOAD VXML");
+	JButton btnRunTest = new JButton("RUN TEST");
+	public JTextArea LogTextArea = new JTextArea();
+	MainFormBalanceEnquiry mfb;
+	
+	public void initialize() {
+		mfb = new MainFormBalanceEnquiry();
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 739, 487);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Test Balance Inquiry");
-		rdbtnNewRadioButton.setBounds(154, 123, 158, 23);
-		frame.getContentPane().add(rdbtnNewRadioButton);
+		JLabel lblDisplayLogs = new JLabel("DISPLAY LOGS");
+		lblDisplayLogs.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDisplayLogs.setBounds(87, 86, 236, 16);
+		frame.getContentPane().add(lblDisplayLogs);
 		
-		JButton btnRunTest = new JButton("Run Test");
-		btnRunTest.setBounds(168, 183, 99, 29);
+		JButton btnGrammar = new JButton("GRAMMAR");
+		btnGrammar.setBounds(616, 156, 117, 29);
+		frame.getContentPane().add(btnGrammar);
+		
+//		btnLoadVxml = new JButton("LOAD VXML");
+		btnLoadVxml.addActionListener(this);
+		btnLoadVxml.setBounds(616, 115, 117, 29);
+		frame.getContentPane().add(btnLoadVxml);
+		
+		JButton btnExit = new JButton("EXIT");
+		btnExit.setBounds(616, 430, 117, 29);
+		frame.getContentPane().add(btnExit);
+		
+		JButton btnSaveLogs = new JButton("SAVE LOGS");
+		btnSaveLogs.setBounds(616, 395, 117, 29);
+		frame.getContentPane().add(btnSaveLogs);
+		
+//		JButton btnRunTest = new JButton("RUN TEST");
+		btnRunTest.addActionListener(this);
+		btnRunTest.setBounds(616, 274, 117, 29);
 		frame.getContentPane().add(btnRunTest);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Test Case Sample");
-		rdbtnNewRadioButton_1.setBounds(0, 123, 142, 23);
-		frame.getContentPane().add(rdbtnNewRadioButton_1);
+//		LogTextArea = new JTextArea();
+		LogTextArea.setBounds(6, 115, 598, 344);
+		frame.getContentPane().add(LogTextArea);
+	}
+
+	public void actionPerformed(ActionEvent e) {
 		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Custom Path");
-		rdbtnNewRadioButton_2.setBounds(320, 123, 112, 23);
-		frame.getContentPane().add(rdbtnNewRadioButton_2);
+		
+		if(e.getSource() == btnLoadVxml){
+			JFileChooser fc = new JFileChooser();
+			File dir = new File("/Library/tomcat/webapps/vxmlscript/");
+			fc.setCurrentDirectory(dir);
+			int returnVal = fc.showOpenDialog(btnLoadVxml);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				
+				
+		        File file = fc.getSelectedFile();
+		        String path = file.getAbsolutePath();
+		        //This is where a real application would open the file.
+		       // mfb.setFilepath(path);
+		        MainFormBalanceEnquiry.filepath=path;
+		        LogTextArea.append("VXML File Loaded : " + file.getName() + ".bo" + "\n");
+		        LogTextArea.append("Absolute Path : " + file.getAbsolutePath() + "\n");
+		        
+		      } else {
+		    	LogTextArea.append("Open command cancelled by user." + "\n");
+		      }
+		}
+		
+		if(e.getSource() == btnRunTest) {
+			try {
+				Result result = JUnitCore.runClasses(MainFormBalanceEnquiry.class);
+				
+				for(Failure failure : result.getFailures()) {
+					
+					LogTextArea.append(failure.toString());
+				}
+				
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 	
-	public void actionPerformed(ActionEvent e){
-		String command = e.getActionCommand();
-		System.out.println(command + "command run ho gaye!!!!!!!");
-	}
-	
+//	public void setLog(String appendText) {
+//		LogTextArea.append(appendText + "\n");
+//	}
 }

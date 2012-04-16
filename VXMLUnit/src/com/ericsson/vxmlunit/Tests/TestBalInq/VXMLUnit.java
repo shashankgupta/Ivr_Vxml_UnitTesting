@@ -25,8 +25,8 @@ import com.ericsson.vxmlunit.vo.base.AbstractBaseItem;
 
 public class VXMLUnit {
 
-	protected VXMLInterpreter interpreter;
-	protected Vxml vxml;
+	protected static VXMLInterpreter interpreter;
+	protected static Vxml vxml;
 	protected List<String> grammar = new ArrayList<String>();
 
 	public void testSetForm(String formId) {

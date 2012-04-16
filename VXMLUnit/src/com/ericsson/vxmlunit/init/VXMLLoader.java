@@ -66,7 +66,7 @@ public class VXMLLoader{
             Validator validator = schemaXSD.newValidator();
             
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			
+			System.out.println(url);
 			document = builder.parse(url);
 			validator.validate(new DOMSource(document));
 //			document = builder.parse(content);

@@ -3,25 +3,39 @@ package com.ericsson.vxmlunit.Tests.TestBalInq;
 import javax.swing.JOptionPane;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.ericsson.vxmlunit.init.VXMLLoader;
 import com.ericsson.vxmlunit.interpreter.VXMLInterpreter;
+import com.ericsson.vxmlunit.vo.gui.StartWindow;
 
 
 public class MainFormBalanceEnquiry extends VXMLUnit {
+	
+	public static String filepath;
+	
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
+		System.out.println(filepath);
+	}
 
-	
-	
-	@Before
-	public void runBeforeTest() throws Exception {
+	public String getFilepath() {
+		return this.filepath;
+	}
+
+	@BeforeClass
+	public static void runBeforeTest() throws Exception {
 
 //		String address = JOptionPane.showInputDialog(null,"File Address");
 		interpreter = new VXMLInterpreter();
-		VXMLLoader loader = new VXMLLoader("http://localhost:8080/vxmlscript/StandardVoucherRefill.vxml", interpreter);
+//		VXMLLoader loader = new VXMLLoader("http://localhost:8080/vxmlscript/StandardVRefill.vxml", interpreter);
+		VXMLLoader loader = new VXMLLoader("/Users/Shank/Desktop/bal.vxml", interpreter);
 //		VXMLLoader loader = new VXMLLoader(address, interpreter);
+//		VXMLLoader loader = new VXMLLoader(this.filepath, interpreter);
 		vxml = loader.getVxml();
 
 		interpreter.initializeScript(vxml);
@@ -29,8 +43,8 @@ public class MainFormBalanceEnquiry extends VXMLUnit {
 		//		getGrammar();
 	}
 
-	@After
-	public void runAfterTest() throws Exception {
+	@AfterClass
+	public static void runAfterTest() throws Exception {
 		
 	}
 
@@ -158,7 +172,7 @@ public class MainFormBalanceEnquiry extends VXMLUnit {
 			setVariables("chargeAnnouncementRequired", "'true'");
 
 			testSetForm("main_form_BalanceEnquiry");
-			testAssertAudio("BAL_INTRO_PRE_RESERVE_MS G");
+			testAssertAudio("BAL_INTRO_PRE_RESERVE_MSG");
 			testAssertGoto("#main_form_checkChargingMethod");
 
 		}

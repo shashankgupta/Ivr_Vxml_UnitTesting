@@ -8,7 +8,7 @@ import com.ericsson.vxmlunit.vo.base.FormItem;
 public class Block extends FormItem {
 
 	private String blockName;
-	private Boolean visitStatus;
+//	private Boolean visitStatus;
 	
 	private static int BLOCK_COUNTER = 0;
 
@@ -24,11 +24,6 @@ public class Block extends FormItem {
 
 		setGuardCondition(element.getAttribute("cond"));
 
-		try {
-			visitStatus = isVisited();
-		} catch (VXMLScriptException e) {
-			e.printStackTrace();
-		}
 
 		setName("block");
 	}
@@ -43,6 +38,6 @@ public class Block extends FormItem {
 
 	@Override
 	public String toString(){
-		return "BLOCK {name = " + blockName + " value : " + value +" : expr = " + expr + visitStatus + " : cond = " + guardcondition + "}";
+		return "BLOCK {name = " + blockName + " value : " + value +" : expr = " + expr  + " : cond = " + guardcondition + "}";
 	}	
 }

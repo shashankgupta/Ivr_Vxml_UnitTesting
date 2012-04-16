@@ -18,6 +18,8 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.swing.JOptionPane;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import com.ericsson.vxmlunit.exception.VXMLScriptException;
 import com.ericsson.vxmlunit.vo.Throw;
 import com.ericsson.vxmlunit.vo.Var;
@@ -44,8 +46,9 @@ public class ScriptUtil{
 		if(condition != null && !condition.trim().equals("")) {
 			
 			try {
-				
-				result = (Boolean) engine.eval(condition);
+				String re = StringEscapeUtils.unescapeXml(condition);
+				result = (Boolean) engine.eval(re);
+//				System.out.println(re + "\t\t" + result);
 			} catch (ScriptException e) {
 				e.printStackTrace();
 				throw new VXMLScriptException("Error while evaluating guard condition. Error is: " + e.getMessage());
@@ -71,6 +74,7 @@ public class ScriptUtil{
 		try {
 			engine.eval("var " + var.getVarName() + " = " + var.getExpression());
 			engine.eval("application." + var.getVarName() + " = " + var.getExpression());
+			
 		} catch (ScriptException e) {
 			e.printStackTrace();
 		}
@@ -219,6 +223,16 @@ public class ScriptUtil{
 		}
 
 		return result;
+	}
+	
+	public static void printVar(String printVar) {
+		try {
+			System.out.println("Printing Variable...... \t" + printVar);
+			engine.eval("print(" + printVar + ");");
+		} catch (ScriptException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

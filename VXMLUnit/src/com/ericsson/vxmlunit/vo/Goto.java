@@ -28,12 +28,12 @@ public class Goto extends NonFormItem {
 	public Goto(Element element) throws VXMLException {
 
 		dataMap = new TreeMap<String, String>();
-		
+
 		next = element.getAttribute("next");
 		nextitem = element.getAttribute("nextitem");
 		expr = element.getAttribute("expr");
 		exprItem = element.getAttribute("expritem");
-		
+
 		if(next != null && next.trim().length() > 0){
 			dataMap.put(KEY_NEXT, next);
 			setNext(next);
@@ -51,7 +51,7 @@ public class Goto extends NonFormItem {
 			dataMap.put(KEY_EXPRITEM, exprItem);
 			setExprItem(exprItem);
 		}
-		
+
 		if(dataMap.size() != 1) {
 			throw new VXMLException("<goto> error: More than one of next, expr, nextitem or expritem found");
 		}
@@ -135,7 +135,7 @@ public class Goto extends NonFormItem {
 
 				if(item.startsWith("#")){
 					String searchFormItem = item.substring(1);
-					
+
 					for(int i=0; i<interpreter.getFormItems().size(); i++ ){
 						if(searchFormItem.equals(interpreter.getFormItems().get(i))){
 							flag = true;
@@ -165,15 +165,47 @@ public class Goto extends NonFormItem {
 				}
 
 			} else if(firstKey.equals(KEY_NEXTITEM)) {
+
 				String item = value;
+				String str = null;
+				Block bl = null;
+				Field fl = null;
 				for(int i=0; i<interpreter.getFormItems().size(); i++ ){
-					if(item.equals(interpreter.getFormItems().get(i).getName())){
-						FormItem formItem = (FormItem) getParent();
-						formItem.setValue("true");
-						interpreter.getFormItems().get(i).setGuardCondition("true");
+					if(interpreter.getFormItems().get(i).getName().equals("block")){
+						bl = (Block) interpreter.getFormItems().get(i);
+						str = bl.getBlockName(); 
+					}
+					else if(interpreter.getFormItems().get(i).getName().equals("field")) {
+						fl = (Field) interpreter.getFormItems().get(i);
+						str = fl.getFieldName();
+					}
+
+					if(item.equals(str)){
+		
+						AbstractBaseItem parent = getParent();
+						while(!parent.isFormItem()){
+							parent = parent.getParent();
+						}
+						FormItem formItem = (FormItem) parent;
+						formItem.setGuardCondition("true");
 						interpreter.setCurrentItem(interpreter.getFormItems().get(i));
-						nextItem = super.execute(interpreter);
-						break;
+						nextItem = interpreter.getNextItem();
+//						if(parent.isFormItem()){
+//							FormItem formItem = (FormItem) parent;
+//							formItem.setValue("true");
+//							formItem.setGuardCondition("true");
+//						}
+//						else{
+							
+							
+//						}
+						//						FormItem formItem = (FormItem) interpreter.getFormItems().get(i);
+						//						formItem.setValue("true");
+						//						interpreter.getFormItems().get(i).setGuardCondition("true");
+
+//						interpreter.setCurrentItem(interpreter.getFormItems().get(i));
+//						nextItem = super.execute(interpreter);
+//						break;
 					}
 				}
 
