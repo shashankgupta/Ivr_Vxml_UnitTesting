@@ -20,30 +20,36 @@ public class TestScript {
 	static Invocable invoEngine = (Invocable) engine;
 
 	public static void main(String[] args) {
-		try {
+		
 			try {
 				
-				engine.eval("var a = '123456789'");
+//				String re = StringEscapeUtils.escapeJava(val);
 				
+				engine.eval("var val1 = 'true'");
 				
+				engine.eval("var val2 = 'false'");
+					
+				Boolean result = evaluateGuardCondition("val1 == 'false'");
+					System.out.println(result);
+			
+			} catch (VXMLScriptException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (ScriptException e) {
-				// TODO aAuto-generated catch block
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Boolean result = evaluateGuardCondition("a.length >= 9");
-			System.out.println(result);
-			engine.eval("print(a);");
 			
-		} catch (VXMLScriptException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ScriptException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+//			System.out.println(result);
+//			engine.eval("print(a);");
+		
+//		} catch (VXMLScriptException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 	}
-
+	
 public static boolean evaluateGuardCondition(String condition) throws VXMLScriptException {
 	Boolean result = true;
 	

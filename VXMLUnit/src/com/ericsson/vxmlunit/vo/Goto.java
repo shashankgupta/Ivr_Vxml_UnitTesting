@@ -187,9 +187,11 @@ public class Goto extends NonFormItem {
 							parent = parent.getParent();
 						}
 						FormItem formItem = (FormItem) parent;
-						formItem.setGuardCondition("true");
+//						formItem.setGuardCondition("true");
+						formItem.setValue("true");
 						interpreter.setCurrentItem(interpreter.getFormItems().get(i));
 						nextItem = interpreter.getNextItem();
+//						break;
 //						if(parent.isFormItem()){
 //							FormItem formItem = (FormItem) parent;
 //							formItem.setValue("true");

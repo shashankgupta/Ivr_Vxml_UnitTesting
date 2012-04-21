@@ -39,8 +39,8 @@ public class If extends NonFormItem {
 		
 		try{
 			if(isTrue()){
-				nextItem = super.execute(interpreter);
 				isExecuted = true;
+				nextItem = super.execute(interpreter);
 			}else if(!elseIfList.isEmpty()){
 				Iterator<ElseIf> elseIfIter = elseIfList.iterator();
 				while(elseIfIter.hasNext()) {

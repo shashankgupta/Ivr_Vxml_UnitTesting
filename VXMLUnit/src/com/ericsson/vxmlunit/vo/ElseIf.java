@@ -50,13 +50,16 @@ public class ElseIf extends NonFormItem {
 	public AbstractBaseItem execute(VXMLInterpreter interpreter) throws VXMLException {
 		AbstractBaseItem nextItem = null;
 		If parentIf = (If) getParent();
+		boolean tt = false;
 		try{
 			if(isTrue() && !parentIf.isExecuted()) {
 				nextItem = super.execute(interpreter);
 			}
 			else {
-				if(parentIf.isExecuted()) 
-					nextItem = interpreter.checkNull(parentIf.getNextSibling());
+				if(parentIf.isExecuted()) {
+					nextItem = interpreter.checkNull(parentIf.getNextSibling()); 
+					tt=true;
+				}
 				else {
 					boolean flag = false;
 					List<ElseIf> listElseIf = parentIf.getListElseIf();
@@ -80,6 +83,13 @@ public class ElseIf extends NonFormItem {
 					else if(!flag)
 						nextItem = interpreter.checkNull(parentIf.getNextSibling());
 				}
+				if(tt) {
+					if(nextItem != null && !nextItem.isCapturedItem()) {
+						interpreter.setCurrentItem(nextItem);
+						nextItem = interpreter.getNextItem();
+					}
+				}
+				
 			}
 		}catch(VXMLScriptException e){
 			e.printStackTrace();

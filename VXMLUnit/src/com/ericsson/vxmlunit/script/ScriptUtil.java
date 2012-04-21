@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import org.apache.commons.lang.StringEscapeUtils;
 
 import com.ericsson.vxmlunit.exception.VXMLScriptException;
+import com.ericsson.vxmlunit.vo.Block;
 import com.ericsson.vxmlunit.vo.Throw;
 import com.ericsson.vxmlunit.vo.Var;
 import com.ericsson.vxmlunit.vo.Assign;
@@ -86,8 +87,10 @@ public class ScriptUtil{
 	 */
 	public static void executeAssign(Assign assi) throws VXMLScriptException {
 		try{
-			engine.eval(assi.getAssiExpr());
+			//System.out.println(assi.getAssignName() + " = " + assi.getAssiExpr());
+//			engine.eval(assi.getAssiExpr());
 			engine.eval(assi.getAssignName() + " = " + assi.getAssiExpr());
+			
 		} catch (ScriptException e){
 			e.printStackTrace();
 		}
@@ -109,6 +112,15 @@ public class ScriptUtil{
 	public static void executeField(Field field, String val) throws VXMLScriptException {
 		try {
 			engine.eval("var " + field.getFieldName() + " = " + val);
+		} catch (ScriptException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void executeBlock(Block block, String val) throws VXMLScriptException {
+		try {
+			if(block.getBlockName() != null)
+				engine.eval("var " + block.getBlockName() + " = " + val);
 		} catch (ScriptException e) {
 			e.printStackTrace();
 		}
@@ -214,9 +226,10 @@ public class ScriptUtil{
 		if(expr != null && !expr.trim().equals("")) {
 			
 			try {
-				System.out.println(" expr = " + expr);
+//				System.out.println(" expr = " + expr);
 				if(engine.eval(expr) != null)
 					result = engine.eval(expr).toString();
+//				System.out.println(result);
 			} catch (ScriptException e) {
 				e.printStackTrace();
 			}
@@ -228,7 +241,7 @@ public class ScriptUtil{
 	public static void printVar(String printVar) {
 		try {
 			System.out.println("Printing Variable...... \t" + printVar);
-			engine.eval("print(" + printVar + ");");
+			engine.eval("print(" + printVar + ");"); System.out.println("\n");
 		} catch (ScriptException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

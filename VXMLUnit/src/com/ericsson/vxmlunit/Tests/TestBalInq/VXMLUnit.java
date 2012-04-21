@@ -71,7 +71,11 @@ public class VXMLUnit {
 					Assert.assertTrue("Audio SRC Expected = " + prompt + " and Audio received = " + value, value.indexOf(prompt) >= 0);
 				} else if(firstKey.equals("expr")) {
 					String eval = ScriptUtil.evaluateExpression(value);
-					Assert.assertTrue("Audio EXPR Expected = " + prompt + " and Audio received = " + eval, eval.indexOf(prompt) >= 0);
+//					int start_index = eval.indexOf(prompt);
+//					String extract = eval.substring(start_index, (eval.indexOf("MSG") + 3)); 
+//					System.out.println(eval);
+					Assert.assertTrue("Audio EXPR Expected = " + prompt + " and Audio received = " + eval, eval.indexOf(prompt) > 0);
+//					Assert.assertTrue("Audio EXPR Expected = " + prompt + " and Audio received = " + eval, prompt.equals(extract));
 				}
 
 
@@ -179,14 +183,15 @@ public class VXMLUnit {
 				// field.setValue(val);
 				// goto no match input
 
-				if(val == null){
+				if(val == null || val == ""){
 					if(field.getFilled() != null)
 						field.getFilled().setMatchedValue(null);
 					//						field.setStatus("noinput");
 					interpreter.setEvent("noinput");
 
 				} else {
-					if(grammar.contains(val)) {
+				
+					if(grammar.contains(val.trim())) {
 						//field.setValue(val);
 						if(field.getFilled() != null)
 							field.getFilled().setMatchedValue(val);
@@ -227,8 +232,9 @@ public class VXMLUnit {
 
 			while (scanner.hasNextLine())
 			{
-				grammar.add((String) scanner.next());
+				grammar.add((String) scanner.next().trim());
 			}
+//			System.out.println(grammar);
 		}
 		catch (FileNotFoundException e)
 		{

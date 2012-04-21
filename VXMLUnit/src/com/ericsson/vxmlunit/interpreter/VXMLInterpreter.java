@@ -6,13 +6,13 @@ import java.util.List;
 import com.ericsson.vxmlunit.exception.VXMLException;
 import com.ericsson.vxmlunit.exception.VXMLScriptException;
 import com.ericsson.vxmlunit.init.VXMLLoader;
+import com.ericsson.vxmlunit.script.ScriptUtil;
 import com.ericsson.vxmlunit.vo.Form;
+import com.ericsson.vxmlunit.vo.Script;
+import com.ericsson.vxmlunit.vo.Var;
 import com.ericsson.vxmlunit.vo.Vxml;
 import com.ericsson.vxmlunit.vo.base.AbstractBaseItem;
 import com.ericsson.vxmlunit.vo.base.FormItem;
-import com.ericsson.vxmlunit.script.ScriptUtil;
-import com.ericsson.vxmlunit.vo.Var;
-import com.ericsson.vxmlunit.vo.Script;
 
 public class VXMLInterpreter {
 
@@ -124,6 +124,9 @@ public class VXMLInterpreter {
 					formItem.setValue("true");
 					nextItem = getNextFormItemOrItsChild();
 				}
+//				else if(!parent.isFormItem() && parent.getParent().isPostEventItem()){
+//					
+//				}
 				else {
 
 					// this check is done because for isPostEventItems (filled or catch), we need to go to parent of parent.
@@ -133,10 +136,19 @@ public class VXMLInterpreter {
 
 					while (nextItem == null ) {
 						parent = parent.getParent();
+						if(parent.isPostEventItem()){
+							parent = parent.getParent();
+						}
 						if (parent.getName().equals("form")) {
 							break;
 						} else if (parent.isFormItem()) {
+							if(parent.getName().equals("field")) {
+								nextItem = getNextFormItemOrItsChild();
+							} else {
+							FormItem formItem = (FormItem) parent;
+							formItem.setValue("true");
 							nextItem = getNextFormItemOrItsChild();
+							}
 						} else {
 							nextItem = parent.getNextSibling();
 						}
@@ -146,13 +158,44 @@ public class VXMLInterpreter {
 			}
 			else{
 				AbstractBaseItem parent = this.currentItem.getParent();
-
+				AbstractBaseItem parentSib = parent.getNextSibling();
+				
+				boolean flag = false;
+				
 				if(nextItem.getName().equals("elseif")){
-					nextItem = parent.getNextSibling();
+//					nextItem = parent.getNextSibling();
+//					if(nextItem == null)
+//						flag = true;
+					
+//					else if(nextItem.getName().equals("else"))
+//						nextItem = this.currentItem.getParent().getNextSibling();
+					
 				}
-				if(nextItem.getName().equals("else")){
-					nextItem = parent.getNextSibling();
+				else if(nextItem.getName().equals("else")){
+//					nextItem = checkNull(parentSib);
 				}
+				
+//				if(flag == true || nextItem == null){
+//				while(nextItem == null) {
+//					parent = parent.getParent();
+//					if(parent.isPostEventItem()){
+//						parent = parent.getParent();
+//					}
+//					if (parent.getName().equals("form")) {
+//						break;
+//					} else if (parent.isFormItem()) {
+//						if(parent.getName().equals("field")) {
+//							nextItem = getNextFormItemOrItsChild();
+//						} else {
+//						FormItem formItem = (FormItem) parent;
+//						formItem.setValue("true");
+//						nextItem = getNextFormItemOrItsChild();
+//						}
+//					} else {
+//						nextItem = parent.getNextSibling();
+//					}
+//				}
+//			}
 			}
 		}catch(VXMLException e){
 			throw new VXMLException(e.getMessage());

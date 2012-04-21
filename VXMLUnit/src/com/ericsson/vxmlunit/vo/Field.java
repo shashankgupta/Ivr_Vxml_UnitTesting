@@ -119,6 +119,12 @@ public class Field extends FormItem{
 			} else {
 				interpreter.setCurrentItem(this);
 				nextItem = interpreter.getCurrentItem().getFirstChild();
+				if(nextItem instanceof Grammar){
+					interpreter.setCurrentItem(nextItem);
+					nextItem = interpreter.getNextItem();
+				}
+//				interpreter.setCurrentItem(interpreter.getCurrentItem().getFirstChild());
+//				nextItem = interpreter.getNextItem();
 
 			}
 		}catch(VXMLScriptException e){

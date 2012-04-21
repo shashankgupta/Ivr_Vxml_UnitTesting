@@ -4,6 +4,7 @@ import com.ericsson.vxmlunit.exception.VXMLException;
 import com.ericsson.vxmlunit.exception.VXMLScriptException;
 import com.ericsson.vxmlunit.interpreter.VXMLInterpreter;
 import com.ericsson.vxmlunit.script.ScriptUtil;
+import com.ericsson.vxmlunit.vo.Block;
 
 public class FormItem extends AbstractBaseItem {
 
@@ -47,6 +48,9 @@ public class FormItem extends AbstractBaseItem {
 			if (!isVisited()) {
 				setValue(ScriptUtil.evaluateExpression(getExpr()));
 				if (!isCapturedItem()) {
+					if(this instanceof Block) {
+						ScriptUtil.executeBlock((Block) this, "true");
+					}
 					nextItem  = interpreter.checkNull(getFirstChild());
 
 					if (nextItem == null) {
