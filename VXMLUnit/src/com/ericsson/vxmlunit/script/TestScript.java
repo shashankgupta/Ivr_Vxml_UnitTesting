@@ -21,32 +21,33 @@ public class TestScript {
 
 	public static void main(String[] args) {
 		
-			try {
-				
-//				String re = StringEscapeUtils.escapeJava(val);
-				
-				engine.eval("var val1 = 'true'");
-				
-				engine.eval("var val2 = 'false'");
-					
-				Boolean result = evaluateGuardCondition("val1 == 'false'");
-					System.out.println(result);
-			
-			} catch (VXMLScriptException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ScriptException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-//			System.out.println(result);
-//			engine.eval("print(a);");
-		
-//		} catch (VXMLScriptException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		System.out.println("ashashankgupta".indexOf("shashank"));
+//			try {
+//				
+////				String re = StringEscapeUtils.escapeJava(val);
+//				
+//				engine.eval("var val1 = 'true'");
+//				
+//				engine.eval("var val2 = 'false'");
+//					
+//				Boolean result = evaluateGuardCondition("val1 == 'false'");
+//					System.out.println(result);
+//			
+//			} catch (VXMLScriptException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (ScriptException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+////			System.out.println(result);
+////			engine.eval("print(a);");
+//		
+////		} catch (VXMLScriptException e) {
+////			// TODO Auto-generated catch block
+////			e.printStackTrace();
+////		}
 		
 	}
 	

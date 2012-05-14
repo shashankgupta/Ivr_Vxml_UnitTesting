@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.junit.After;
 import org.junit.Assert;
 
-import junit.framework.TestCase;
 import com.ericsson.vxmlunit.exception.VXMLException;
 import com.ericsson.vxmlunit.exception.VXMLScriptException;
+import com.ericsson.vxmlunit.init.VXMLLoader;
 import com.ericsson.vxmlunit.interpreter.VXMLInterpreter;
 import com.ericsson.vxmlunit.script.ScriptUtil;
 import com.ericsson.vxmlunit.vo.Audio;
@@ -45,8 +46,21 @@ public class VXMLUnit {
 
 		}	
 	}
+	
+	public static void loadVXML(String url) throws VXMLException {
+		interpreter = new VXMLInterpreter();
+		VXMLLoader loader = new VXMLLoader(url, interpreter);
+		//		VXMLLoader loader = new VXMLLoader(address, interpreter);
+		//		VXMLLoader loader = new VXMLLoader(this.filepath, interpreter);
+		vxml = loader.getVxml();
 
+		interpreter.initializeScript(vxml);
+		interpreter.initializeVariables(vxml);
+	}
+
+	@After
 	public void checkEndTest() throws VXMLException{
+//		System.out.println("Test Case completed");
 		AbstractBaseItem item;
 		try{
 			item = interpreter.getNextItem();
@@ -63,7 +77,7 @@ public class VXMLUnit {
 		AbstractBaseItem item;
 		try {
 			item = interpreter.getNextItem();
-			if(item instanceof Audio){
+			if(item instanceof Audio) {
 				String firstKey = ((Audio) item).getDataMap().firstKey();
 				String value = ((Audio) item).getDataMap().get(firstKey);
 				if(firstKey.equals("src")){
@@ -74,7 +88,7 @@ public class VXMLUnit {
 //					int start_index = eval.indexOf(prompt);
 //					String extract = eval.substring(start_index, (eval.indexOf("MSG") + 3)); 
 //					System.out.println(eval);
-					Assert.assertTrue("Audio EXPR Expected = " + prompt + " and Audio received = " + eval, eval.indexOf(prompt) > 0);
+					Assert.assertTrue("Audio EXPR Expected = " + prompt + " and Audio received = " + eval, eval.indexOf(prompt) > -1);
 //					Assert.assertTrue("Audio EXPR Expected = " + prompt + " and Audio received = " + eval, prompt.equals(extract));
 				}
 
