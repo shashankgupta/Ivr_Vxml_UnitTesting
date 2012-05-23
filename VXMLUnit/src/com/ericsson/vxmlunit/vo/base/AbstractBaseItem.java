@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Stack;
 import com.ericsson.vxmlunit.vo.Catch;
 import com.ericsson.vxmlunit.exception.VXMLException;
@@ -20,9 +21,9 @@ public abstract class AbstractBaseItem {
 	private StringBuilder content;
 	private AbstractBaseItem nextSibling;
 	private AbstractBaseItem firstChild;
-	protected Stack<Catch> catchStack;
+	protected PriorityQueue<Catch> catchStack;
 	
-	public Stack<Catch> getCatchStack() {
+	public PriorityQueue<Catch> getCatchStack() {
 		if(name.equals("field") || name.equals("form") || name.equals("vxml")) {
 			return catchStack;
 		} else {

@@ -1,0 +1,19 @@
+<vxmlunit>
+
+	<host>169.144.88.81</host>
+	<port>8090</port>
+	<type>remote</type>
+	<username>Administrator</username>
+	<password>pass</password>
+	
+	<module name="BalanceEnquiry">
+		<localpath>abcd</localpath>
+		<url>BalanceEnquiry.do</url>
+	</module>
+	
+	<module name="StandardVoucherRefill">
+		<localpath>\cxc\jspfiles\com\ericsson\charging\vxmlivr\modules\standardrefill\StandardVoucherRefillJSP.jsp</localpath>
+		<url>standardVoucherRefill.do</url>
+	</module>
+	
+</vxmlunit>

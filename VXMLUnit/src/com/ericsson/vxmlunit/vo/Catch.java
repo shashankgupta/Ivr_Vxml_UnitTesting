@@ -1,5 +1,7 @@
 package com.ericsson.vxmlunit.vo;
 
+import java.util.Iterator;
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 import com.ericsson.vxmlunit.exception.VXMLException;
@@ -90,21 +92,14 @@ public class Catch extends NonFormItem implements Comparable<Catch> {
 //		}
 //		else {
 		try{
-		Stack<Catch> catchStack = getCatchStack();
-			for (int i = catchStack.size() - 1; i >= 0; i--) {
-
-				Catch catch1 = catchStack.get(i);
+			PriorityQueue<Catch> catchStack = getCatchStack();
+			Iterator<Catch> it = catchStack.iterator();
+			while(it.hasNext()) {
+				Catch catch1 = it.next();
 				String catchEvent = catch1.getEvent();
-
+				
 				if (isTrue() && catchEvent.equals(interpreter.getEvent())) {
-					//interpreter.setCurrentItem(catch1.getFirstChild());
-					//nextItem = catch1.execute(interpreter);
-//					break;
-					//nextItem = interpreter.getNextItem();
-					//break;
-					
 					nextItem = interpreter.checkNull(catch1.getFirstChild());
-
 					if(nextItem != null && !nextItem.isCapturedItem()) {
 						interpreter.setCurrentItem(nextItem);
 						nextItem = interpreter.getNextItem();
@@ -113,6 +108,28 @@ public class Catch extends NonFormItem implements Comparable<Catch> {
 					break;
 				}
 			}
+//			for (int i = catchStack.size() - 1; i >= 0; i--) {
+//
+//				Catch catch1 = catchStack.get(i);
+//				String catchEvent = catch1.getEvent();
+//
+//				if (isTrue() && catchEvent.equals(interpreter.getEvent())) {
+//					//interpreter.setCurrentItem(catch1.getFirstChild());
+//					//nextItem = catch1.execute(interpreter);
+////					break;
+//					//nextItem = interpreter.getNextItem();
+//					//break;
+//					
+//					nextItem = interpreter.checkNull(catch1.getFirstChild());
+//
+//					if(nextItem != null && !nextItem.isCapturedItem()) {
+//						interpreter.setCurrentItem(nextItem);
+//						nextItem = interpreter.getNextItem();
+//					}
+//					
+//					break;
+//				}
+//			}
 			}catch(VXMLScriptException e){
 				e.printStackTrace();
 			}

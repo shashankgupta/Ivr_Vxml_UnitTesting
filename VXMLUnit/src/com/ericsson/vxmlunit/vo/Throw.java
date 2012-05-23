@@ -107,11 +107,12 @@ public class Throw extends NonFormItem{
 		Throw thw = this;
 		String throwEvent = thw.getEvent();
 
-		Stack<Catch> catchStack = getCatchStack();
+		PriorityQueue<Catch> catchStack = getCatchStack();
 
 		if(catchStack.size() > 0) {
 			interpreter.setEvent(throwEvent);
-			nextItem = catchStack.elementAt(catchStack.size() - 1).execute(interpreter);
+//			nextItem = catchStack.elementAt(catchStack.size() - 1).execute(interpreter);
+			nextItem = catchStack.peek().execute(interpreter);
 		}
 
 		//		for(int i=catchStack.size()-1;i>= 0;i--){

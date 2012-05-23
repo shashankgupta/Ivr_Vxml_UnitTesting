@@ -5,10 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 import com.ericsson.vxmlunit.Tests.TestBalInq.MainFormBalanceEnquiry;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.factories.FormFactory;
+//import com.jgoodies.forms.layout.FormLayout;
+//import com.jgoodies.forms.layout.ColumnSpec;
+//import com.jgoodies.forms.layout.RowSpec;
+//import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;

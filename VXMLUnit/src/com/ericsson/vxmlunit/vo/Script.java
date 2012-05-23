@@ -17,6 +17,7 @@ public class Script extends NonFormItem{
 	private String scriptSrcexpr;
 	private String scriptInline;
 	private String scriptLoader;
+	private String Urlprefix;
 	
 	private TreeMap<String, String> dataMap;
 	
@@ -128,6 +129,15 @@ public class Script extends NonFormItem{
 		executeScript(null);
 	}
 	
+	public String getUrlprefix() {
+		return Urlprefix;
+	}
+
+	public void setUrlprefix(String urlprefix) {
+		Urlprefix = urlprefix;
+	}
+
+
 	@Override
 	public AbstractBaseItem execute(VXMLInterpreter interpreter) throws VXMLException {
 		executeScript(interpreter);
@@ -155,7 +165,7 @@ public class Script extends NonFormItem{
 					
 				} else if(firstKey.equals(KEY_SRC)) {
 					
-					String content = getContentUrl(value);
+					String content = getContentUrl(getUrlprefix() + value);
 					ScriptUtil.executeScript(content);
 //					setScriptLoader(content);
 					

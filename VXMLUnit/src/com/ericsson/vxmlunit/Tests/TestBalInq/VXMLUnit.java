@@ -2,12 +2,19 @@ package com.ericsson.vxmlunit.Tests.TestBalInq;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+
 import org.junit.After;
 import org.junit.Assert;
+import org.xml.sax.SAXException;
+
+import com.ericsson.vxmlunit.server.ConnectToUpload;
 
 import com.ericsson.vxmlunit.exception.VXMLException;
 import com.ericsson.vxmlunit.exception.VXMLScriptException;
@@ -47,7 +54,11 @@ public class VXMLUnit {
 		}	
 	}
 	
-	public static void loadVXML(String url) throws VXMLException {
+	public static void loadVXML(String moduleName) throws VXMLException, XPathExpressionException, ParserConfigurationException, SAXException, IOException {
+		ConnectToUpload ctu = new ConnectToUpload();
+		ctu.readXML(moduleName);
+		String url = ctu.getUrl();
+		System.out.println(ctu.getUrl());
 		interpreter = new VXMLInterpreter();
 		VXMLLoader loader = new VXMLLoader(url, interpreter);
 		//		VXMLLoader loader = new VXMLLoader(address, interpreter);
@@ -239,7 +250,7 @@ public class VXMLUnit {
 
 	public void getGrammar(){
 
-		File gramFile = new File("//Users//Shank//Workspace//VXMLUnit//schema//grammar//grammar");
+		File gramFile = new File("/Users/Shank/git_repo/Ivr_Vxml_UnitTesting/VXMLUnit/schema/grammar/grammar.txt");
 
 		try {
 			Scanner scanner = new Scanner(gramFile).useDelimiter(",");
